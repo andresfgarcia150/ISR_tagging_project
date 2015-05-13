@@ -1,0 +1,9 @@
+# Archivo con los datos de la clase histoN
+# dimensions	entries	sizeHisto
+		3		66639529		8000
+#minValues	maxValues	bins	steps
+		0		800		20		40
+		0		5.2		20		0.26
+		0		8		20		0.4
+#Archivo binario
+./histo_folder/array_histo_Non_ISR_0_1_3.bn
