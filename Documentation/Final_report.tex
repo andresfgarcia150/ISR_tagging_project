@@ -1,0 +1,69 @@
+% !TeX spellcheck = es_CO
+\documentclass[12pt, oneside]{book}              % Book class in 11 points
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage[spanish,mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{cancel}
+\usepackage{graphicx}
+\setlength{\parskip}{4mm}
+
+% For several graphics per figure
+\usepackage{caption} %[caption=false]
+\usepackage{subfigure}
+
+% For centering elements in tables
+\usepackage{array}
+
+% For multirows and multicolumns in tables
+\usepackage{multicol}
+\usepackage{multirow}
+
+% Epigraph
+\usepackage{epigraph}
+
+%\oddsidemargin 0.4cm \evensidemargin 0.4cm \topmargin 0.0cm
+%\textwidth 15.7cm \textheight 22.0cm \headsep 1.2cm \footskip 1.0cm
+
+\title{\bf Documentation of the project: \\ ISR jet tagging}
+\author{\textbf{Autor:}\\ Andr\'es Felipe Garc\'ia Albarrac\'in \\ \\ \textbf{Asesor:} \\ Juan Carlos Sanabria, Ph.D.}
+\date{\today}
+
+\begin{document}                        % End of preamble, start of text.
+	\frontmatter                            % only in book class (roman page #s)
+	\maketitle                              % Print title page.
+	\tableofcontents                        % Print table of contents
+	\mainmatter                             % only in book class (arabic page #s)
+
+\chapter{Introduction}
+
+During the last semester of 2014, I did my Undergraduate Thesis Project entitled ``\textit{Design of algorithms to 
+identify high momentum Initial State Radiation (ISR) Jets in proton – proton collision events}'', under the supervision 
+of Juan Carlos Sanabria, Ph.D.. As the name suggests, the project consisted in the proposal of an algorithm to identify
+ISR jets. Due to the promising results, I was employed during the first semester of 2015 under the program ``Joven 
+Investigador'' of COLCIENCIAS in order to improve the initially obtained results. Throughout this time, several codes
+and programs were developed. To encourage the continuation of this project, this report has been written with a 
+summary of all the technical work done so far.
+
+In the second chapter, the simulation chain will be presented. This chapter contains the usage of the programs
+MadGraph 5.2 \cite{MadGraph}, Pythia 8.2 
+
+\begin{thebibliography}{99}
+	\addcontentsline{toc}{chapter}{Bibliograf\'ia}
+
+	\bibitem{MadGraph} 
+	  J.~Alwall, R.~Frederix, S.~Frixione, V.~Hirschi, F.~Maltoni, O.~Mattelaer, H.-S.~Shao and T.~Stelzer {\it et al.},
+	  \emph{``The automated computation of tree-level and next-to-leading order differential cross sections, and their matching to parton shower simulations,''}
+	  JHEP {\bf 1407}, 079 (2014)
+	  [arXiv:1405.0301 [hep-ph]].
+	  
+	\bibitem{Pythia} 
+	  T.~Sjöstrand, S.~Ask, J.~R.~Christiansen, R.~Corke, N.~Desai, P.~Ilten, S.~Mrenna and S.~Prestel {\it et al.},
+	  \emph{``An Introduction to PYTHIA 8.2,''}
+	  Comput.\ Phys.\ Commun.\  {\bf 191}, 159 (2015)
+	  [arXiv:1410.3012 [hep-ph]].
+	  
+
+\end{thebibliography}
+	
+
+\end{document}
