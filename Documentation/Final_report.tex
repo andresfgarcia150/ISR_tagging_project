@@ -1,7 +1,7 @@
 % !TeX spellcheck = es_CO
 \documentclass[12pt, oneside]{book}              % Book class in 11 points
 \usepackage{amsmath, amsthm, amssymb}
-\usepackage[spanish,mexico]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{cancel}
 \usepackage{graphicx}
@@ -39,16 +39,34 @@
 During the last semester of 2014, I did my Undergraduate Thesis Project entitled ``\textit{Design of algorithms to 
 identify high momentum Initial State Radiation (ISR) Jets in proton – proton collision events}'', under the supervision 
 of Juan Carlos Sanabria, Ph.D.. As the name suggests, the project consisted in the proposal of an algorithm to identify
-ISR jets. Due to the promising results, I was employed during the first semester of 2015 under the program ``Joven 
+ISR jets. Due to the promising results, I was employed during the first semester of 2015 under the charge ``Joven 
 Investigador'' of COLCIENCIAS in order to improve the initially obtained results. Throughout this time, several codes
 and programs were developed. To encourage the continuation of this project, this report has been written with a 
 summary of all the technical work done so far.
 
-In the second chapter, the simulation chain will be presented. This chapter contains the usage of the programs
-MadGraph 5.2 \cite{MadGraph}, Pythia 8.2 
+In practical matters, one of the main drawbacks of Quantum Field Theory (QFD) is the inherent difficulty of its calculations.
+Feynman diagrams are not easy to solve and specially when high orders are involved. Consequently, the usage of algorithms
+and computer simulations have played an important role in the prediction of numerical results thanks to the great 
+calculation power of modern computers. Several programs have been developed with this purpose and today there exists a
+machinery which combines QFD, statistical models and Monte Carlo methods to reproduce High Energy Physics experiments.
+In this project, three of those programs were used: MadGraph 5.2 \cite{MadGraph}, Pythia 8.2 \cite{Pythia} 
+\cite{Sjostrand:2006za} and Delphes 3.2 \cite{Delphes} in order to simulate proton - proton collision events. 
+The description of those programs and their particular purposes in the project are described in chapter 2. In addition, 
+chapter 2 includes the explanation of the codes and the scripts that were developed to integrate those programs, and to
+run the simulations under specific conditions.
+
+In despite of the importance of the simulations and the time that their execution required, they just served as inputs of 
+the algorithms proposed throughout the project. Altogether, four algorithms were elaborated. Each of them are explained in
+chapter 3, where their documentation and an overall description are presented. 
+
+Finally, chapter four includes a brief description of some software tools that were introduced to the project. Specifically, 
+this project used C++ codes which included root libraries instead of root macros. This transition reduced the execution time
+of the algorithms six times. Additionally, the development environment \emph{Eclipse} was also introduced, which made easier
+the programming process. Overall, these tools dramatically improved the technical work of the project.
+
 
 \begin{thebibliography}{99}
-	\addcontentsline{toc}{chapter}{Bibliograf\'ia}
+	\addcontentsline{toc}{chapter}{Bibliography}
 
 	\bibitem{MadGraph} 
 	  J.~Alwall, R.~Frederix, S.~Frixione, V.~Hirschi, F.~Maltoni, O.~Mattelaer, H.-S.~Shao and T.~Stelzer {\it et al.},
@@ -61,6 +79,19 @@ MadGraph 5.2 \cite{MadGraph}, Pythia 8.2
 	  \emph{``An Introduction to PYTHIA 8.2,''}
 	  Comput.\ Phys.\ Commun.\  {\bf 191}, 159 (2015)
 	  [arXiv:1410.3012 [hep-ph]].
+	  
+	\bibitem{Sjostrand:2006za} 
+	  T.~Sjostrand, S.~Mrenna and P.~Z.~Skands,
+	  \emph{``PYTHIA 6.4 Physics and Manual,''}
+	  JHEP {\bf 0605}, 026 (2006)
+	  [hep-ph/0603175].
+	  
+	\bibitem{Delphes} 
+	  J.~de Favereau {\it et al.}  [DELPHES 3 Collaboration],
+	  \emph{``DELPHES 3, A modular framework for fast simulation of a generic collider experiment,''}
+	  JHEP {\bf 1402}, 057 (2014)
+	  [arXiv:1307.6346 [hep-ex]].
+
 	  
 
 \end{thebibliography}
