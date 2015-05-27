@@ -43,7 +43,9 @@
 \usepackage{graphicx}% Include figure files
 \usepackage{dcolumn}% Align table columns on decimal point
 \usepackage{bm}% bold math
-%\usepackage{hyperref}% add hypertext capabilities
+\usepackage{hyperref}% add hypertext capabilities
+\usepackage{natbib}
+
 %\usepackage[mathlines]{lineno}% Enable numbering of text and display math
 %\linenumbers\relax % Commence numbering lines
 
@@ -98,11 +100,11 @@ use the optional argument of the \verb+\item+ command to give the category of ea
 
 %\tableofcontents
 
-\section{\label{sec:Intro}Introduction}
+\section{Introduction} \label{sec:Intro}
 
-\section{\label{sec:Method}The ISR jet tagging method}
+\section{The ISR jet tagging method} \label{sec:Method}
 
-\subsection{\label{subsec:Method}The method}
+\subsection{The method} \label{subsec:Method}
 
 Let's suppose that there exists a kinematic variable $y$ that distinguishes between ISR jets and Non
 ISR jets. The information of such variable is known by means of the distribution functions for each 
@@ -122,29 +124,155 @@ ISR or not. In fact, the probability of being ISR should be proportional to the 
 function at the measurement. Likewise, the probability of being non ISR should be proportional to
 the Non ISR distribution function:
 
-\begin{equation} \label{Prob_ISR_1}
+\begin{equation} \label{eq:Prob_ISR_1}
 P^{ISR}(y_0) \propto f^{ISR}(y_0),
 \end{equation}
-\begin{equation} \label{Prob_Non_ISR_1}
+\begin{equation} \label{eq:Prob_Non_ISR_1}
 P^{Non\ ISR}(y_0) \propto f^{Non\ ISR}(y_0).
 \end{equation}
 
 In addition to the information offered by the density functions, another important 
 consideration to take into account is the \textit{apriori} probability of being ISR. If just one
-jet in the event is ISR, the \textit{apriori} probability of any jet being ISR is:
+jet of the $ N_{jets} $ in the event is ISR, the \textit{apriori} probability of any jet being ISR is:
 
-\begin{equation} \label{Prob_ISR_2}
-P^{ISR}_{apriori}(y_0) = 1/N_j,
+\begin{equation} \label{eq:Prob_ISR_2}
+P^{ISR}_{apriori}(y_0) = \frac{1}{N_{jets}},
 \end{equation}
 
 and similarly, the \textit{apriori} probability of any jet being Non ISR is:
 
-\begin{equation} \label{Prob_Non_ISR_2}
-P^{Non\ ISR}_{apriori}(y_0) = \frac{N_j-1}{N_j}.
+\begin{equation} \label{eq:Prob_Non_ISR_2}
+P^{Non\ ISR}_{apriori}(y_0) = \frac{N_{jets}-1}{N_{jets}}.
 \end{equation}
 
-Combining both 
+Combining both assumptions, the probabilities of being ISR and Non ISR could be written as:
 
+\begin{equation} \label{eq:Prob_ISR_3}
+P^{ISR}(y_0) = \alpha f^{ISR}(y_0) \frac{1}{N_{jets}},
+\end{equation}
+\begin{equation} \label{eq:Prob_Non_ISR_3}
+P^{Non\ ISR}(y_0) = \alpha f^{Non\ ISR}(y_0) \frac{N_{jets}-1}{N_{jets}},
+\end{equation}
+
+where $ \alpha $ is a constant that results from the normalization of the probabilities:
+
+\begin{equation} \label{eq:Normalization}
+1 = P^{ISR}(y_0) + P^{FSR}(y_0),
+\end{equation}
+\begin{equation} \label{eq:alpha}
+\alpha = \dfrac{N_{jets}}{f^{ISR}(y_0)+(N_{jets}-1)f^{Non\ ISR}(y_0)}.
+\end{equation}
+
+If there are more than a single variable which differentiate between ISR and Non ISR jets, 
+the previous analysis can be extended easily. In fact, it is enough to replace de single 
+variable probability density functions by multidimensional probability densities. The formulas 
+would take the same form as the probability density distributions are scalar functions, 
+regardless they depend on a single variable $ y $ or on a vector $ \vec{y} $. Therefore, in 
+a multidimensional case, the formulas would be:
+
+\begin{equation} \label{eq:Prob_ISR_vec}
+P^{ISR}(\vec{y_0}) = \alpha f^{ISR}(\vec{y_0}) \frac{1}{N_{jets}},
+\end{equation}
+\begin{equation} \label{eq:Prob_Non_ISR_vec}
+P^{Non\ ISR}(\vec{y_0}) = \alpha f^{Non\ ISR}(\vec{y_0}) \frac{N_{jets}-1}{N_{jets}},
+\end{equation}
+
+\subsection{From probability density functions to normalized histograms} \label{sec:Histos}
+
+As the latter formulas show, the probabilities of each jet depend on the probability density 
+distributions. In practical matters, these functions are replaced by normalized histograms whose 
+entries are collected from simulations where the ISR jet is known. 
+
+However, the replacement is just an approximation because a bin of the histogram does not correspond
+exactly to the value of the probability density function. In fact, the histogram results from an
+integration of the probability distribution:
+
+\begin{equation} \label{eq:histo}
+H(y_i) = \int_{\Omega_i} f(y)dy,
+\end{equation}
+
+where $ \Omega_i $ is the range of the bin, as presented in Fig. \ref{fig:Histo_shape}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./Imgs_article/Histo_shape}
+\caption[Shape of a histogram]{Shape of a histogram which does not exactly correspond with the
+probability density function}
+\label{fig:Histo_shape}
+\end{figure}
+
+If the size of the bin is small enough, the expression \ref{eq:histo} can be approximated by:
+
+\begin{equation} \label{eq:Approx_histo}
+H(y_i) \approx f(y_i)\Delta y,
+\end{equation}
+
+Using this approximation, the practical expressions of the probabilities of being ISR or Non ISR are:
+
+\begin{equation} \label{eq:Prob_ISR_hist}
+P^{ISR}(\vec{y_0}) = \alpha H^{ISR}(\vec{y_0}) \frac{1}{N_{jets}},
+\end{equation}
+\begin{equation} \label{eq:Prob_Non_ISR_hist}
+P^{Non\ ISR}(\vec{y_0}) = \alpha H^{Non\ ISR}(\vec{y_0}) \frac{N_{jets}-1}{N_{jets}}.
+\end{equation}
+To sum up, the usage of these formulas implies the necessity of running simulations of several 
+events, identifying theoretically the ISR jet in each event, and filling a N-dimensional histogram
+for each type of jet (Non ISR and ISR).
+
+\subsection{The Algorithm} \label{sub:Algorithm}
+
+Once the method has been prepared by selecting the distinguishing variables and filling the
+histograms, the algorithm of Fig. \ref{fig:Tagging_algorithm} is applied for each event. First, 
+each jet in the event is studied and its probabilities of being ISR and Non ISR are determined from
+its kinematical variables and expressions \ref{eq:Prob_ISR_vec} and \ref{eq:Prob_Non_ISR_vec}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{./Imgs_article/Tagging_algorithm}
+\caption[ISR jet tagging algorithm]{ISR jet tagging algorithm}
+\label{fig:Tagging_algorithm}
+\end{figure}
+
+Then, the jet with greatest probability of being ISR $ P^{ISR}_{max} $ is selected as ISR candidate.
+Finally, $ P^{ISR}_{max} $ is compared to a certain cut $ P_{cut} $ in order to ensure that the
+algorithm is conclusive. For example, if $ P^{ISR}_{max} < 1/N_{jets} $, the probability of the
+ISR candidate is fewer than the \textit{apriori} probability, and therefore no tag should be
+imposed. The cut is written in terms of a variable $ k $ that corresponds to the minimum factor
+that the probability of the ISR candidate should be greater than the \textit{apriori} probability:
+
+\begin{equation} \label{eq:Prob_cut}
+P_{cut} = \frac{k}{N_{jets}}
+\end{equation}
+
+This way, the ISR jet is tagged in each event based exclusively on preliminary histograms and 
+simple probability considerations.
+
+\section{Preparation of the method} \label{sec:Preparation_method}
+
+\subsection{The simulation chain} \label{sub:Simulation_chain}
+
+Overall, the entire project was done using Monte Carlo simulations. With those simulations,
+the multidimensional density histograms were filled and the events used to test the tagging
+algorithm were obtained.
+
+Every simulation was performed using the chain MadGraph 5.2~\cite{Alwall:2014hca}, Pythia
+8.2~\cite{Sjostrand:2014zea} ~\cite{Sjostrand:2006za} and Delphes 3.2~\cite{deFavereau:2013fsa}. 
+While MadGraph covered the simulation of matrix elements, Pythia was used to simulate the
+fragmentation and hadronization processes, and Delphes served as a detector simulator. The ISR
+jet production was controlled with Pythia, where the ISR emission was vetoed to one jet. Finally,
+in addition to the work done in each step of the chain, some scripts were written to integrate the
+programs. At this stage, \textit{parallel}~\cite{Tange2011a} was used to run simultaneous
+simulations.
+
+\subsection{Simulated channels} \label{sub:Simulated_channels}
+
+The values of the kinematic variables with which the histograms are filled are obtained from 
+simulations of the SM channel:
+
+\begin{equation}\label{eq:channel_t_t}
+p\ p \to t\ \tilde{t} + ISR\_jet
+\end{equation} 
+ 
 This sample document demonstrates proper use of REV\TeX~4.1 (and
 \LaTeXe) in mansucripts prepared for submission to APS
 journals. Further information can be found in the REV\TeX~4.1
@@ -245,6 +373,9 @@ For the latter, use the optional arguments of the \verb+\cite+ command itself:
 \texttt{[}\emph{pre-cite}\texttt{]}\allowbreak
 \texttt{[}\emph{post-cite}\texttt{]}\allowbreak
 \verb+{+\emph{key-list}\verb+}+.
+
+%\bibliographystyle{te}
+\bibliography{My_Bibliography}
 
 \end{document}
 %
