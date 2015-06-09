@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{cancel}
 \usepackage{graphicx}
+\usepackage{hyperref}% add hypertext capabilities
 \setlength{\parskip}{4mm}
 
 % For several graphics per figure
@@ -20,6 +21,9 @@
 
 % Epigraph
 \usepackage{epigraph}
+
+% List package (useful to write codes)
+\usepackage{listings}
 
 %\oddsidemargin 0.4cm \evensidemargin 0.4cm \topmargin 0.0cm
 %\textwidth 15.7cm \textheight 22.0cm \headsep 1.2cm \footskip 1.0cm
@@ -126,6 +130,66 @@ script that connects the three programs. Finally, the last section of this chapt
 present the procedure known as Matching between MadGraph and Pythia, which ensures that
 the Physics calculations made by each program correspond to the Energy scale that
 each one should handle.
+
+\section{MadGraph 5.2} \label{sec:MadGraph}
+
+The most basic procedure to simulate collision events using MadGraph is by means of its
+executable program. Follow the next steps to run a set of simulations of the channel
+$ p\ p\ \to t\ \tilde{t} $. It is important that MadGraph has been correctly installed
+\footnote{A full set of instructions to install MadGraph and other High Energy Physics
+programs can be found at \url{http://goo.gl/vigBdj}}.
+
+\begin{enumerate}
+\item In the folder where MadGraph has been installed, type:  
+\\ \texttt{./bin/mg5\_aMC}
+\item Once MadGraph has been initialized, import the Standard Model parameters:
+\\ \texttt{import model sm}
+\item Generate the event $ p\ p\ \to t\ \tilde{t} $:
+\\ \texttt{generate p p > t t$ \sim $}
+\item Create an output folder where all the simulation files will be saved, in this case
+test\_t\_tbar:
+\\ \texttt{output test\_t\_tbar} 
+\item Launch the Feynman diagrams production:
+\\ \texttt{launch -m}
+\\ and select the number of cores you want to use for the simulation
+\item Turn off Pythia and other programs\footnote{This project uses the last version 
+of Pythia (8.2) instead of the sixth version that uses MadGraph}. You can switch 
+off and on by typing the number before the program (type 1 to toggle pythia, for instance).
+Then, press enter.
+\item Modify the \texttt{run\_card.dat} file by typing 2. Write \texttt{:32} and press
+enter to go to line 32, then type \texttt{i} and press enter to modify the file. Change
+the number of events from 10000 to 1000. Press \texttt{Esc} and write \texttt{:wq} to
+write and quit.
+\item Press enter to run the simulation
+
+\end{enumerate}
+
+Although simple, the latter approach is not the best as it requires the user interaction
+several times to configure the simulation, which is not desirable when more than a single 
+simulation will be performed. In such situations, all the configuration parameters
+can be defined trough an input file. For the previous example, the input file would be:
+
+\noindent \texttt{import model sm
+\\generate p p > t t~
+\\output test\_t\_tbar -f
+\\launch -m
+\\2
+\\pythia=OFF
+\\Template/LO/Cards/run\_card.dat
+\\models/sm\_v4/param\_card.dat}
+
+\noindent where 2 corresponds to the number of cores used in the simulation, 
+\texttt{run\_card.dat} is the default file of MadGraph (this one can be used as a 
+template to another file with other values) and \texttt{param\_card.dat} contains 
+the Standard Model parameters and values. This file may be saved as 
+\texttt{mg5\_input.mg5} in the MadGraph folder, and the simulation can be run as:
+
+\noindent \texttt{./bin/mg5\_aMC -f mg5\_input.mg5}
+
+
+
+
+
 
 \bibliographystyle{unsrt}
 
