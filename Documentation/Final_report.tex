@@ -29,7 +29,7 @@
 %\textwidth 15.7cm \textheight 22.0cm \headsep 1.2cm \footskip 1.0cm
 
 \title{\bf Documentation of the project: \\ ISR jet tagging}
-\author{\textbf{Autor:}\\ Andr\'es Felipe Garc\'ia Albarrac\'in \\ \\ \textbf{Asesor:} \\ Juan Carlos Sanabria, Ph.D.}
+\author{\textbf{Author:}\\ Andr\'es Felipe Garc\'ia Albarrac\'in \\ \\ \textbf{Advisor:} \\ Juan Carlos Sanabria, Ph.D.}
 \date{\today}
 
 \begin{document}                        % End of preamble, start of text.
@@ -131,7 +131,7 @@ present the procedure known as Matching between MadGraph and Pythia, which ensur
 the Physics calculations made by each program correspond to the Energy scale that
 each one should handle.
 
-\section{MadGraph 5.2} \label{sec:MadGraph}
+\section{Usage of MadGraph 5.2} \label{sec:MadGraph}
 
 The most basic procedure to simulate collision events using MadGraph is by means of its
 executable program. Follow the next steps to run a set of simulations of the channel
@@ -170,7 +170,7 @@ simulation will be performed. In such situations, all the configuration paramete
 can be defined trough an input file. For the previous example, the input file would be:
 
 \noindent \texttt{import model sm
-\\generate p p > t t~
+\\generate p p > t t\~
 \\output test\_t\_tbar -f
 \\launch -m
 \\2
@@ -179,12 +179,56 @@ can be defined trough an input file. For the previous example, the input file wo
 \\models/sm\_v4/param\_card.dat}
 
 \noindent where 2 corresponds to the number of cores used in the simulation, 
-\texttt{run\_card.dat} is the default file of MadGraph (this one can be used as a 
-template to another file with other values) and \texttt{param\_card.dat} contains 
-the Standard Model parameters and values. This file may be saved as 
-\texttt{mg5\_input.mg5} in the MadGraph folder, and the simulation can be run as:
+\texttt{run\_card.dat} is the default file of MadGraph and \texttt{param\_card.dat} 
+contains the Standard Model parameters and values. Here, these two files correspond
+to the default ones that MadGraph provide. In order to use another set of 
+configuration parameters, the files should be copied to another location
+and modified according to desired simulation conditions.
 
-\noindent \texttt{./bin/mg5\_aMC -f mg5\_input.mg5}
+The input file may be saved as \texttt{mg5\_input.mg5} and the simulation can be
+executed as:
+
+\noindent \texttt{./bin/mg5\_aMC -f mg5\_input.mg5} \footnote{Observe that it is
+supposed that \texttt{mg5\_input.mg5} is localed at the MadGraph folder and that
+the command is run from the same directory. If not, the execution instruction and
+the input file should contain the full path accordingly.}
+
+As a result of the simulation by MadGraph, the output folder contains several 
+folders with all the information related to the simulation. The folder 
+\texttt{Cards} for instance, contains some parameter cards used in the simulation,
+while the folder \texttt{HTML}, and specially the file \texttt{info.html} present
+the Feynman diagrams created by MadGraph. The events resulting from the simulation
+are found in the folder \texttt{Events/run\_01} in the form of two files: a root 
+file called \texttt{unweighted\_events.root} and a compressed Les Houches Event file
+with name \texttt{unweighted\_events.lhe}.
+
+\section{Usage of Pythia 8.2} \label{sec:Pythia8}
+
+The simulation carried out by MadGraph is now passed to Pythia, which takes the
+file \texttt{unweighted\_events.lhe} as input. For this step, a C++ code was written
+based on the examples provided by Pythia developers and the specific requirements
+of this project. In the following paragraphs, this code will be explained taking into
+account the relevant issues for this project. A complete documentation can be found at
+~\cite{Sjostrand:2006za}.
+
+\subsection{The code}\label{sub:Pythia_code}
+
+The code is called \texttt{hadronization2.cc} and was written in C++:
+
+\lstinputlisting[language=C++]{source_filename.py}
+
+
+
+About the program, three important
+points should be highlighted:
+
+\begin{itemize}
+\item The code can be compiled using the \texttt{Makefile} available at the folder
+examples. It is necessary to have installed Pythia including a HepMC package 
+\footnote{Again, information to install Pythia 8.2 and HepMC can be found at
+\url{http://goo.gl/vigBdj}}. Additionally, the \texttt{Makefile} 
+\end{itemize}
+
 
 
 
