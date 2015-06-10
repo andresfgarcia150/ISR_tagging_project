@@ -1,5 +1,8 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Simulation chain}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}MadGraph 5.2}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}Pythia 8.2}{7}{section.2.2}
+\contentsline {section}{\numberline {2.1}Usage of MadGraph 5.2}{4}{section.2.1}
+\contentsline {section}{\numberline {2.2}Usage of Pythia 8.2}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}The code}{7}{subsection.2.2.1}
+\contentsline {chapter}{Appendices}{9}{section*.2}
+\contentsline {chapter}{\numberline {A}Pythia code}{10}{Appendix.1.A}

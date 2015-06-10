@@ -23,7 +23,24 @@
 \usepackage{epigraph}
 
 % List package (useful to write codes)
+\usepackage{color}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
 \usepackage{listings}
+\lstset{
+basicstyle=\small,
+breaklines=true,
+commentstyle=\color{mygreen}\small,
+keywordstyle=\color{blue}\small,
+stringstyle=\color{mymauve}\small,
+numbers=left,
+numberstyle=\small\color{mygray}
+}
+
+% Appendix
+\usepackage[toc,page]{appendix}
+
 
 %\oddsidemargin 0.4cm \evensidemargin 0.4cm \topmargin 0.0cm
 %\textwidth 15.7cm \textheight 22.0cm \headsep 1.2cm \footskip 1.0cm
@@ -213,26 +230,34 @@ account the relevant issues for this project. A complete documentation can be fo
 
 \subsection{The code}\label{sub:Pythia_code}
 
-The code is called \texttt{hadronization2.cc} and was written in C++:
+The code is called \texttt{hadronization02.cc}, was written in C++ and can be
+found at Appendix \ref{App:hadronization02.cc}. Overall, the code can be described
+in three steps:
 
-\lstinputlisting[language=C++]{source_filename.py}
+\begin{enumerate}
+\item \textbf{Input file:} 
+\\Pythia is configured by means of an input file that the user
+needs to specify when executing the code. It is a plain text file with extension
+\texttt{.cmnd} and contains parameters for the Pythia execution, such as the \texttt{.lhe}
+file produced by MadGraph and the hadronization conditions. An example of this file is:
 
+\lstinputlisting{input_pythia.cmnd}
 
+\item  \textbf{Hadronization  and Veto ISR}
 
-About the program, three important
-points should be highlighted:
+\item \textbf{Output}
 
-\begin{itemize}
-\item The code can be compiled using the \texttt{Makefile} available at the folder
+\end{enumerate}
+
+ The code can be compiled using the \texttt{Makefile} available at the folder
 examples. It is necessary to have installed Pythia including a HepMC package 
 \footnote{Again, information to install Pythia 8.2 and HepMC can be found at
-\url{http://goo.gl/vigBdj}}. Additionally, the \texttt{Makefile} 
-\end{itemize}
+\url{http://goo.gl/vigBdj}}. Additionally, the \texttt{Makefile}
 
-
-
-
-
+\begin{appendices}
+\chapter[Pythia code]{Pythia code: hadronization02.cc}\label{App:hadronization02.cc}
+\lstinputlisting[language=C++]{hadronization02.cc}
+\end{appendices}
 
 
 \bibliographystyle{unsrt}

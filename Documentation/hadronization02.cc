@@ -4,9 +4,9 @@
 
 /*
 -------     Universidad de los Andes      -------
--------      Departamento de Física       -------
+-------      Departamento de Fisica       -------
 -------   Proyecto Joven Investigador     -------
--------  Andrés Felipe García Albarracín  -------
+-------  Andres Felipe Garcia Albarracin  -------
 -------    Juan Carlos Sanabria Arenas    -------
 
 This code develops pythia hadronization. Takes as
