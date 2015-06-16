@@ -1,0 +1,6 @@
+# Include STDHEP libraries. The following 5 lines were sent by Mrenna.
+STDHEP_DIR = <STDHEP Directory>
+MCFIO_DIR = $(STDHEP_DIR)
+SINC=$(STDHEP_DIR)/src/inc
+INCS = -I$(SINC) -I$(STDHEP_DIR)/mcfio/src
+LOCAL = -L$(STDHEP_DIR)/lib  -lstdhepC -lFmcfio -lstdhep -lm

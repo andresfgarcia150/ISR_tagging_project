@@ -1,4 +1,4 @@
-% !TeX spellcheck = es_CO
+% !TeX spellcheck = en_US
 \documentclass[12pt, oneside]{book}              % Book class in 11 points
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage[english]{babel}
@@ -104,24 +104,24 @@ process. Overall, these tools dramatically improved the technical work of the pr
 \epigraph{\textquotedblleft \textit{Divide et impera}\textquotedblright, \\ \textquotedblleft
 Divide and conquer\textquotedblright}{Philip II of Macedon}
 
-At first glance, there is not clear why it is necessary to use three programs at the
+At first glance, it is not clear why it is necessary to use three programs at the
 simulation stage instead of just one. The answer is quite simple: each one of those
 programs has been developed to run a specific task in the simulation process, and 
-therefore, each one has been optimized to do it as accurate and fast as possible. 
+therefore, each one has been optimized to do so as accurate and fast as possible. 
 While MadGraph and Pythia are responsible for the simulation of high energy collision's 
-Physics, Delphes takes the final state particles produces by the former programs, and
-determines which would be the corresponding response of a detector. This scheme is
+Physics, Delphes takes the final state particles produced by the former programs, and
+determines what would be the corresponding response of a detector. This scheme is
 useful as it maintains the detector apart from the main calculations of the simulation.
-Additionally, it makes changing the experiment parameters as simple as modifying
+Additionally, it makes the change of experiment parameters as simple as modifying
 Delphes execution specifications.
 
-As presented before, MadGraph and Pythia handle the Physics of the collision. There
-are again more than a single program for this task, and now the reason lies in the
+As presented before, MadGraph and Pythia handle the Physics of the collision. Again,
+there is more than a single program for this task, and now the reason to use two programs lies on the
 limits of the theoretical models. At the very first moment of the collision when
 the Energy Density of the System is high enough, perturbative Quantum Chromo-Dynamics
 (pQCD), Quantum Electro-Dynamics (QED) and ElectroWeak Theory are the most accurate models
 known so far. MadGraph, and specifically MadEvent, use them to calculate the transverse
-sections of a particular channel defined by the user. From this calculation and Monte 
+sections of a particular channel defined by the user. From this calculation and the Monte 
 Carlo models, it randomly establishes the kinematic variables of the resulting particles
 of the collision.
 
@@ -130,23 +130,23 @@ by MadGraph are not valid, and then Pythia appears in the scene. The particles r
 from MadGraph are taken by Pythia, which makes the evolution to a multi-hadronic final
 state ~\cite{Sjostrand:2014zea}. The task run by Pythia involves the usage of Monte
 Carlo techniques to simulate hadronization, decays and showers. Finally, the particles
-obtained at the end of the Pythia simulation are the inputs of the Delphes simulation.
+obtained at the end of the Pythia simulation are the inputs for the Delphes simulation.
 
 Although the usage of several programs for the simulation means better results, it also
-implies the challenge of connecting them. This task has already done inside the MadGraph
+implies the challenge of connecting them. This task has already been done inside the MadGraph
 package, which connects MadEvent + Pythia 6 + Delphes / PGS\footnote{\textit{Pretty 
 Good Simulation}, PGS, is another program for detector simulation}. However, the version
-of Pythia included there (6th) is old and does not offer the possibility of controlling 
-ISR emissions as the last one (8th) does. Because ISR emission was the main focus of the 
-project, it was necessary to use Pythia 8 instead of Pythia 6 and therefore to develop
-the integration of MadGraph 5.2, Pythia 8.2 and Delphes 3.2.
+of Pythia included there (v.6) is old and does not offer the possibility of controlling 
+ISR emissions as the last one (v.8) does. As ISR emissions were the main focus of the 
+project, it was convenient to use Pythia 8 instead of Pythia 6 and therefore to develop
+the integration of MadGraph 5.2 with Pythia 8.2 and Delphes 3.2.
 
 Throughout this chapter, the codes and scripts written to achieve the simulation will
 be explained. One section is devoted to each program and another one presents the
 script that connects the three programs. Finally, the last section of this chapter
-present the procedure known as Matching between MadGraph and Pythia, which ensures that
-the Physics calculations made by each program correspond to the Energy scale that
-each one should handle.
+presents the procedure known as Matching between MadGraph and Pythia, which ensures that
+the physics calculations made by each program correspond to the Energy scale that
+each one of them should handle.
 
 \section{Usage of MadGraph 5.2} \label{sec:MadGraph}
 
@@ -222,24 +222,64 @@ with name \texttt{unweighted\_events.lhe}.
 \section{Usage of Pythia 8.2} \label{sec:Pythia8}
 
 The simulation carried out by MadGraph is now passed to Pythia, which takes the
-file \texttt{unweighted\_events.lhe} as input. For this step, a C++ code was written
-based on the examples provided by Pythia developers and the specific requirements
-of this project. In the following paragraphs, this code will be explained taking into
-account the relevant issues for this project. A complete documentation can be found at
-~\cite{Sjostrand:2006za}.
+file \texttt{unweighted\_events.lhe} as input. Pythia uses the information 
+contained in such file to develop the hadronization, and produces another file
+with the kinematic variables of the resulting particles. The task performed by
+Pythia can be summarized in the Black Box of Fig. \ref{fig:Black_box_pythia}, 
+where in addition to the file produced by MadGraph, a plain text file with 
+extension \texttt{.cmnd} is passed by parameter to configure the simulation.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{Imags_Doc/Black_box_pythia}
+\caption{}
+\label{fig:Black_box_pythia}
+\end{figure}
+
+The functionality of the black box of \ref{fig:Black_box_pythia} is done by
+a program written in C++, which is based on the examples provided by Pythia 
+developers ~\cite{Sjostrand:2006za}. The code is called \texttt{hadronization02.cc}, 
+was written in C++ and can be found at Appendix \ref{App:hadronization02.cc}.
+It performs specific requirements for this project that will be mentioned soon. 
+Before presenting the operations performed by the program, it is convenient 
+to describe how this code should be compiled and used. 
+
+\subsection{Code Usage}\label{sub:Code_usage}
+
+To use \texttt{hadronization02.cc}, it is necessary to have installed 
+Pythia\footnote{Again, information to install Pythia 8.2 and HepMC can be 
+found at \url{http://goo.gl/vigBdj}} and StdHep\footnote{StdHep can be 
+downloaded from \url{http://cepa.fnal.gov/psm/stdhep/getStdHep.shtml}.
+It is enough to type \texttt{make} to install it}. Once installed, go to
+the \texttt{examples} folder located at the Pythia directory \footnote{If 
+\texttt{examples} is not exactly there, it may be in \texttt{share/Pythia8}}.
+Inside such folder, copy the code \texttt{hadronization02.cc} and then 
+modify the \texttt{Makefile} in order to compile it. It is enough to insert
+the following lines at the beginning of the \texttt{Makefile}:
+
+\lstinputlisting[language=make]{Make_first_part}
+
+\noindent and these others at the end:
+
+\lstinputlisting[language=make]{Make_second_part}
+
+After doing so, the code is compiled by typing:
+
+\texttt{make hadronization02}
+
 
 \subsection{The code}\label{sub:Pythia_code}
 
-The code is called \texttt{hadronization02.cc}, was written in C++ and can be
-found at Appendix \ref{App:hadronization02.cc}. Overall, the code can be described
+. Overall, the code can be described
 in three steps:
 
 \begin{enumerate}
 \item \textbf{Input file:} 
-\\Pythia is configured by means of an input file that the user
-needs to specify when executing the code. It is a plain text file with extension
-\texttt{.cmnd} and contains parameters for the Pythia execution, such as the \texttt{.lhe}
-file produced by MadGraph and the hadronization conditions. An example of this file is:
+\\Pythia is configured by means of an input file that the user needs
+ to specify when executing the code. It is a plain text file with extension
+\texttt{.cmnd} and contains parameters for the Pythia execution, such as the
+\texttt{.lhe} file produced by MadGraph and the hadronization conditions. 
+An example of this file is:
 
 \lstinputlisting{input_pythia.cmnd}
 
