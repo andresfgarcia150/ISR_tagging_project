@@ -26,16 +26,18 @@
 \usepackage{color}
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mygray2}{rgb}{0.9,0.9,0.9}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \usepackage{listings}
 \lstset{
-basicstyle=\small,
+basicstyle=\small\tt,
 breaklines=true,
 commentstyle=\color{mygreen}\small,
 keywordstyle=\color{blue}\small,
 stringstyle=\color{mymauve}\small,
 numbers=left,
-numberstyle=\small\color{mygray}
+numberstyle=\small\color{mygray},
+backgroundcolor=\color{mygray2}
 }
 
 % Appendix
@@ -250,22 +252,46 @@ To use \texttt{hadronization02.cc}, it is necessary to have installed
 Pythia\footnote{Again, information to install Pythia 8.2 and HepMC can be 
 found at \url{http://goo.gl/vigBdj}} and StdHep\footnote{StdHep can be 
 downloaded from \url{http://cepa.fnal.gov/psm/stdhep/getStdHep.shtml}.
-It is enough to type \texttt{make} to install it}. Once installed, go to
-the \texttt{examples} folder located at the Pythia directory \footnote{If 
-\texttt{examples} is not exactly there, it may be in \texttt{share/Pythia8}}.
+It is enough to type \texttt{make} to install it}~\cite{Garren-StdHep}.
+Once installed, go to the \texttt{examples} folder located at the Pythia
+directory \footnote{If \texttt{examples} is not exactly there, it may 
+be in \texttt{share/Pythia8}}.
 Inside such folder, copy the code \texttt{hadronization02.cc} and then 
 modify the \texttt{Makefile} in order to compile it. It is enough to insert
 the following lines at the beginning of the \texttt{Makefile}:
 
 \lstinputlisting[language=make]{Make_first_part}
 
-\noindent and these others at the end:
+\noindent changing \texttt{<STDHEP Directory>} in line 2 by the local
+installation directory of StdHep. Furthermore, these other lines should
+be included at the end of the \texttt{Makefile}:
 
 \lstinputlisting[language=make]{Make_second_part}
 
-After doing so, the code is compiled by typing:
+After doing so, the code is compiled by typing on terminal:
 
 \texttt{make hadronization02}
+
+As a result, the executable file \texttt{hadronization02} is created in 
+the current folder. It may be copied and used in other directory.
+The instruction to run this program is:
+
+\texttt{./hadronization02 input.cmnd [output.hep]}
+
+\noindent where \texttt{input.cmnd} is the full name (with the path) of 
+the configuration file, and \texttt{output.hep} is an optional parameter
+that corresponds to the name of the output file.
+
+Continuing with the $ t\ \tilde{t} $ production example of the previous
+section, the following file may be saved as \texttt{input.cmnd} and
+used as input of the Pythia simulation:
+
+\lstinputlisting{input_pythia.cmnd}
+
+Each line of this file is a different command which is described after
+the exclamation mark character \textquoteleft!'. As it can be seen, 1000 
+events are hadronized, the file \texttt{unweighted\_events.lhe} from 
+MadGraph is read, and only ISR emissions are allowed.
 
 
 \subsection{The code}\label{sub:Pythia_code}
@@ -281,7 +307,7 @@ in three steps:
 \texttt{.lhe} file produced by MadGraph and the hadronization conditions. 
 An example of this file is:
 
-\lstinputlisting{input_pythia.cmnd}
+
 
 \item  \textbf{Hadronization  and Veto ISR}
 

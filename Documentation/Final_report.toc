@@ -4,6 +4,6 @@
 \contentsline {section}{\numberline {2.1}Usage of MadGraph 5.2}{4}{section.2.1}
 \contentsline {section}{\numberline {2.2}Usage of Pythia 8.2}{7}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Code Usage}{7}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}The code}{8}{subsection.2.2.2}
-\contentsline {chapter}{Appendices}{10}{section*.3}
-\contentsline {chapter}{\numberline {A}Pythia code}{11}{Appendix.1.A}
+\contentsline {subsection}{\numberline {2.2.2}The code}{10}{subsection.2.2.2}
+\contentsline {chapter}{Appendices}{11}{section*.3}
+\contentsline {chapter}{\numberline {A}Pythia code}{12}{Appendix.1.A}

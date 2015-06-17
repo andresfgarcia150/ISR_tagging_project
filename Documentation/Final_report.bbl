@@ -24,4 +24,11 @@ J.~de~Favereau et~al.
   collider experiment}.
 \newblock {\em JHEP}, 1402:057, 2014.
 
+\bibitem{Garren-StdHep}
+Lynn Garren.
+\newblock {\em StdHep 5.06.01 Monte Carlo Standardization at FNAL Fortran and C
+  Implementation}.
+\newblock Fermilab, 11 2006.
+\newblock Available at http://cepa.fnal.gov/psm/stdhep/.
+
 \end{thebibliography}

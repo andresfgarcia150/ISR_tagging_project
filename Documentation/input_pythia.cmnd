@@ -3,10 +3,10 @@
 ! Lines not beginning with a letter or digit are comments.
 
 // Specify statistics parameters.
-Main:numberOfEvents       = 100000  ! number of events generated (It needs to be <= Number of events generated in MG)
-Init:showChangedParticleData = off  ! not useful info here
-Next:numberShowInfo       = 1    ! 1 to show info, 0 to not
-Next:numberShowEvent      = 0    ! Especify the number of events that will be listed as output
+Main:numberOfEvents    = 1000  ! number of events generated (It needs to be <= Number of events generated in MG)
+Init:showChangedParticleData = off ! not useful info
+Next:numberShowInfo    = 1  ! 1 to show info, 0 to not
+Next:numberShowEvent   = 0  ! Especify the number of events that will be listed as output
 
 // Read .lhe file
 Beams:frameType = 4 ! To take a MG file as input
@@ -16,5 +16,5 @@ Beams:LHEF = unweighted_events.lhe  ! MG .lhe file
 PartonLevel:FSR = off ! switch final state radiation
 PartonLevel:ISR = on ! switch initial state radiation
 PartonLevel:MPI = off ! switch off multiparton interactions
-!Random:setSeed = on ! For random seed
+Random:setSeed = on ! For random seed
 Random:seed = 1 ! any number between 1 and 900,000,000
