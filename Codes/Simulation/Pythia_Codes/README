@@ -1,0 +1,21 @@
+-------     Universidad de los Andes      -------
+-------      Departamento de Física       -------
+-------   Proyecto Joven Investigador     -------
+-------  Andrés Felipe García Albarracín  -------
+-------    Juan Carlos Sanabria Arenas    -------
+
+hadronization01 and hadronization02 were the codes
+developed to control the hadronization process at
+Pythia simulation level. hadronization02 is the 
+final version where the ISR emission is restricted
+to a single ISR jet.
+
+The Makefile is an extension of the Makefile 
+provided by Pythia developers. It contains
+instructions to compile hadronization files
+including StdHep libraries (in addition to 
+Pythia libraries).
+
+Further documentation can be found in the
+Final report of this project, at the folder
+documentation (of this reposiroty). 
