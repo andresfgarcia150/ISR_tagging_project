@@ -288,37 +288,107 @@ used as input of the Pythia simulation:
 
 \lstinputlisting{input_pythia.cmnd}
 
-Each line of this file is a different command which is described after
+Each line of this file is a different command, each of which is described after
 the exclamation mark character \textquoteleft!'. As it can be seen, 1000 
 events are hadronized, the file \texttt{unweighted\_events.lhe} from 
 MadGraph is read, and only ISR emissions are allowed.
 
-
 \subsection{The code}\label{sub:Pythia_code}
 
-. Overall, the code can be described
-in three steps:
+Having explained the procedure to compile and use the hadronization program, 
+this subsection presents the code and what it does. As stated before, the code
+can be found in the Appendix \ref{App:hadronization02.cc} and also, in the 
+repository of the project: \url{https://github.com/andresfgarcia150/ISR_tagging_project},
+at the folder \texttt{/Codes/Simulation/Pythia\_Codes/}, where the modified
+Makefile is also included.
 
-\begin{enumerate}
-\item \textbf{Input file:} 
-\\Pythia is configured by means of an input file that the user needs
- to specify when executing the code. It is a plain text file with extension
-\texttt{.cmnd} and contains parameters for the Pythia execution, such as the
-\texttt{.lhe} file produced by MadGraph and the hadronization conditions. 
-An example of this file is:
+Overall, the code can be described in terms of two procedures: the configuration
+and the execution of the simulation. The first of them, that corresponds to
+lines 76 - 106 in Appendix \ref{App:hadronization02.cc}, establishes all the
+parameters needed for the simulation. It starts with the definition of some Strings
+to be used by the StdHep methods, and an object of class \texttt{Pythia} in line 82.
+Then, in lines 84-93, the names of the input file (\texttt{.cmnd} file) and the 
+output file are read from the execution instruction by means of \texttt{**argv}.
+Next, lines 95-98 define some variables to control the hadronization: 
+\texttt{nEvent} corresponds to the number of events to be hadronized, while
+\texttt{nAbort} and \texttt{iAbort} are the maximum and current numbers of 
+allowed events that present an error. Finally, the simulation configuration 
+ends with some necessary functions to handle StdHep files (lines 100-102) and
+with the definition of an object of the class \texttt{MyUserHooks}.
 
+The latter definition is extremely important for this project as it contains
+the restriction on the ISR emission. The object defined in line 105 belongs to
+the class \texttt{MyUserHooks}, which is written at the beginning of the code 
+(lines 37-67). This class, in turn, inherits from \texttt{UserHooks} and just
+two of its methods are re-written: \texttt{canVetoISREmission()} and 
+\texttt{doVetoISREmission()}. Each time an ISR emission is produced during
+the simulation of an event, the first of those methods stops the simulation
+and executes the second one, which counts the number of ISR partons produced
+so far and veto all the emissions in case that already exits one. This way, 
+only one (or zero) ISR parton is produced in each event. 
 
+With the definition of the pointer \texttt{myUserHooks} and its inclusion in
+the object \texttt{pythia}, the configuration stage finishes. Then, the execution
+starts by initializing the simulation at line 109. Basically, the simulation consists
+of the \textit{for} loop of lines 111-125, where each iteration corresponds to
+the generation of a new event through the call of method \texttt{pythia.next()}.
+Observe that if the latter method returns \texttt{false}, either pythia has reached the
+end of the input file (from MadGraph), or an error has happened and the execution
+should stop if the maximum number of errors is reached. Once this has been verified,
+each cycle ends by writing the event in the output \texttt{.hep} file.
 
-\item  \textbf{Hadronization  and Veto ISR}
+After the simulation has been completed, the StdHep file is closed 
+in line 127, some statistics of the simulation are published (line 128) and the
+pointer  \texttt{MyUserHooks} is deleted. These lines conclude the code that 
+develops the hadronization process.
 
-\item \textbf{Output}
+\subsection{Pythia ntuple generation} \label{sub:Pythia_ntuple}
 
-\end{enumerate}
+Although the file produced by the latter code is passed directly to Delphes, it
+cannot be read by ROOT. Therefore, it is necessary to develop a conversion
+from \texttt{.hep} to \texttt{.root}, which is performed by \texttt{ExRootAnalysis}.
+After having it properly installed, go to the installation directory and
+run the executable file \texttt{ExRootSTDHEPConverter} by typing:
 
- The code can be compiled using the \texttt{Makefile} available at the folder
-examples. It is necessary to have installed Pythia including a HepMC package 
-\footnote{Again, information to install Pythia 8.2 and HepMC can be found at
-\url{http://goo.gl/vigBdj}}. Additionally, the \texttt{Makefile}
+\texttt{./ExRootSTDHEPConverter output\_pythia.hep output\_pythia.root}
+
+\noindent where \texttt{output\_pythia.hep} is the full path name of the
+file produced by the hadronization code and \texttt{output\_pythia.root} is
+the output \texttt{ntuple}. This procedure makes possible the reading of 
+the pythia simulation when executing C++ codes with Root libraries.
+
+\begin{center}
+***
+\end{center}
+
+To summarize, it has been shown how to carry out simulations with MadGraph and
+Pythia 8.2. As a result of the simulation of MadGraph, the file 
+\texttt{unweighted\_events.lhe} is produced. Pythia receives that file as
+parameter and creates the file \texttt{output\_pythia.hep}. To complete the 
+simulation process, the next section will introduce Delphes, that takes the file
+generated by Pythia and performs the detector simulation.
+
+\section{Usage of Delphes 3.2} \label{sec:Delphes}
+
+Because High Energy Experiments such as the Compact Muon Solenoid (CMS) and 
+A Toroidal LHC ApparatuS (ATLAS) are already created and there is not much 
+we can do to modify them, the simulation of those detectors is a simple task.
+To use Delphes, for instance, it is enough to have installed it and use
+the existent cards.
+
+For the CMS simulation of the $ t\ \tilde{t} $ production example that
+has been used throughout this chapter, go to the Delphes installation
+directory and use the execution file \texttt{DelphesSTDHEP}. To do so,
+type on the terminal:
+
+\texttt{./DelphesSTDHEP cards/delphes\_card\_CMS.tcl delphes\_output.root output\_pythia.root}
+
+\noindent taking care that each one of the parameters should be replaced
+by the full path name of each file. With this instruction, 
+\texttt{delphes\_output.root} is generated and the files: 
+\texttt{output\_pythia.root} from the Pythia simulation, and
+\texttt{delphes\_card\_CMS.tcl} with CMS experiment specs are taken
+as inputs.
 
 \begin{appendices}
 \chapter[Pythia code]{Pythia code: hadronization02.cc}\label{App:hadronization02.cc}
@@ -328,7 +398,7 @@ examples. It is necessary to have installed Pythia including a HepMC package
 
 \bibliographystyle{unsrt}
 
-\bibliography{My_Bibliography_report}
+\bibliography{My_Bibliography_report}\addcontentsline{toc}{chapter}{Bibliografía}
 	
 
 \end{document}

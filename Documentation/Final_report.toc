@@ -5,5 +5,8 @@
 \contentsline {section}{\numberline {2.2}Usage of Pythia 8.2}{7}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Code Usage}{7}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}The code}{10}{subsection.2.2.2}
-\contentsline {chapter}{Appendices}{11}{section*.3}
-\contentsline {chapter}{\numberline {A}Pythia code}{12}{Appendix.1.A}
+\contentsline {subsection}{\numberline {2.2.3}Pythia ntuple generation}{11}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Usage of Delphes 3.2}{12}{section.2.3}
+\contentsline {chapter}{Appendices}{13}{section*.3}
+\contentsline {chapter}{\numberline {A}Pythia code}{14}{Appendix.1.A}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{20}{chapter*.4}
