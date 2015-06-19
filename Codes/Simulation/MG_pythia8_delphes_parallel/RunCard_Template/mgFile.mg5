@@ -1,0 +1,10 @@
+import model sm
+define l = l+ l-
+define v = vl vl~
+generate p p > t t~ > b b~ l v j j
+output FOLDEREVENTS/SUBFOLDERNAME_SEED -f
+launch -m
+NUMBERCORES
+pythia=OFF
+FOLDEREVENTS/RunCards/run_card_SEED.dat
+FOLDEREVENTS/ParamCard/param_card.dat

@@ -1,0 +1,38 @@
+! Hadronization from a .lhe file
+! This file contains commands to be read in for a Pythia8 run.
+! Lines not beginning with a letter or digit are comments.
+
+// Specify statistics parameters.
+Main:numberOfEvents       = RUNEVENTSNUM  ! number of events generated
+Init:showChangedParticleData = off  ! not useful info here
+Next:numberShowInfo       = 1    ! 1 to show info, 0 to not
+Next:numberShowEvent      = 0    ! Especify the number of events that will be listed as output
+
+// Read .lhe file
+Beams:frameType = 4
+Beams:LHEF = RESULTSFOLDER/unweighted_events.lhe
+
+
+! Hadronization:
+PartonLevel:FSR = off ! switch final state radiation
+PartonLevel:ISR = on  ! switch initial state radiation
+PartonLevel:MPI = off ! switch off multiparton interactions
+Random:setSeed = on ! For random seed
+Random:seed = SEED ! any number between 1 and 900,000,000
+
+
+// Matching between MG/ME and Pythia
+! Configuring the kt-MLM algorithm
+JetMatching:setMad = on		! Merging parameters are set according to the values of LHEF header (the MadGraph file)
+JetMatching:merge = on		! Parton-jet matching is switched on
+JetMatching:scheme = 1		! MadGraph matching code
+JetMatching:jetAlgorithm = 2	! The SlowJet clustering kt algorithm is used (for merging)
+JetMatching:slowJetPower = 1	! The kt Algorithm
+
+! qCut
+JetMatching:qCut = 30		! GeV. The cut of the matching algorithm
+
+! Exclusive mode. (This is important to accept additional jets to the hardon jets from MadGraph)
+!JetMatching:exclusive = 2	! Allow exclusive mode if nJet<nJetMax
+!JetMatching:nJetMax = 3	! Maximum number of jets that will be matched
+!JetMatching:nJet = -1		! Minimum number of additional light jets in the incomming process. OBS: It may be set automatically
