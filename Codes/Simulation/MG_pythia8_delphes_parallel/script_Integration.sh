@@ -4,6 +4,7 @@
 # -------      Departamento de Física       -------
 # -------        Joven Investigador         -------
 # -------  Andrés Felipe García Albarracín  -------
+# -------    Diego Alejandro Sanz Becerra   -------
 # -------    Juan Carlos Sanabria Arenas    -------
 # -------------------------------------------------
 # This file executes parallel simulations with the programs: MadGraph 5.2 + Pythia 8.2 + Delphes 3.2
@@ -70,35 +71,10 @@ sequ2 () {
 	## ExRootAnalysis execution
 	${EXROOTFOLDER}/${EXROOTEXE} $2/$3_$4/Events/run_01/output_pythia8.hep $2/$3_$4/Events/run_01/output_pythia8.root
 
-	## The following lines convert the "Delphes" tree .root file created by Delphes to a "LHCO" tree .root file
-	#${DELPHESFOLDER}/${DELPHESROOT2LCHO} $2/$3_$4/Events/run_01/output_delphes.root $2/$3_$4/Events/run_01/output_delphes.lhco
-	#${EXROOTFOLDER}/${EXROOTLHCO} $2/$3_$4/Events/run_01/output_delphes.lhco $2/$3_$4/Events/run_01/output_delphes_lhco.root
-
 	## Remove unnecessary files
-	rm $2/$3_$4/Events/run_01/output_delphes.lhco
 	rm $2/$3_$4/Events/run_01/output_pythia8.hep
 
 }
-
-## Uncompress .lhe.gz file
-#gzip -d ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/unweighted_events.lhe.gz
-
-## Pythia 8 execution
-#${PYTHIA8FOLDER}/${PYTHIA8EXE} ${EVENTSFOLDER}/RunCards/${PYTHIAPARAM} ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_pythia8.hep # &> /dev/null
-
-## Delphes execution
-#${DELPHESFOLDER}/${DELPHESEXE} ${EVENTSFOLDER}/RunCards/${DELPHESCARD} ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_delphes.root ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_pythia8.hep
-
-## ExRootAnalysis execution
-#${EXROOTFOLDER}/${EXROOTEXE} ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_pythia8.hep ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_pythia8.root
-
-## The following lines convert the "Delphes" tree .root file created by Delphes to a "LHCO" tree .root file
-#${DELPHESFOLDER}/${DELPHESROOT2LCHO} ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_delphes.root ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_delphes.lhco
-#${EXROOTFOLDER}/${EXROOTLHCO} ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_delphes.lhco ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_delphes_lhco.root
-
-## Remove unnecessary files
-#rm ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_delphes.lhco
-#rm ${EVENTSFOLDER}/${NAMESUBFOLDER}_${SEED}/Events/run_01/output_pythia8.hep
 
 export -f sequ
 export -f sequ2
