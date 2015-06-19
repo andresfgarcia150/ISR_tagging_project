@@ -6,6 +6,10 @@
 \BOOKMARK [2][-]{subsection.2.2.2}{The code}{section.2.2}% 6
 \BOOKMARK [2][-]{subsection.2.2.3}{Pythia ntuple generation}{section.2.2}% 7
 \BOOKMARK [1][-]{section.2.3}{Usage of Delphes 3.2}{chapter.2}% 8
-\BOOKMARK [0][-]{section*.3}{Appendices}{}% 9
-\BOOKMARK [0][-]{Appendix.1.A}{Pythia code}{}% 10
-\BOOKMARK [0][-]{chapter*.4}{Bibliograf\355a}{}% 11
+\BOOKMARK [1][-]{section.2.4}{Integration of MadGraph 5.2 + Pythia 8.2 + Delphes 3.2}{chapter.2}% 9
+\BOOKMARK [0][-]{section*.3}{Appendices}{}% 10
+\BOOKMARK [0][-]{Appendix.1.A}{Pythia code}{}% 11
+\BOOKMARK [0][-]{Appendix.1.B}{Integration scripts}{}% 12
+\BOOKMARK [1][-]{section.1.B.1}{Configuration script: config\137Integration.ini}{Appendix.1.B}% 13
+\BOOKMARK [1][-]{section.1.B.2}{Execution script: script\137Integration.sh}{Appendix.1.B}% 14
+\BOOKMARK [0][-]{chapter*.4}{Bibliography}{}% 15

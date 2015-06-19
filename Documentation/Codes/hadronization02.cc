@@ -10,7 +10,7 @@
 -------    Juan Carlos Sanabria Arenas    -------
 
 This code develops pythia hadronization. Takes as
-parameter a .cmnd where a .lhe file from MadGraph
+parameter a .cmnd file, where a .lhe file from MadGraph
 and other parameters are specified. Then the code
 produces .hep files after making the hadronization
 

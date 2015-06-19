@@ -31,4 +31,9 @@ Lynn Garren.
 \newblock Fermilab, 11 2006.
 \newblock Available at http://cepa.fnal.gov/psm/stdhep/.
 
+\bibitem{Tange2011a}
+O.~Tange.
+\newblock Gnu parallel - the command-line power tool.
+\newblock {\em ;login: The USENIX Magazine}, 36(1):42--47, Feb 2011.
+
 \end{thebibliography}
