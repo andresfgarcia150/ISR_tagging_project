@@ -147,9 +147,11 @@ the integration of MadGraph 5.2 with Pythia 8.2 and Delphes 3.2.
 Throughout this chapter, the codes and scripts written to achieve the simulation will
 be explained. One section is devoted to each program and another one presents the
 script that connects the three programs. Finally, the last section of this chapter
-presents the procedure known as Matching between MadGraph and Pythia, which ensures that
-the physics calculations made by each program correspond to the Energy scale that
-each one of them should handle.
+presents a simulation example where such script is used.
+%Finally, the last section of this chapter
+%presents the procedure known as Matching between MadGraph and Pythia, which ensures that
+%the physics calculations made by each program correspond to the Energy scale that
+%each one of them should handle.
 
 \section{Usage of MadGraph 5.2} \label{sec:MadGraph}
 
@@ -504,7 +506,51 @@ Contrary to the first sequence, this second one is run in parallel using
 the program Parallel ~\cite{Tange2011a}.
 \end{itemize}
 
+\section{Example of the integration scripts}\label{sec:Example_script}
 
+The example that was presented when each one of the programs was explained
+will now be repeated with the scripts introduced in above. Follow the next 
+instructions to simulate 100000 events of the channel $ p\ p\ \to\ t\ \tilde{t} $,
+where additionally one $ W $ boson resulting from the tops' decays
+is required to decay hadronically while the other is forced to a leptonic decay:
+
+\begin{enumerate}
+\item Install the three programs and compile the code \texttt{hadronization02}
+of Pythia.
+\item Download the folder \texttt{MG\_pythia8\_delphes\_parallel} from the
+repository of the project.
+\item Open the file \texttt{config\_Integration.ini} and write all the installation
+folders in front of the corresponding variables. Use the path of the downloaded folder
+\texttt{RunCard\_Template} as the directory of \texttt{RUNCARDFOLDER},
+\texttt{MADGRAPHFILEFOLDER}, \texttt{PYTHIAPARAMFOLDER} and \texttt{DELPHESCARDFOLDER}.
+For the variable \texttt{PARAMCARDFOLDER} use the directory where MadGraph is installed,
+followed by the folder \texttt{/models/sm\_v4}.
+\item In the file \texttt{config\_Integration.ini}, modify the variables:
+\begin{itemize}
+\item \texttt{CORESNUMBER=2}   		(To execute each run with 2 cores)
+\item \texttt{NUMEVENTSRUN=10000}   (To simulate 10000 events per run)
+\item \texttt{INIRUN=1}			    (The first simulation goes with seed = 1)
+\item \texttt{ENDRUN=10}		    (The last simulation goes with seed = 10)
+\end{itemize}
+\item Take a look of each one of the input files:
+\begin{enumerate}
+\item Open \texttt{/RunCard\_Template/mgFile.mg5} and check the details of the
+MadGraph simulation. Observe, for instance, line 4 where the channel is specified.
+\item Open \texttt{run\_card.dat} and verify that the energy per beam is $ 6500 GeV $
+in lines 41 and 42.
+\item In the file \texttt{input\_pythia.cmnd}, observe the same parameters presented
+in subsection \ref{sub:Code_usage}. Additionally, the file includes some necessary 
+settings to perform the \textit{matching} procedure between MadGraph and Pythia.
+More information about it can be found at ~\cite{matching}.
+\end{enumerate}
+\item Execute the script by typing\footnote{Possibly, you might want to run the
+simulation in background. In such case, type \texttt{screen}, then execute
+the simulation instruction and once it has started, type \texttt{Ctrl + a + d}
+to leave it in the background. If you want to return to the simulation, type
+on the terminal: \texttt{screen -r}.}:
+
+\texttt{./script\_Integration.sh}
+\end{enumerate}
 
 
 \begin{appendices}

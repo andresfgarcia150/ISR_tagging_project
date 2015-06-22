@@ -36,4 +36,8 @@ O.~Tange.
 \newblock Gnu parallel - the command-line power tool.
 \newblock {\em ;login: The USENIX Magazine}, 36(1):42--47, Feb 2011.
 
+\bibitem{matching}
+Simon~De Visscher and Johan Alwall.
+\newblock Introduction to jet-parton matching in mg/me, 03 2011.
+
 \end{thebibliography}
