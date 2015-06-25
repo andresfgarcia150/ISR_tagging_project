@@ -26,7 +26,7 @@ using namespace std;
 const Double_t PI = TMath::Pi();
 
 // Other simulations parameters
-const Char_t channel = '_'; // 's' for sTops and '_' for Tops
+const Char_t channel = 's'; // 's' for sTops and '_' for Tops
 const Char_t ISR_or_NOT[] = "WI"; // "WI" with ISR, "SI" without (Here it does not make any sense), "bb" bjets production
 const Bool_t atServer = true; // True if it is run at the server, false at the university's pc
 const Bool_t Matching = true; // True if a matching has been done between MG and Pythia, false otherwise
@@ -311,6 +311,7 @@ int main(int argc, char **argv){
 		strcpy(head_folder_results,"_Tops_matchs_WI_Matching/");
 	else
 		strcpy(head_folder_results,"_Tops_matchs_WI/");
+    head_folder_results[0] = channel;
     head_folder_results[13] = ISR_or_NOT[0];
     head_folder_results[14] = ISR_or_NOT[1];
 
