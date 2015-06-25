@@ -1,0 +1,9 @@
+# Archivo con los datos de la clase histoN
+# dimensions	entries	sizeHisto
+		3		17295898		8000
+#minValues	maxValues	bins	steps
+		0		8		20		0.4
+		0		500		20		25
+		0		6.5		20		0.325
+#Archivo binario
+/home/af.garcia1214/PhenoMCsamples/Results/histo_folder/_Tops_histos_WI_Matching/array_histo_ISR_3_6_7.bn
