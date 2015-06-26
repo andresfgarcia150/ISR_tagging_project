@@ -1,0 +1,18 @@
+ A PDF is used, so alpha_s(MZ) is going to be modified
+ Old value of alpha_s from param_card:   0.11800000071525575     
+  ****************************************
+ 
+       NNPDFDriver version 1.0.3
+   Grid: NNPDF23_lo_as_0130_qed_mem0.grid
+  ****************************************
+ New value of alpha_s from PDF nn23lo1:  0.13000000000000000     
+ Results.dat xsec =    101.73000000000000       abs xsec =    101.73000000000000     
+ Found            2  subprocesses
+ SubProcess/Channel     kept   read   xsec 
+P0_gg_bbxlvlqq/G1/   31871   39899 0.811E+01
+P0_gg_bbxlvlqq/G2/  191725  206451 0.488E+02
+P0_gg_bbxlvlqq/G3/  351398  376614 0.894E+02
+P0_qq_bbxlvlqq/G1/  399977  463836 0.102E+03
+ Found       103065  events writing first       100000
+ Unweighting selected       100000  events.
+Truncated  0.00% of cross section
