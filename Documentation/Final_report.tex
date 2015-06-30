@@ -735,14 +735,19 @@ taken by Delphes in order to simulate the detector and thus, it is impossible
 to know the \textquoteleft theoretical' ISR jet with the Delphes simulation exclusively. 
 Therefore, it is necessary to \textit{match} \footnote{We have called this procedure 
 \textit{matching}. Please do not confuse it with the algorithm carried out
-between MadGraph and Pythia, that has been mentioned in chapter \ref{cha:Simulation_chain}.} the ISR parton from Pythia with one of the jets 
-from Delphes. Observe that this is a computational procedure that cannot be
-done with real data; it is only useful to identify the ISR jet in Delphes
-and then fill the N-dimensional histograms.
+between MadGraph and Pythia, that has been mentioned in chapter \ref{cha:Simulation_chain} ~\cite{matching}.} the ISR parton from Pythia with 
+one of the jets from Delphes. Observe that this is a computational procedure 
+that cannot be done with real data; it is only useful to identify the ISR jet 
+in Delphes and then to fill the N-dimensional histograms.
 
-The \textit{matching} algorithm is presented in Fig. TATATÁ. In practical 
-matters, after knowing the ISR parton in Pythia, it looks for the
-closest jet using the cone-algorithm. Because  
+The \textit{matching} algorithm is presented in Fig. \colorbox{yellow}{TATATÁ}.
+In practical matters, after knowing the ISR parton in Pythia, it looks for the
+closest jet using the cone-algorithm. It not only considers the jets reported
+by Delphes, but also combinations between them (i.e. up to three of them). This
+considers the case when a parton results in more than a single jet because of 
+the detector interpretation. If the matched jet is too far from the ISR parton
+or if it is a combination of several jets, the method does not reports any 
+match.
 
 
 \begin{appendices}
