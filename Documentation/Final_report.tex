@@ -38,7 +38,8 @@ stringstyle=\color{mymauve}\small,
 numbers=left,
 numberstyle=\small\color{mygray},
 backgroundcolor=\color{mygray2},
-showstringspaces=false
+showstringspaces=false,
+tabsize=3
 }
 
 % Appendix
@@ -491,7 +492,7 @@ certain variables defined in such templates and replace them with
 the specific parameters of each simulation.
 
 \item The second sequence inside \texttt{script\_Integration.sh} runs the
-simulations. As it can be verified in Appendix \ref{sec:Execution_script},
+simulations. As it can be verified in Appendix \ref{sub:Execution_script},
 it:
 \begin{enumerate}
 \item Runs Madgraph
@@ -560,7 +561,122 @@ as they serve to prove the ideas proposed to identify ISR jets.
 Now its time to present those ideas and the codes that were written
 to develop them.
 
+\section[Preparation of the codes]{Preparation of the codes} \label{sec:Preparation_codes}
+
+All the codes that will be presented in this chapter are included in Appendix \ref{App:Analysis_codes}
+and in the repository of the project, at the folder \texttt{Codes/Codes\_analysis}.
+Each of them is included inside a different folder with other files that contain
+functions used by the corresponding code. In order to compile each program, follow 
+the next instructions:
+
+\begin{enumerate}
+\item Download the corresponding folder from the repository of the project.
+\item Inside each folder, modify the \texttt{Makefile} according to your local
+c++ compiler and program installation folders. Change lines 23 to 49 of each 
+\texttt{Makefile} to do so.
+\item To compile each code, it is enough to type:
+\\ \texttt{make\_compile\_ROOT\_Delphes}
+\end{enumerate}
+
+Some important parameters of each program are defined at the beginning of the
+corresponding code (lines 46 - 57) in the form of global variables. These parameters 
+are not supposed to be modified frequently but are easy to change if necessary. A brief
+description of them is now presented:
+
+\begin{itemize}
+\item Variable \texttt{channel} is used to select if the 
+channel under analysis corresponds to tops' or stops' production. 
+\item \texttt{ISR\_or\_NOT} defines if the simulation presents or not an ISR jet.
+\item \texttt{Matching} is a boolean variable that should be set true if a matching
+has been performed between MadGraph and Pythia ~\cite{matching}.
+\item Similar variables to those of the previous items exist for the histograms' files.
+(Those histograms will be explained soon). They specify the channel of the simulations 
+performed to fill the histograms and if the matching procedure has been done in those 
+simulations.
+\item Because sometimes I worked at the server and others at my pc, I used \texttt{atServer}
+to change easily between them. By toggling this variable, the user specifies the head folders
+where the histograms' files, the simulation for analysis and the matching results of such
+simulation are located. Furthermore, it also controls where will be the location
+of the tagging results. 
+\end{itemize}
+
+All these variables are important as they allow handling with different simulations easily.
+However, this needs that the names of the folders as well as the name of the files
+follow a strict convention. In Table \ref{tab:Naming_convention}  the convention used to name 
+files and folders are presented. A few rules should be taken into account when checking the
+name structure presented in Table \ref{tab:Naming_convention}:
+
+\begin{enumerate}
+\item Each \textquoteleft s' before the word Tops should be either
+a \textquoteleft s' if the channel under analysis is stop pair production, or a 
+\textquoteleft \_' if the studied channel is top pair production.
+\item \textquoteleft WI' corresponds to the case when there is an ISR jet in the
+simulated events. It changes to \textquoteleft SI' if there are not ISR jets.
+\item \textquoteleft \textit{\_Matching}' appears if the matching procedure between
+MadGraph and Pythia has been done. If not, it does not appear in the name.
+\item The sequence of numbers \textquoteleft \_0\_1\_2' corresponds to the set of
+variables used for the analysis (Those variables will be explained later on).
+\end{enumerate} 
+
+\begin{table}
+\renewcommand{\arraystretch}{1.2}
+	\begin{center}
+		\begin{tabular}{m{2cm} @{\hspace{0.5cm}} m{5cm} @{\hspace{0.5cm}} m{5.0cm}}
+			\hline
+			\hline
+			\multicolumn{1}{c}{\textbf{Item}} & \multicolumn{1}{c}{\textbf{Description/Contents}} & \multicolumn{1}{c}{\textbf{Name structure}} \\
+			\hline
+			
+			\hline
+			Simulation head folder & Simulations' run folders of the same channel & sTops\_Events\_WI\textit{\_Matching}  \\
+			\hline
+			Simulation run folder & Simulations' files of a particular run&
+			sTops\_MG\_1K\_AG\_WI\_004 \\
+			\hline
+			Matching folder & All the matching head folders & matching\_Results \\
+			\hline
+			Matching head folder & Matching result files of a particular simulation & sTops\_matchs\_WI\textit{\_Matching} \\
+			\hline
+			Matching file & Matching information of a specific run & 
+			ISR\_jetssTops\_WI\_005.bn \\
+			\hline
+			Histograms' folder & All histograms' head folders & histo\_folder \\
+			\hline
+			Histograms' head folder & Histograms' files of a particular simulation (channel) & sTops\_histos\_WI\textit{\_Matching} \\
+			\hline
+			Histograms' files & Information of the N-dimensional histograms. Each histogram consists of 4 files: A binary and a plain text file for both ISR and Non ISR jets. &
+				\begin{tabular}[c]{@{}l@{}}
+					array\_histo\_ISR\_0\_1\_2.bn\\ array\_histo\_Non\_ISR\_0\_1\_2.bn\\ info\_histo\_ISR\_0\_1\_2.txt\\ info\_histo\_Non\_ISR\_0\_1\_2.txt 
+				\end{tabular} \\
+			\hline
+			Tagging folder & All tagging head folders & resultsTagging \\
+			\hline
+			Tagging head folder & Tagging result files of a particular simulation & sTops\_result\_WI\textit{\_Matching} \\
+			\hline
+			Tagging result files & Efficiency of the tagging algorithm for a particular channel and a specific selection of analysis variables. & 
+				\begin{tabular}{m{5.0cm}}
+					sTops\_WI\_Overall\_0\_1\_2.txt \\ sTops\_WI\_hpt-050\_0\_1\_2.txt \\  sTops\_WI\_MET\_pt\_050\_ k\_2.0\_0\_1\_2.png \\
+				\end{tabular} \\			
+			
+			\hline
+			\hline
+			
+		\end{tabular}
+		\caption[Naming convention of folders and files]{Naming convention of folders and files}
+		\label{tab:Naming_convention}
+	\end{center}
+\end{table}
+
+Take into account these rules for managing files produced and read by the programs.
+Feel free to change this convention but remember that it should be changed in all
+codes. Other details to execute each program will explained in the following sections,
+where additionally, the functionalities of each program are presented. 
+
 \section{The ISR jet tagging method} \label{sec:Method}
+
+The ISR jet tagging algorithm is the most important program of this project. It
+seeks to find the ISR jet in a event, in case it exists. Because of its importance,
+a complete explanation is presented bellow.
 
 \subsection{The method} \label{subsec:Method}
 
@@ -649,7 +765,7 @@ integration of the probability distribution:
 H(y_i) = \int_{\Omega_i} f(y)dy,
 \end{equation}
 
-\noindent where $ \Omega_i $ is the range of the bin, as presented in Fig. \ref{fig:Histo_shape}.
+\noindent where $ \Omega_i $ is the range of the bin, as it is presented in Fig. \ref{fig:Histo_shape}.
 
 \begin{figure}[h]
 	\centering
@@ -708,6 +824,34 @@ P_{cut} = \frac{k}{N_{jets}}
 This way, the ISR jet is tagged in each event based exclusively on preliminary histograms and 
 simple probability considerations.
 
+\subsection{The code}\label{sub:Tagging_code}
+
+The tagging code is presented in Appendix \ref{App:Tagging_code} and in the repository 
+of the project, at the folder \texttt{Codes/Codes\_analysis/ISR\_tagging\_FV}. To compile
+it, follow the instructions of section \ref{sec:Preparation_codes}. After compilation,
+the code can be executed by typing the instruction:
+
+\texttt{./ISR\_tagging [N1] [N2] [N3] [pt\_cut] [k\_cut]}
+
+\noindent where all the parameters that follow \texttt{./ISR\_tagging} are optional. Because
+the method uses three kinematic variables to distinguish ISR jets from Non ISR jets,
+the last three parameters correspond to the number of the variables the user wants 
+for the analysis. There are eight possible variables defined in the program, that can 
+be checked in the documentation at the beginning of the code. Although optional, the 
+user cannot specify just one or two of them; it is important to execute the code by 
+typing the three numbers or none of them. If no variables are written as inputs,
+the code takes by default the variables 0, 1 and 2.
+
+On the other hand, the last two variables are used to perform an analysis of the 
+tagging results. After executing the tagging algorithm with a probability cut 
+\texttt{k\_cut}, a selection of the tagged ISR jets is done by choosing those jets
+whose PT is larger than \texttt{pt\_cut}. The performance of the algorithm is 
+measured for this selection and plots of Missing Transverse Energy are generated.
+
+All the technical details of the tagging program can be found in the comments of 
+the code.
+
+
 \begin{center}
 	***
 \end{center}
@@ -740,25 +884,41 @@ one of the jets from Delphes. Observe that this is a computational procedure
 that cannot be done with real data; it is only useful to identify the ISR jet 
 in Delphes and then to fill the N-dimensional histograms.
 
-The \textit{matching} algorithm is presented in Fig. \colorbox{yellow}{TATATÁ}.
+\begin{figure} [h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./Imags_Doc/Matching_algorithm}
+\caption[Matching algorithm]{Matching algorithm between MadGraph and Pythia}
+\label{fig:Matching_algorithm}
+\end{figure}
+
+The \textit{matching} algorithm is presented in Fig. \ref{fig:Matching_algorithm}.
 In practical matters, after knowing the ISR parton in Pythia, it looks for the
 closest jet using the cone-algorithm. It not only considers the jets reported
 by Delphes, but also combinations between them (i.e. up to three of them). This
 considers the case when a parton results in more than a single jet because of 
-the detector interpretation. If the matched jet is too far from the ISR parton
-or if it is a combination of several jets, the method does not reports any 
-match.
+the detector interpretation. After choosing the closest jet (or combination) to
+the ISR parton, the algorithm ensures that the optimum jet is inside a reasonable
+region around the ISR parton. If the matched jet is too far from the ISR parton
+or if it is a combination of several jets, the method does not report any 
+match as it is shown in the last two boxes of scheme \ref{fig:Matching_algorithm}.
 
 
 \begin{appendices}
-\chapter[Pythia code]{Pythia code: hadronization02.cc}\label{App:hadronization02.cc}
-\lstinputlisting[language=C++]{Codes/hadronization02.cc}
 
-\chapter[Integration scripts]{Integration scripts: MadGraph + Pythia + Delphes}\label{App:scripts}
-\section{Configuration script: \texttt{config\_Integration.ini}}\label{sec:Configuration_script}
+\chapter[Simulation codes]{Simulation codes and scripts}\label{App:Simulation_codes}
+\section[Pythia code]{Pythia code: hadronization02.cc}\label{App:hadronization02.cc}
+\lstinputlisting[language=C++]{Codes/hadronization02.cc}
+\newpage
+\section[Integration scripts]{Integration scripts: MadGraph + Pythia + Delphes}\label{App:scripts}
+\subsection{Configuration script: \texttt{config\_Integration.ini}}\label{sub:Configuration_script}
 \lstinputlisting[language=bash]{Codes/config_Integration.ini}
-\section{Execution script: \texttt{script\_Integration.sh}}\label{sec:Execution_script}
+\subsection{Execution script: \texttt{script\_Integration.sh}}\label{sub:Execution_script}
 \lstinputlisting[language=bash]{Codes/script_Integration.sh}
+
+\chapter[Analysis codes]{Analysis codes}\label{App:Analysis_codes}
+\section[Tagging algorithm]{Tagging algorithm}\label{App:Tagging_code}
+\lstinputlisting[language=C++]{Codes/ISR_tagging.cpp}
+
 \end{appendices}
 
 
