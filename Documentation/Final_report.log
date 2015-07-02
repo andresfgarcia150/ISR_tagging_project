@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.25)  1 JUL 2015 18:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.29)  2 JUL 2015 14:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -740,7 +740,7 @@ Overfull \hbox (16.5245pt too wide) in paragraph at lines 204--210
 -la-tion, \OT1/cmtt/m/n/12 run[]card.dat
  []
 
-[6] <Imags_Doc/Black_box_pythia.png, id=220, 575.14874pt x 151.56625pt>
+[6] <Imags_Doc/Black_box_pythia.png, id=230, 575.14874pt x 151.56625pt>
 File: Imags_Doc/Black_box_pythia.png Graphic file (type png)
 
 <use Imags_Doc/Black_box_pythia.png>
@@ -814,97 +814,97 @@ fy that the en-ergy per beam is $6500\OML/cmm/m/it/12 GeV$
 Chapter 3.
 [17
 
-] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 631--631
+]
+Underfull \hbox (badness 10000) in paragraph at lines 619--619
 []|\OT1/cmr/m/n/12 Simulation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 633--633
+Underfull \hbox (badness 10000) in paragraph at lines 621--621
 []|\OT1/cmr/m/n/12 Simulation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 636--636
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
 []|\OT1/cmr/m/n/12 Matching
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 638--638
+Underfull \hbox (badness 10000) in paragraph at lines 626--626
 []|\OT1/cmr/m/n/12 Matching
  []
 
 
-Overfull \hbox (0.77548pt too wide) in paragraph at lines 638--639
+Overfull \hbox (0.77548pt too wide) in paragraph at lines 626--627
 []|\OT1/cmr/m/n/12 sTops[]matchs[]WI[]\OT1/cmr/m/it/12 Matching| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 640--640
+Underfull \hbox (badness 10000) in paragraph at lines 628--628
 []|\OT1/cmr/m/n/12 Matching
  []
 
 
-Overfull \hbox (4.25497pt too wide) in paragraph at lines 643--643
+Overfull \hbox (4.25497pt too wide) in paragraph at lines 631--631
 []|\OT1/cmr/m/n/12 Histograms'
  []
 
 
-Overfull \hbox (4.25497pt too wide) in paragraph at lines 645--645
+Overfull \hbox (4.25497pt too wide) in paragraph at lines 633--633
 []|\OT1/cmr/m/n/12 Histograms'
  []
 
 
-Overfull \hbox (4.25497pt too wide) in paragraph at lines 647--647
+Overfull \hbox (4.25497pt too wide) in paragraph at lines 635--635
 []|\OT1/cmr/m/n/12 Histograms'
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 647--647
+Underfull \hbox (badness 10000) in paragraph at lines 635--635
 []|\OT1/cmr/m/n/12 Information of the N-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 647--647
+Underfull \hbox (badness 10000) in paragraph at lines 635--635
 \OT1/cmr/m/n/12 dimensional his-tograms.
  []
 
 
-Overfull \hbox (9.3188pt too wide) in paragraph at lines 648--651
+Overfull \hbox (9.3188pt too wide) in paragraph at lines 636--639
 []|[]| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 652--652
+Underfull \hbox (badness 10000) in paragraph at lines 640--640
 []|\OT1/cmr/m/n/12 Tagging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 654--654
+Underfull \hbox (badness 10000) in paragraph at lines 642--642
 []|\OT1/cmr/m/n/12 Tagging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 656--656
+Underfull \hbox (badness 10000) in paragraph at lines 644--644
 []|\OT1/cmr/m/n/12 Tagging
  []
 
 
-Underfull \hbox (badness 2600) in paragraph at lines 656--656
+Underfull \hbox (badness 2600) in paragraph at lines 644--644
 []|\OT1/cmr/m/n/12 Efficiency of the tag-ging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 658--659
+Underfull \hbox (badness 10000) in paragraph at lines 646--647
 []|\OT1/cmr/m/n/12 sTops[]WI[]MET[]pt[]050[]
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 657--660
+Overfull \hbox (12.0pt too wide) in paragraph at lines 645--648
 []|[]| 
  []
 
-<./Imags_Doc/Prob_ISR_Non.png, id=369, 847.165pt x 459.7175pt>
+[18] [19] <./Imags_Doc/Prob_ISR_Non.png, id=383, 847.165pt x 459.7175pt>
 File: ./Imags_Doc/Prob_ISR_Non.png Graphic file (type png)
 
 <use ./Imags_Doc/Prob_ISR_Non.png>
@@ -914,8 +914,8 @@ Package pdftex.def Info: ./Imags_Doc/Prob_ISR_Non.png used on input line 691.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[19] [20] [21 <./Imags_Doc/Prob_ISR_Non.png>]
-<./Imags_Doc/Histo_shape.png, id=393, 671.50874pt x 406.51875pt>
+[20] [21 <./Imags_Doc/Prob_ISR_Non.png>]
+<./Imags_Doc/Histo_shape.png, id=404, 671.50874pt x 406.51875pt>
 File: ./Imags_Doc/Histo_shape.png Graphic file (type png)
 
 <use ./Imags_Doc/Histo_shape.png>
@@ -926,7 +926,7 @@ Package pdftex.def Info: ./Imags_Doc/Histo_shape.png used on input line 772.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [22] [23 <./Imags_Doc/Histo_shape.png>]
-<./Imags_Doc/Tagging_algorithm.png, id=421, 607.26875pt x 466.74374pt>
+<./Imags_Doc/Tagging_algorithm.png, id=431, 607.26875pt x 466.74374pt>
 File: ./Imags_Doc/Tagging_algorithm.png Graphic file (type png)
 
 <use ./Imags_Doc/Tagging_algorithm.png>
@@ -934,18 +934,18 @@ Package pdftex.def Info: ./Imags_Doc/Tagging_algorithm.png used on input line 8
 08.
 (pdftex.def)             Requested size: 312.00119pt x 239.8024pt.
  [24 <./Imags_Doc/Tagging_algorithm.png>] [25] <./Imags_Doc/Matching_algorithm.
-jpg, id=436, 535.2798pt x 714.0276pt>
+jpg, id=447, 535.2798pt x 714.0276pt>
 File: ./Imags_Doc/Matching_algorithm.jpg Graphic file (type jpg)
 
 <use ./Imags_Doc/Matching_algorithm.jpg>
 Package pdftex.def Info: ./Imags_Doc/Matching_algorithm.jpg used on input line 
-889.
+895.
 (pdftex.def)             Requested size: 272.99881pt x 364.17105pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[26] [27 <./Imags_Doc/Matching_algorithm.jpg>] [28
+[26] [27 <./Imags_Doc/Matching_algorithm.jpg>] [28] [29
 
 
 ]
@@ -959,29 +959,30 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 )
-(./Codes/hadronization02.cc [29
+(./Codes/hadronization02.cc [30
 
-] [30] [31] [32]) [33] [34]
-Overfull \hbox (0.18587pt too wide) in paragraph at lines 912--912
+] [31] [32] [33]) [34] [35]
+Overfull \hbox (0.18587pt too wide) in paragraph at lines 962--962
 []\OT1/cmr/bx/n/17.28 Integration scripts: Mad-Graph + Pythia
  []
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 913.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 963.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
-(./Codes/config_Integration.ini [35] [36]) (./Codes/script_Integration.sh
-[37] [38] [39]) [40]
+(./Codes/config_Integration.ini [36] [37]) (./Codes/script_Integration.sh
+[38] [39] [40]) [41]
 Appendix B.
-(./Codes/ISR_tagging.cpp [41
+(./Codes/ISR_tagging.cpp [42
 
-] [42] [43] [44] [45] [46] [47] [48] [49] [50]
-[51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63])
-(./Final_report.bbl [64]
+] [43] [44] [45] [46] [47] [48] [49] [50] [51]
+[52] [53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64]) [65]
+(./Codes/ISR_matching.cpp [66] [67] [68] [69] [70] [71] [72] [73] [74] [75]
+[76]) (./Final_report.bbl [77]
 Underfull \hbox (badness 1231) in paragraph at lines 11--15
 \OT1/cmr/m/n/12 Nishita De-sai, et al.  An In-tro-duc-tion to PYTHIA 8.2.  \OT1
 /cmr/m/it/12 Com-
@@ -998,23 +999,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--44
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 930.
- [65
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 982.
+ [78
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 930.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 982.
  (./Final_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 930.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 930.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 982.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 982.
 Package rerunfilecheck Info: File `Final_report.out' has not changed.
-(rerunfilecheck)             Checksum: 700804FAB79F851A9C565C3706B00B91;1855.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 930.
+(rerunfilecheck)             Checksum: 161FDCF159FAC8083A44768EFBBAA253;1993.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 982.
  ) 
 Here is how much of TeX's memory you used:
- 12193 strings out of 493304
- 175543 string characters out of 6139871
- 387061 words of memory out of 5000000
- 14178 multiletter control sequences out of 15000+600000
+ 12670 strings out of 493304
+ 182792 string characters out of 6139871
+ 387230 words of memory out of 5000000
+ 14275 multiletter control sequences out of 15000+600000
  17574 words of font info for 68 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,21n,61p,273b,2084s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1032,10 +1033,10 @@ m/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Final_report.pdf (68 pages, 607576 bytes).
+Output written on Final_report.pdf (81 pages, 650305 bytes).
 PDF statistics:
- 2006 PDF objects out of 2073 (max. 8388607)
- 1897 compressed objects within 19 object streams
- 1276 named destinations out of 1440 (max. 500000)
- 242 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2521 PDF objects out of 2984 (max. 8388607)
+ 2394 compressed objects within 24 object streams
+ 1653 named destinations out of 1728 (max. 500000)
+ 258 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -251,6 +251,7 @@ int main(int argc, char **argv){
 	Double_t k_ISR_pos = 0; // Position of the ISR in the vector
 	Int_t ISR_tag_index = -1;
 
+	// Cycle over several runs. iRun correspons to the seed of the current run
 	for(int iRun = 1; iRun < 11; iRun ++){
 		// Create chains of root trees
 		TChain chain_Delphes("Delphes");

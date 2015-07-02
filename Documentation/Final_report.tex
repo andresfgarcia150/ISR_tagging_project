@@ -565,7 +565,7 @@ to develop them.
 
 All the codes that will be presented in this chapter are included in Appendix \ref{App:Analysis_codes}
 and in the repository of the project, at the folder \texttt{Codes/Codes\_analysis}.
-Each of them is included inside a different folder with other files that contain
+Each of them is stored inside a different folder with other files that contain
 functions used by the corresponding code. In order to compile each program, follow 
 the next instructions:
 
@@ -578,8 +578,8 @@ c++ compiler and program installation folders. Change lines 23 to 49 of each
 \\ \texttt{make\_compile\_ROOT\_Delphes}
 \end{enumerate}
 
-Some important parameters of each program are defined at the beginning of the
-corresponding code (lines 46 - 57) in the form of global variables. These parameters 
+Some important parameters of each program are defined in the form of global variables 
+at the beginning of the corresponding code (lines 46 - 57). These parameters 
 are not supposed to be modified frequently but are easy to change if necessary. A brief
 description of them is now presented:
 
@@ -603,20 +603,8 @@ of the tagging results.
 All these variables are important as they allow handling with different simulations easily.
 However, this needs that the names of the folders as well as the name of the files
 follow a strict convention. In Table \ref{tab:Naming_convention}  the convention used to name 
-files and folders are presented. A few rules should be taken into account when checking the
+files and folders is presented. A few rules should be taken into account when checking the
 name structure presented in Table \ref{tab:Naming_convention}:
-
-\begin{enumerate}
-\item Each \textquoteleft s' before the word Tops should be either
-a \textquoteleft s' if the channel under analysis is stop pair production, or a 
-\textquoteleft \_' if the studied channel is top pair production.
-\item \textquoteleft WI' corresponds to the case when there is an ISR jet in the
-simulated events. It changes to \textquoteleft SI' if there are not ISR jets.
-\item \textquoteleft \textit{\_Matching}' appears if the matching procedure between
-MadGraph and Pythia has been done. If not, it does not appear in the name.
-\item The sequence of numbers \textquoteleft \_0\_1\_2' corresponds to the set of
-variables used for the analysis (Those variables will be explained later on).
-\end{enumerate} 
 
 \begin{table}
 \renewcommand{\arraystretch}{1.2}
@@ -666,6 +654,18 @@ variables used for the analysis (Those variables will be explained later on).
 		\label{tab:Naming_convention}
 	\end{center}
 \end{table}
+
+\begin{enumerate}
+	\item Each \textquoteleft s' before the word Tops should be either
+	a \textquoteleft s' if the channel under analysis is stop pair production, or a 
+	\textquoteleft \_' if the studied channel is top pair production.
+	\item \textquoteleft WI' corresponds to the case when there is an ISR jet in the
+	simulated events. It changes to \textquoteleft SI' if there are not ISR jets.
+	\item \textquoteleft \textit{\_Matching}' appears if the matching procedure between
+	MadGraph and Pythia has been done. If not, it does not appear in the name.
+	\item The sequence of numbers \textquoteleft \_0\_1\_2' corresponds to the set of
+	variables used for the analysis (Those variables will be explained later on).
+\end{enumerate}
 
 Take into account these rules for managing files produced and read by the programs.
 Feel free to change this convention but remember that it should be changed in all
@@ -848,7 +848,13 @@ tagging results. After executing the tagging algorithm with a probability cut
 whose PT is larger than \texttt{pt\_cut}. The performance of the algorithm is 
 measured for this selection and plots of Missing Transverse Energy are generated.
 
-All the technical details of the tagging program can be found in the comments of 
+Other important parameters of this code are the global variables mentioned in
+section \ref{sec:Preparation_codes}. You can change them according to the
+rules presented before and compile the code again to use those modifications.
+Additionally, the tagging code allows the analysis of several runs, which
+is possible to control by means of the \textit{for} loop of line 254.
+
+Other technical details of the tagging program can be found in the comments of 
 the code.
 
 
@@ -902,6 +908,50 @@ region around the ISR parton. If the matched jet is too far from the ISR parton
 or if it is a combination of several jets, the method does not report any 
 match as it is shown in the last two boxes of scheme \ref{fig:Matching_algorithm}.
 
+As in the case of the tagging algorithm, follow the instructions of section
+\ref{sec:Preparation_codes} to compile and modify the global variables of
+the code, which can be found in Appendix \ref{App:Matching_code} and in the
+repository of the project. Once the code has been compiled, it can be executed
+by typing the instruction:
+
+\texttt{./ISR\_matching [000]}
+
+where the last three digits are optional and correspond to the number of the
+simulation (its seed) to which the user wants to execute the matching. If no
+parameter is written, the simulation for analysis has seed 003.
+
+Observe that in contrast with the tagging code, the matching code does not 
+execute the algorithm for several runs but only one. In consequence, a script 
+has been  written in order to perform several matching procedures. This script,
+called \texttt{script\_several\_matchings.sh}, is available in the repository
+(in the same folder of the matching code). In order to use it, modify line 8 
+according to the simulations to which you want to perform the matching and then,
+type the instruction:
+
+\texttt{./script\_several\_matchings.sh} \footnote{Possibly, it is necessary
+	to change the permissions of this script to execute it. Type \texttt{chmod
+		a+x script\_several\_matchings.sh} to do so.}
+
+As a result of executing the matching algorithm, a binary file containing a
+list with the ISR partons is generated. For those events without matching,
+the entry of the list is $ -1 $. The file, with name \texttt{ISR\_jetssTops\_WI\_005.bn}
+\footnote{Check the structure of the name in section \ref{sec:Preparation_codes}},
+is used as input by the other codes to know which is in \textquoteleft 
+theory' the ISR jet.
+
+Finally, more documentation can be found in the comments of the code.
+
+\section{ISR jet analysis code} \label{sec:ISR_analysys}
+
+Several times throughout the project, it was necessary to compare ISR jets
+and Non ISR jets. The comparison between both kind of jets allowed the
+subsequent selection of the suitable variables for the execution of 
+the tagging algorithm. Due to this importance, a separate code was written
+in order to develop such comparison. Again, the code can be found in 
+Appendix !!-\_/-!!  and in the repository of the project, in the folder \texttt{Codes/Codes\_analysis/ ISR\_jet\_analysis\_FV}.
+
+The program takes as inputs a group of simulations and their corresponding
+matching results. Then, it creates histograms of kinematic variables 
 
 \begin{appendices}
 
@@ -918,6 +968,8 @@ match as it is shown in the last two boxes of scheme \ref{fig:Matching_algorithm
 \chapter[Analysis codes]{Analysis codes}\label{App:Analysis_codes}
 \section[Tagging algorithm]{Tagging algorithm}\label{App:Tagging_code}
 \lstinputlisting[language=C++]{Codes/ISR_tagging.cpp}
+\section[Matching algorithm]{Matching algorithm}\label{App:Matching_code}
+\lstinputlisting[language=C++]{Codes/ISR_matching.cpp}
 
 \end{appendices}
 
