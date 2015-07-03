@@ -17,13 +17,17 @@
 \BOOKMARK [2][-]{subsection.3.2.4}{The code}{section.3.2}% 17
 \BOOKMARK [1][-]{section.3.3}{Matching algorithm}{chapter.3}% 18
 \BOOKMARK [1][-]{section.3.4}{ISR jet analysis code}{chapter.3}% 19
-\BOOKMARK [0][-]{section*.8}{Appendices}{}% 20
-\BOOKMARK [0][-]{Appendix.1.A}{Simulation codes}{}% 21
-\BOOKMARK [1][-]{section.1.A.1}{Pythia code}{Appendix.1.A}% 22
-\BOOKMARK [1][-]{section.1.A.2}{Integration scripts}{Appendix.1.A}% 23
-\BOOKMARK [2][-]{subsection.1.A.2.1}{Configuration script: config\137Integration.ini}{section.1.A.2}% 24
-\BOOKMARK [2][-]{subsection.1.A.2.2}{Execution script: script\137Integration.sh}{section.1.A.2}% 25
-\BOOKMARK [0][-]{Appendix.1.B}{Analysis codes}{}% 26
-\BOOKMARK [1][-]{section.1.B.1}{Tagging algorithm}{Appendix.1.B}% 27
-\BOOKMARK [1][-]{section.1.B.2}{Matching algorithm}{Appendix.1.B}% 28
-\BOOKMARK [0][-]{chapter*.9}{Bibliography}{}% 29
+\BOOKMARK [1][-]{section.3.5}{Histograms code}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.6}{Example of the usage of the codes}{chapter.3}% 21
+\BOOKMARK [0][-]{section*.9}{Appendices}{}% 22
+\BOOKMARK [0][-]{Appendix.1.A}{Simulation codes}{}% 23
+\BOOKMARK [1][-]{section.1.A.1}{Pythia code}{Appendix.1.A}% 24
+\BOOKMARK [1][-]{section.1.A.2}{Integration scripts}{Appendix.1.A}% 25
+\BOOKMARK [2][-]{subsection.1.A.2.1}{Configuration script: config\137Integration.ini}{section.1.A.2}% 26
+\BOOKMARK [2][-]{subsection.1.A.2.2}{Execution script: script\137Integration.sh}{section.1.A.2}% 27
+\BOOKMARK [0][-]{Appendix.1.B}{Analysis codes}{}% 28
+\BOOKMARK [1][-]{section.1.B.1}{Tagging algorithm}{Appendix.1.B}% 29
+\BOOKMARK [1][-]{section.1.B.2}{Matching algorithm}{Appendix.1.B}% 30
+\BOOKMARK [1][-]{section.1.B.3}{ISR jet analysis}{Appendix.1.B}% 31
+\BOOKMARK [1][-]{section.1.B.4}{Creating histograms}{Appendix.1.B}% 32
+\BOOKMARK [0][-]{chapter*.10}{Bibliography}{}% 33

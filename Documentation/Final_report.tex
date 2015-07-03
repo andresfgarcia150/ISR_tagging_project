@@ -945,16 +945,90 @@ Finally, more documentation can be found in the comments of the code.
 
 Several times throughout the project, it was necessary to compare ISR jets
 and Non ISR jets. The comparison between both kind of jets allowed the
-subsequent selection of the suitable variables for the execution of 
+subsequent selection of suitable variables for the execution of 
 the tagging algorithm. Due to this importance, a separate code was written
 in order to develop such comparison. Again, the code can be found in 
-Appendix !!-\_/-!!  and in the repository of the project, in the folder \texttt{Codes/Codes\_analysis/ ISR\_jet\_analysis\_FV}.
+Appendix \ref{App:ISR_analysis}  and in the repository of the project, at 
+the folder \texttt{Codes/Codes\_analysis/ ISR\_jet\_analysis\_FV}.
 
-The program takes as inputs a group of simulations and their corresponding
-matching results. Then, it creates histograms of kinematic variables 
+The program takes a group of simulations and their corresponding matching
+results  as inputs. Then, it creates histograms\footnote{Root TH1 histograms}
+of kinematic variables and compares the distributions of ISR and Non ISR
+jets. To do so, several functions that plot graphics were written. They can be 
+found in the files \texttt{graphs\_Funcs.cpp} and \texttt{graphs\_Funcs.h},
+which are located at the same directory where \texttt{ISR\_jet\_analysis\_FV}
+is. All these codes are fully documented and the compilation can be done by
+following the instructions of section \ref{sec:Preparation_codes}.
+
+\section[Histograms code]{Code to create N-dimensional histograms} \label{sec: Creating_histo_code}
+
+So far, the codes of the tagging algorithm, the matching procedure and a
+program for analysis have been presented. Now it is time to introduce
+the code that creates the N-dimensional histograms that are used 
+by the tagging algorithm to differentiate between both kind of jets. Once again,
+check the repository of the project (folder \texttt{Codes/Codes\_analysis/Creating\_histos\_FV})
+and the Appendix \ref{App:Creating_histos_code} to read the code.
+
+Inside the same folder where the code is available, the files \texttt{histoN.cpp}
+and \texttt{histoN.h} are also located. These files contain the definition
+of the class histoN which handles N-dimensional histograms. Objects of this 
+class are declared in \texttt{Creating\_histo} in order to collect
+the histograms' information. Afterwards, similar objects are used
+in the tagging program to develop the algorithm of Fig.\ref{fig:Tagging_algorithm}.
+
+The procedure that \texttt{Creating\_histo} executes is illustrated in
+Fig. \ref{fig:Creating_histo}. After declaring the objects, a loop over
+the events of the performed simulations is executed. Inside such loop, 
+the histograms are filled using kinematic variables of the already
+matched ISR and Non ISR jets. Finally, the accumulated information is
+stored in the files of the eight row of Table \ref{tab:Naming_convention}.
+Each histogram corresponds to both a binary file with the entries of the
+bins, and a plain text file with the parameters that define the histogram.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{./Imags_Doc/Creating_histo}
+\caption[Procedure to create histograms]{Procedure to create N-dimensional histograms}
+\label{fig:Creating_histo}
+\end{figure}
+
+The compilation of the code is achieved by following the instructions
+of section \ref{sec:Preparation_codes}. To execute the code, type:
+
+\noindent \texttt{./ Creating\_histo [N1] [N2] [N3]}
+
+where the parameters at the end are optional and correspond again to
+the variables with which the histograms will be filled.
+
+The explanation of the most important codes written in this
+project finishes here. An example that involves the execution
+of all codes will be presented in the following section.
+
+\section{Example of the usage of the codes}\label{sec:Example_codes}
+
+Follow the next instructions to execute the tagging algorithm 
+to a sample of ISR jets in top pair production events:
+
+\begin{enumerate}
+\item Simulate 25 million events of the top pair production channel
+following the steps of section \ref{sec:Example_script}.
+\item Apply the matching algorithm to this simulation
+\item Check the difference between ISR and Non ISR jets by executing
+the \texttt{ISR\_jet\_analysis} program.
+\item Fill histograms of Non ISR and ISR jets by running \texttt{Creating\_histo}.
+Use variables 0, 3 and 4 for analysis (for instance).
+\item Simulate another one million events of the same channel.
+\item Run the matching procedure to these events.
+\item Apply the tagging algorithm to the latter simulation taking
+as parameters the histograms resulting from the fourth instruction. The
+matching results of step six are also an input of the program as they serve
+to compare the tagging results. Remember to execute the tagging using
+the same variables with which the histograms were filled.
+\end{enumerate}
 
 \begin{appendices}
 
+% SIMULATION CODES AND SCRIPTS
 \chapter[Simulation codes]{Simulation codes and scripts}\label{App:Simulation_codes}
 \section[Pythia code]{Pythia code: hadronization02.cc}\label{App:hadronization02.cc}
 \lstinputlisting[language=C++]{Codes/hadronization02.cc}
@@ -965,11 +1039,17 @@ matching results. Then, it creates histograms of kinematic variables
 \subsection{Execution script: \texttt{script\_Integration.sh}}\label{sub:Execution_script}
 \lstinputlisting[language=bash]{Codes/script_Integration.sh}
 
+% ANALYSIS CODES
 \chapter[Analysis codes]{Analysis codes}\label{App:Analysis_codes}
 \section[Tagging algorithm]{Tagging algorithm}\label{App:Tagging_code}
 \lstinputlisting[language=C++]{Codes/ISR_tagging.cpp}
 \section[Matching algorithm]{Matching algorithm}\label{App:Matching_code}
 \lstinputlisting[language=C++]{Codes/ISR_matching.cpp}
+\section[ISR jet analysis]{ISR jet analysis}\label{App:ISR_analysis}
+\lstinputlisting[language=C++]{Codes/ISR_jet_analysis.cpp}
+\section[Creating histograms]{Creating histograms}\label{App:Creating_histos_code}
+\lstinputlisting[language=C++]{Codes/Creating_histo.cpp}
+
 
 \end{appendices}
 
