@@ -1031,7 +1031,22 @@ the same variables with which the histograms were filled.
 In addition to the ideas purposed to execute the ISR tagging method,
 this project meant the introduction of several Software tools that
 simplified the development of the project. This section contains
-two of those Software tools, which could be used to 
+two of those Software tools, which could be used to any project which
+requires the usage of ROOT libraries and C++ programs.
+
+\section[C++ and ROOT Makefile]{Compilation of C++ programs including ROOT libraries} \label{sec:Root_makefile}
+
+Usually, the first approach to ROOT is by means of ROOT macros, which 
+are executed after initializing ROOT. This technique is simple but
+inefficient and when the program becomes large, the execution time
+increases significantly. In order to avoid those situations, compiled
+versions of the code might be created. These programs are optimized and
+run much faster than Macros do. In addition, the transition to C++ 
+compiled programs is not difficult because Macros are already written
+in C++ and is sufficient to compile them correctly. 
+
+Aiming to make the compilation easy, a Makefile template was written.
+This file can be found at the 
 
 \begin{appendices}
 
