@@ -1,0 +1,25 @@
+# -------------------------------------------------
+# -------     Universidad de los Andes      -------
+# -------      Departamento de Física       -------
+# -------    Proyecto Joven Investigador    -------
+# -------  Andrés Felipe García Albarracín  -------
+# -------    Juan Carlos Sanabria Arenas    -------
+# -------          February - 2015          -------
+# -------------------------------------------------
+
+This folder contains some files to compile c++ programs using
+ROOT and HepMC libraries.
+
+If this is your first time using this folder, follow the next
+steps:
+
+1. Open the Makefile and modify it according to your c++ 
+compiler and your local ROOT and HepMC installation folders
+2. Check the .h files, where there are some libraries I have used
+before. If you need another or you do not need one of the
+included files that appears there, feel free to modify the files
+3. Modify the HelloWorld.cc program. Write your code there!
+
+Obs: You may need ROOT and HepMC, just one of them, or even none.
+In any case, you can compile c++ programs. Read the documentation
+in the Makefile and in the HelloWorld.cc program.
