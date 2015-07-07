@@ -42,4 +42,10 @@ Simon~De Visscher and Johan Alwall.
 \newblock Available at
   https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/IntroMatching.
 
+\bibitem{eclipse}
+Karl Kaess.
+\newblock Configuring eclipse for root.
+\newblock Available at
+  http://www.tc.umn.edu/~kaes0001/randomstuff/EclipseRoot.pdf.
+
 \end{thebibliography}

@@ -554,12 +554,18 @@ on the terminal: \texttt{screen -r}.}:
 \end{enumerate}
 
 
-\chapter{Analysis codes}\label{cha:Analysis_codes}
+\chapter{Analysis programs}\label{cha:Analysis_codes}
+
+\epigraph{\textquotedblleft To be, or not to be, that is the question\textquotedblright}{\textit{Hamlet} \\ William Shakespeare}
 
 The simulations presented before are very important for this project 
 as they serve to prove the ideas proposed to identify ISR jets. 
 Now its time to present those ideas and the codes that were written
-to develop them.
+to develop them. Before showing the programs, an introduction 
+about joint aspects between them will be presented. Then, the
+tagging algorithm and some auxiliary programs will be explained.
+Finally, this chapter ends with general instructions about the
+process of using all the codes altogether.
 
 \section[Preparation of the codes]{Preparation of the codes} \label{sec:Preparation_codes}
 
@@ -1028,11 +1034,31 @@ the same variables with which the histograms were filled.
 
 \chapter{Software tools} \label{cha:Software_tools}
 
+\epigraph{\textquotedblleft Man is a tool-making animal\textquotedblright}{Benjamin Franklin}
+
 In addition to the ideas purposed to execute the ISR tagging method,
 this project meant the introduction of several Software tools that
 simplified the development of the project. This section contains
-two of those Software tools, which could be used to any project which
-requires the usage of ROOT libraries and C++ programs.
+two of those Software tools, which could be used in any project which
+requires the usage of ROOT libraries and C++ programs. 
+
+\textbf{Note:} It is extremely important to have correctly installed
+ the programs you may use. \footnote{Check the instructions to 
+ 	install MadGraph and other High Energy Physics programs at
+ 	\url{http://goo.gl/vigBdj}}. 
+ Additionally, the directories of the corresponding libraries should
+ be included in the \texttt{LD\_LIBRARY\_PATH} of the bashrc. To do so:
+ 
+ \begin{enumerate}
+ 	\item Open the \texttt{bashrc} by typing:
+	 	\\ \texttt{vi \~{}/.bashrc}
+	\item At the end of the file, write for each library directory:
+		\\ \texttt{export LD\_LIBRARY\_PATH=/NEW\_PATH/:LD\_LIBRARY\_PATH }
+		\\ where \texttt{NEW\_PATH} is the full path of the new library
+		to be included (without the library name).
+	\item After saving and closing the file, charge the changes by typing:
+		\\ \texttt{source \~{}/.bashrc}
+ \end{enumerate}
 
 \section[C++ and ROOT Makefile]{Compilation of C++ programs including ROOT libraries} \label{sec:Root_makefile}
 
@@ -1056,7 +1082,7 @@ of the project by typing:
 
 \texttt{wget \url{https://github.com/andresfgarcia150/ISR_tagging_project/raw/master/Codes/Makefile_template.tar.gz}}
 
-All the files of this folder are also located at the directory
+All the files of this folder are also located at the directory \\
 \texttt{Codes/Makefile\_template} of the repository.
 
 \item Uncompress the folder:
@@ -1072,9 +1098,9 @@ that you may utilize. Inside the folder, there are three files you could use:
 
 \begin{itemize}
 \item \texttt{HepMCFunctions.h} with HepMC files,
-\item \texttt{ROOTFunctions.h} with ROOT libraries \footnote{Uncomment line
+\item \texttt{ROOTFunctions.h} with ROOT files \footnote{Uncomment line
  41 in case you do not use Delphes},
-\item \texttt{DelphesFunctions.h} with Delphes libraries.
+\item \texttt{DelphesFunctions.h} with Delphes files.
 \end{itemize}
 
 \item In order to compile the \texttt{HelloWorld} program, type one of 
@@ -1104,9 +1130,10 @@ ROOT - C++ projects.
 Follow the next instructions:
 
 \begin{enumerate}
-\item Download the Eclipse Luna IDE for C/C++ developers at \url{http://www.eclipse.org/downloads/packages/release/Luna/SR2}. Choose your version
-according to your OS. If you are in a 64 bit Linux machine, it would be sufficient
-to type:
+\item Download the Eclipse Luna IDE for C/C++ developers at \url{http://www.eclipse.org/downloads/packages/release/Luna/SR2}. 
+
+Choose your version according to your OS. If you are in a 64 bit Linux machine, 
+it would be sufficient to type:
 
 \texttt{wget \url{http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/luna/SR2/eclipse-cpp-luna-SR2-linux-gtk-x86_64.tar.gz}}.
 
@@ -1126,7 +1153,7 @@ future codes.
 \item In the new window, change the project name, the project type, the Toolchains as
 illustrated in Fig.\ref{fig:Eclipse_setting_project}. Then click on \texttt{Next}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_project}
 \caption[Configuration of a Hello\_world program in Eclipse]{Configuration of a Hello\_world program in Eclipse}
@@ -1136,26 +1163,116 @@ illustrated in Fig.\ref{fig:Eclipse_setting_project}. Then click on \texttt{Next
 \item In the New Window, modify the author and any other comment as Fig. \ref{fig:Eclipse_setting_2},
 for instance. Then click on \texttt{Next}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_2}
 \caption[Setting the author in a eclipse project]{Setting the author in a eclipse project}
 \label{fig:Eclipse_setting_2}
 \end{figure}
 
-\item In the last window, select \texttt{Debug} and \texttt{Release}. Then click on finish.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_3}
+	\caption[Setting \textit{release} and \textit{debug} in eclipse]{Setting \textit{release} and \textit{debug} in eclipse}
+	\label{fig:Eclipse_setting_3}
+\end{figure}
+
+\item In the last window (Fig. \ref{fig:Eclipse_setting_3}), select \texttt{Debug} 
+and \texttt{Release}. Then click on finish.
+
+\item After these settings, a basic Hello world template is created. On
+the left menu, right-click on the project folder and choose the option 
+\texttt{P\underline{r}operties}. It also can be done by typing 
+\texttt{Alt + enter}.
+
+\item On the pop-up window, click on \texttt{C/C++ Build > Settings} and then 
+on \texttt{GCC C++ Compiler > Includes} according to Fig. \ref{fig:Prop_project_eclipse}.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_3}
-\caption[Setting \textit{release} and \textit{debug} in eclipse]{Setting \textit{release} and\textit{debug} in eclipse}
-\label{fig:Eclipse_setting_3}
+\includegraphics[width=0.7\linewidth]{Imags_Doc/Prop_project_eclipse}
+\caption[Steps to include paths in an eclipse project]{Steps to include paths in an eclipse project}
+\label{fig:Prop_project_eclipse}
 \end{figure}
 
+\item Then, on the right panel include the full path of the directories where
+the .h files are located. For example, if you want to use the libraries of
+the following programs:
 
+\begin{itemize}
+	\item ExRootAnalysis: Search at the MadGraph directory and then
+	\texttt{MG5\_aMC\_v2\_2\_2/ExRootAnalysis/ExRootAnalysis}
+	\item ROOT: Look at \texttt{/usr/include/root} \footnote{It depends on 
+		your local installation directory. Another directory where it might
+		be is \texttt{/usr/local/include/root/}}
+	\item Delphes: Because Delphes has several .h files in different folders,
+	just include the path of the Delphes head folder. Then, at time of including
+	a specific file, write the relative location of the file. Take a look, for
+	instance, at the file \texttt{DelphesFunctions.h} of section \ref{sec:Root_makefile}. 
+\end{itemize}
+
+\item On the settings menu, go to \texttt{GCC C++ Linker > Libraries} 
+as illustrated in steps 1 and 2 of Fig. \ref{fig:Prop_project_eclipse_2}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{Imags_Doc/Prop_project_eclipse_2}
+\caption[Configuration of libraries in an eclipse project]{Configuration of libraries in an eclipse project}
+\label{fig:Prop_project_eclipse_2}
+\end{figure}
+
+\item Add the following libraries to the top right panel (Copy and paste them
+on the panel):
+
+Core \\
+Cint \\
+RIO \\
+Net \\
+Hist \\
+Graf \\
+Graf3d \\
+Gpad \\
+Tree \\
+Rint \\
+Postscript \\
+Matrix \\
+Physics \\
+MathCore \\
+Thread \\
+ExRootAnalysis \\
+Delphes \\
+
+\textbf{Note:} The last two libraries are from ExRootAnalysis and Delphes. The others
+are from ROOT and possibly, they are not the libraries installed on your PC. Type
+\texttt{root-config --glibs} on terminal in order to display the available libraries.
+
+\item Then, at the panel of the bottom right corner, write the directories
+where these libraries (.so files) are stored. In case you use one of the next
+programs:
+
+\begin{itemize}
+	\item ExRootAnalysis: Look at the MadGraph directory and then \\
+	\texttt{MG5\_aMC\_v2\_2\_2/ExRootAnalysis/}
+	\item ROOT: Search in \texttt{/usr/local/root/lib/root} or in \\
+	\texttt{/usr/lib/x86\_64-linux-gnu}
+	\item Delphes: Search in the Delphes head directory.
+\end{itemize}
+
+\item Finally, click on \texttt{OK} at the bottom right corner.
+
+\item To check that everything was set up correctly, go to \texttt{Project > 
+	Build Project}. Then execute the code by either clicking on \texttt{Run > Run}
+	or from terminal, going to the folder \texttt{Debug} and typing
+	\texttt{./Hello\_world\_text}.
 \end{enumerate}
 
+These instructions have been taken from ~\cite{eclipse}. They have
+been modified to handle specific aspects of this project. However, do not
+hesitate to check such document to get a broader idea of setting eclipse.
+
 \begin{appendices}
+
+\epigraph{\textquotedblleft Talk is cheap, show me the code\textquotedblright}{Linus Torvalds, creator of Linux Kernel}
 
 % SIMULATION CODES AND SCRIPTS
 \chapter[Simulation codes]{Simulation codes and scripts}\label{App:Simulation_codes}

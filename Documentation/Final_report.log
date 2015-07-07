@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.25)  6 JUL 2015 20:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.29)  7 JUL 2015 12:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -718,7 +718,7 @@ warning (ext4): destination with the same identifier (name{page.i}) has been al
 ready used, duplicate ignored
 <to be read again> 
                    \relax 
-l.17 ...3.2.3}The Algorithm}{23}{subsection.3.2.3}
+l.17 ...3.2.3}The Algorithm}{24}{subsection.3.2.3}
                                                    [1
 
 ] [2])
@@ -814,206 +814,217 @@ fy that the en-ergy per beam is $6500\OML/cmm/m/it/12 GeV$
 Chapter 3.
 [17
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 619--619
+] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 625--625
 []|\OT1/cmr/m/n/12 Simulation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 621--621
+Underfull \hbox (badness 10000) in paragraph at lines 627--627
 []|\OT1/cmr/m/n/12 Simulation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 624--624
+Underfull \hbox (badness 10000) in paragraph at lines 630--630
 []|\OT1/cmr/m/n/12 Matching
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 626--626
+Underfull \hbox (badness 10000) in paragraph at lines 632--632
 []|\OT1/cmr/m/n/12 Matching
  []
 
 
-Overfull \hbox (0.77548pt too wide) in paragraph at lines 626--627
+Overfull \hbox (0.77548pt too wide) in paragraph at lines 632--633
 []|\OT1/cmr/m/n/12 sTops[]matchs[]WI[]\OT1/cmr/m/it/12 Matching| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 628--628
+Underfull \hbox (badness 10000) in paragraph at lines 634--634
 []|\OT1/cmr/m/n/12 Matching
  []
 
 
-Overfull \hbox (4.25497pt too wide) in paragraph at lines 631--631
+Overfull \hbox (4.25497pt too wide) in paragraph at lines 637--637
 []|\OT1/cmr/m/n/12 Histograms'
  []
 
 
-Overfull \hbox (4.25497pt too wide) in paragraph at lines 633--633
+Overfull \hbox (4.25497pt too wide) in paragraph at lines 639--639
 []|\OT1/cmr/m/n/12 Histograms'
  []
 
 
-Overfull \hbox (4.25497pt too wide) in paragraph at lines 635--635
+Overfull \hbox (4.25497pt too wide) in paragraph at lines 641--641
 []|\OT1/cmr/m/n/12 Histograms'
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 635--635
+Underfull \hbox (badness 10000) in paragraph at lines 641--641
 []|\OT1/cmr/m/n/12 Information of the N-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 635--635
+Underfull \hbox (badness 10000) in paragraph at lines 641--641
 \OT1/cmr/m/n/12 dimensional his-tograms.
  []
 
 
-Overfull \hbox (9.3188pt too wide) in paragraph at lines 636--639
+Overfull \hbox (9.3188pt too wide) in paragraph at lines 642--645
 []|[]| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 640--640
+Underfull \hbox (badness 10000) in paragraph at lines 646--646
 []|\OT1/cmr/m/n/12 Tagging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 642--642
+Underfull \hbox (badness 10000) in paragraph at lines 648--648
 []|\OT1/cmr/m/n/12 Tagging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 644--644
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
 []|\OT1/cmr/m/n/12 Tagging
  []
 
 
-Underfull \hbox (badness 2600) in paragraph at lines 644--644
+Underfull \hbox (badness 2600) in paragraph at lines 650--650
 []|\OT1/cmr/m/n/12 Efficiency of the tag-ging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 646--647
+Underfull \hbox (badness 10000) in paragraph at lines 652--653
 []|\OT1/cmr/m/n/12 sTops[]WI[]MET[]pt[]050[]
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 645--648
+Overfull \hbox (12.0pt too wide) in paragraph at lines 651--654
 []|[]| 
  []
 
-[18] [19] <./Imags_Doc/Prob_ISR_Non.png, id=423, 847.165pt x 459.7175pt>
+[19] [20] <./Imags_Doc/Prob_ISR_Non.png, id=429, 847.165pt x 459.7175pt>
 File: ./Imags_Doc/Prob_ISR_Non.png Graphic file (type png)
 
 <use ./Imags_Doc/Prob_ISR_Non.png>
-Package pdftex.def Info: ./Imags_Doc/Prob_ISR_Non.png used on input line 691.
+Package pdftex.def Info: ./Imags_Doc/Prob_ISR_Non.png used on input line 697.
 (pdftex.def)             Requested size: 195.0pt x 105.81697pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[20] [21 <./Imags_Doc/Prob_ISR_Non.png>]
-<./Imags_Doc/Histo_shape.png, id=444, 671.50874pt x 406.51875pt>
+ [21 <./Imags_Doc/Prob_ISR_Non.png>] [22]
+<./Imags_Doc/Histo_shape.png, id=452, 671.50874pt x 406.51875pt>
 File: ./Imags_Doc/Histo_shape.png Graphic file (type png)
 
 <use ./Imags_Doc/Histo_shape.png>
-Package pdftex.def Info: ./Imags_Doc/Histo_shape.png used on input line 772.
+Package pdftex.def Info: ./Imags_Doc/Histo_shape.png used on input line 778.
 (pdftex.def)             Requested size: 195.0pt x 118.04869pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[22] [23 <./Imags_Doc/Histo_shape.png>]
-<./Imags_Doc/Tagging_algorithm.png, id=470, 607.26875pt x 466.74374pt>
+ [23 <./Imags_Doc/Histo_shape.png>]
+<./Imags_Doc/Tagging_algorithm.png, id=468, 607.26875pt x 466.74374pt>
 File: ./Imags_Doc/Tagging_algorithm.png Graphic file (type png)
 
 <use ./Imags_Doc/Tagging_algorithm.png>
 Package pdftex.def Info: ./Imags_Doc/Tagging_algorithm.png used on input line 8
-08.
+14.
 (pdftex.def)             Requested size: 312.00119pt x 239.8024pt.
- [24 <./Imags_Doc/Tagging_algorithm.png>] [25] <./Imags_Doc/Matching_algorithm.
-jpg, id=486, 535.2798pt x 714.0276pt>
+ [24 <./Imags_Doc/Tagging_algorithm.png>] [25] [26]
+<./Imags_Doc/Matching_algorithm.jpg, id=490, 535.2798pt x 714.0276pt>
 File: ./Imags_Doc/Matching_algorithm.jpg Graphic file (type jpg)
 
 <use ./Imags_Doc/Matching_algorithm.jpg>
 Package pdftex.def Info: ./Imags_Doc/Matching_algorithm.jpg used on input line 
-895.
+901.
 (pdftex.def)             Requested size: 272.99881pt x 364.17105pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[26] [27 <./Imags_Doc/Matching_algorithm.jpg>] [28]
-<./Imags_Doc/Creating_histo.png, id=519, 820.06375pt x 99.37125pt>
+ [27 <./Imags_Doc/Matching_algorithm.jpg>] [28] [29]
+<./Imags_Doc/Creating_histo.png, id=523, 820.06375pt x 99.37125pt>
 File: ./Imags_Doc/Creating_histo.png Graphic file (type png)
 
 <use ./Imags_Doc/Creating_histo.png>
-Package pdftex.def Info: ./Imags_Doc/Creating_histo.png used on input line 990.
+Package pdftex.def Info: ./Imags_Doc/Creating_histo.png used on input line 996.
 
 (pdftex.def)             Requested size: 390.0pt x 47.25945pt.
- [29 <./Imags_Doc/Creating_histo.png>]
-[30]
+ [30 <./Imags_Doc/Creating_histo.png>]
+[31]
 Chapter 4.
-[31
+[32
 
 ]
-Overfull \hbox (16.04988pt too wide) in paragraph at lines 1057--1058
+Overfull \hbox (16.04988pt too wide) in paragraph at lines 1083--1084
 []\OT1/cmtt/m/n/12 wget []$https : / / github . com / andresfgarcia150 / ISR _ 
 tagging _ project /
  []
 
-
-Overfull \hbox (64.96016pt too wide) in paragraph at lines 1059--1061
-[]\OT1/cmr/m/n/12 All the files of this folder are also lo-cated at the di-rec-
-tory \OT1/cmtt/m/n/12 Codes/Makefile[]template
- []
-
-[32]
-Overfull \hbox (46.9249pt too wide) in paragraph at lines 1111--1112
+[33]
+Overfull \hbox (46.9249pt too wide) in paragraph at lines 1138--1139
 []\OT1/cmtt/m/n/12 wget []$http : / / eclipse . c3sl . ufpr . br / technology /
  epp / downloads / release /
  []
 
-<./Imags_Doc/Eclipse_setting_project.png, id=559, 702.625pt x 652.4375pt>
+[34] <./Imags_Doc/Eclipse_setting_project.png, id=576, 702.625pt x 652.4375pt>
 File: ./Imags_Doc/Eclipse_setting_project.png Graphic file (type png)
 
 <use ./Imags_Doc/Eclipse_setting_project.png>
 Package pdftex.def Info: ./Imags_Doc/Eclipse_setting_project.png used on input 
-line 1131.
+line 1158.
 (pdftex.def)             Requested size: 234.00238pt x 217.28615pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./Imags_Doc/Eclipse_setting_2.png, id=562, 702.625pt x 652.4375pt>
+<./Imags_Doc/Eclipse_setting_2.png, id=579, 702.625pt x 652.4375pt>
 File: ./Imags_Doc/Eclipse_setting_2.png Graphic file (type png)
 
 <use ./Imags_Doc/Eclipse_setting_2.png>
 Package pdftex.def Info: ./Imags_Doc/Eclipse_setting_2.png used on input line 1
-141.
+168.
 (pdftex.def)             Requested size: 234.00238pt x 217.28615pt.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./Imags_Doc/Eclipse_setting_3.png, id=563, 702.625pt x 652.4375pt>
+<./Imags_Doc/Eclipse_setting_3.png, id=580, 702.625pt x 652.4375pt>
 File: ./Imags_Doc/Eclipse_setting_3.png Graphic file (type png)
 
 <use ./Imags_Doc/Eclipse_setting_3.png>
 Package pdftex.def Info: ./Imags_Doc/Eclipse_setting_3.png used on input line 1
-150.
+175.
 (pdftex.def)             Requested size: 234.00238pt x 217.28615pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[35 <./Imags_Doc/Eclipse_setting_project.png>] [36 <./Imags_Doc/Eclipse_setting
+_2.png> <./Imags_Doc/Eclipse_setting_3.png>]
+<Imags_Doc/Prop_project_eclipse.png, id=606, 854.19125pt x 493.845pt>
+File: Imags_Doc/Prop_project_eclipse.png Graphic file (type png)
+
+<use Imags_Doc/Prop_project_eclipse.png>
+Package pdftex.def Info: Imags_Doc/Prop_project_eclipse.png used on input line 
+1193.
+(pdftex.def)             Requested size: 272.99881pt x 157.83015pt.
+
+<Imags_Doc/Prop_project_eclipse_2.png, id=610, 849.1725pt x 651.43375pt>
+File: Imags_Doc/Prop_project_eclipse_2.png Graphic file (type png)
+
+<use Imags_Doc/Prop_project_eclipse_2.png>
+Package pdftex.def Info: Imags_Doc/Prop_project_eclipse_2.png used on input lin
+e 1219.
+(pdftex.def)             Requested size: 272.99881pt x 209.42723pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[33] [34 <./Imags_Doc/Eclipse_setting_project.png> <./Imags_Doc/Eclipse_setting
-_2.png>] [35 <./Imags_Doc/Eclipse_setting_3.png>] [36
+[37 <./Imags_Doc/Prop_project_eclipse.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1227--1244
+
+ []
+
+[38 <./Imags_Doc/Prop_project_eclipse_2.png>]
+Overfull \hbox (9.93657pt too wide) in paragraph at lines 1263--1267
+\OT1/cmr/m/n/12 from ter-mi-nal, go-ing to the folder \OT1/cmtt/m/n/12 Debug \O
+T1/cmr/m/n/12 and typ-ing \OT1/cmtt/m/n/12 ./Hello[]world[]text\OT1/cmr/m/n/12 
+. 
+ []
+
+[39] [40
 
 
-]
+] [41]
 Appendix A.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
@@ -1024,15 +1035,15 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 )
-(./Codes/hadronization02.cc [37
+(./Codes/hadronization02.cc [42
 
-] [38] [39] [40]) [41] [42]
-Overfull \hbox (0.18587pt too wide) in paragraph at lines 1165--1165
+] [43] [44] [45]) [46] [47]
+Overfull \hbox (0.18587pt too wide) in paragraph at lines 1282--1282
 []\OT1/cmr/bx/n/17.28 Integration scripts: Mad-Graph + Pythia
  []
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1166.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1283.
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
@@ -1040,19 +1051,19 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
-(./Codes/config_Integration.ini [43] [44]) (./Codes/script_Integration.sh
-[45] [46] [47]) [48]
+(./Codes/config_Integration.ini [48] [49]) (./Codes/script_Integration.sh
+[50] [51] [52]) [53]
 Appendix B.
-(./Codes/ISR_tagging.cpp [49
+(./Codes/ISR_tagging.cpp [54
 
-] [50] [51] [52] [53] [54] [55] [56] [57] [58]
-[59] [60] [61] [62] [63] [64] [65] [66] [67] [68] [69] [70] [71]) [72]
-(./Codes/ISR_matching.cpp [73] [74] [75] [76] [77] [78] [79] [80] [81] [82]
-[83]) (./Codes/ISR_jet_analysis.cpp [84] [85] [86] [87] [88] [89] [90] [91]
-[92] [93] [94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105]
-[106] [107] [108] [109] [110] [111]) (./Codes/Creating_histo.cpp [112] [113]
-[114] [115] [116] [117] [118] [119] [120] [121] [122] [123] [124] [125])
-(./Final_report.bbl [126]
+] [55] [56] [57] [58] [59] [60] [61] [62] [63]
+[64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76]) [77]
+(./Codes/ISR_matching.cpp [78] [79] [80] [81] [82] [83] [84] [85] [86] [87]
+[88]) (./Codes/ISR_jet_analysis.cpp [89] [90] [91] [92] [93] [94] [95] [96]
+[97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109]
+[110] [111] [112] [113] [114] [115] [116]) (./Codes/Creating_histo.cpp [117]
+[118] [119] [120] [121] [122] [123] [124] [125] [126] [127] [128] [129]
+[130]) (./Final_report.bbl [131]
 Underfull \hbox (badness 1231) in paragraph at lines 11--15
 \OT1/cmr/m/n/12 Nishita De-sai, et al.  An In-tro-duc-tion to PYTHIA 8.2.  \OT1
 /cmr/m/it/12 Com-
@@ -1068,25 +1079,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--44
 \OT1/cmr/m/n/12 jet-parton match-ing in mg/me, 03 2011.  Avail-able at
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--50
+[]\OT1/cmr/m/n/12 Karl Kaess.  Con-fig-ur-ing eclipse for root.  Avail-able at
+ []
+
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1191.
- [127
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1308.
+ [132
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1191.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1308.
  (./Final_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1191.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1191.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1308.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1308.
 
 Package rerunfilecheck Info: File `Final_report.out' has not changed.
-(rerunfilecheck)             Checksum: 06FF477831B7F532DFC785D150D4ACBE;2454.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1191.
+(rerunfilecheck)             Checksum: EA07670FEF8C3D222E21F6AFF9A7383B;2457.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1308.
  ) 
 Here is how much of TeX's memory you used:
- 14301 strings out of 493304
- 209454 string characters out of 6139871
- 391173 words of memory out of 5000000
- 14523 multiletter control sequences out of 15000+600000
+ 14335 strings out of 493304
+ 210072 string characters out of 6139871
+ 391428 words of memory out of 5000000
+ 14534 multiletter control sequences out of 15000+600000
  17574 words of font info for 68 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,21n,61p,273b,2084s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1104,10 +1120,10 @@ m/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Final_report.pdf (131 pages, 931869 bytes).
+Output written on Final_report.pdf (136 pages, 1050160 bytes).
 PDF statistics:
- 4402 PDF objects out of 5155 (max. 8388607)
- 4200 compressed objects within 42 object streams
- 3027 named destinations out of 3580 (max. 500000)
- 334 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 4455 PDF objects out of 5155 (max. 8388607)
+ 4243 compressed objects within 43 object streams
+ 3048 named destinations out of 3580 (max. 500000)
+ 344 words of extra memory for PDF output out of 10000 (max. 10000000)
 
