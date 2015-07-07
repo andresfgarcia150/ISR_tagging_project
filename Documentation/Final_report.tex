@@ -1046,7 +1046,114 @@ compiled programs is not difficult because Macros are already written
 in C++ and is sufficient to compile them correctly. 
 
 Aiming to make the compilation easy, a Makefile template was written.
-This file can be found at the 
+Using this file, you can create your own C++ codes including ROOT 
+libraries. The procedure to configure it is quite simple and it is
+presented in the following instructions:
+
+\begin{enumerate}
+\item Download the compressed version of the Makefile from the repository
+of the project by typing:
+
+\texttt{wget \url{https://github.com/andresfgarcia150/ISR_tagging_project/raw/master/Codes/Makefile_template.tar.gz}}
+
+All the files of this folder are also located at the directory
+\texttt{Codes/Makefile\_template} of the repository.
+
+\item Uncompress the folder:
+
+\texttt{tar -zxvf Makefile\_template.tar.gz}
+
+\item Inside the folder, modify lines 23 - 48 according to your local C++
+compiler and installation directories. If any of the programs is missing 
+in your PC, do not type anything.
+
+\item Check the \texttt{HelloWorld.cc} program and include the .h files
+that you may utilize. Inside the folder, there are three files you could use:
+
+\begin{itemize}
+\item \texttt{HepMCFunctions.h} with HepMC files,
+\item \texttt{ROOTFunctions.h} with ROOT libraries \footnote{Uncomment line
+ 41 in case you do not use Delphes},
+\item \texttt{DelphesFunctions.h} with Delphes libraries.
+\end{itemize}
+
+\item In order to compile the \texttt{HelloWorld} program, type one of 
+the next commands:
+
+\begin{itemize}
+\item \texttt{make compile},                    to compile without Root nor HepMC
+\item \texttt{make compile\_ROOT},              to compile with Root and without HepMC
+\item \texttt{make compile\_HepMC},             to compile without Root and with HepMC
+\item \texttt{make compile\_ROOT\_HepMC},       to compile with Root and HepMC
+\item \texttt{make compile\_ROOT\_Delphes},     to compile with Root and Delphes
+\end{itemize}
+
+\end{enumerate}
+
+\section{Using Eclipse}\label{sec:Eclipse}
+
+By using the template of the previous section, the execution time of ROOT programs
+will reduce significantly. However, written codes is still a tedious task as
+it is generally done with plain text editors where syntax errors may easily appear.
+Those problems have been already solved with programming environments, which
+in addition, handle other issues that make programming an easy task. In this 
+section it will presented how to configure Eclipse, a standard open-source environment.
+This introduction, however, will be focused only on the important points related to
+ROOT - C++ projects.
+
+Follow the next instructions:
+
+\begin{enumerate}
+\item Download the Eclipse Luna IDE for C/C++ developers at \url{http://www.eclipse.org/downloads/packages/release/Luna/SR2}. Choose your version
+according to your OS. If you are in a 64 bit Linux machine, it would be sufficient
+to type:
+
+\texttt{wget \url{http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/luna/SR2/eclipse-cpp-luna-SR2-linux-gtk-x86_64.tar.gz}}.
+
+\item Uncompress the downloaded file:
+
+\texttt{tar -xzvf eclipse-cpp-luna-SR2-linux-gtk-x86\_64.tar.gz}
+
+\item Inside the new \texttt{eclipse} folder, open Eclipse. Type \texttt{./eclipse}
+
+\item When asked to select a workspace, choose a directory where you want to save your
+future codes.
+
+\item On the new window, select the option \textit{Workbench}.
+
+\item Create a new C++ project. Go to \texttt{File > New > C++ Project}
+
+\item In the new window, change the project name, the project type, the Toolchains as
+illustrated in Fig.\ref{fig:Eclipse_setting_project}. Then click on \texttt{Next}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_project}
+\caption[Configuration of a Hello\_world program in Eclipse]{Configuration of a Hello\_world program in Eclipse}
+\label{fig:Eclipse_setting_project}
+\end{figure}
+
+\item In the New Window, modify the author and any other comment as Fig. \ref{fig:Eclipse_setting_2},
+for instance. Then click on \texttt{Next}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_2}
+\caption[Setting the author in a eclipse project]{Setting the author in a eclipse project}
+\label{fig:Eclipse_setting_2}
+\end{figure}
+
+\item In the last window, select \texttt{Debug} and \texttt{Release}. Then click on finish.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_3}
+\caption[Setting \textit{release} and \textit{debug} in eclipse]{Setting \textit{release} and\textit{debug} in eclipse}
+\label{fig:Eclipse_setting_3}
+\end{figure}
+
+
+\end{enumerate}
 
 \begin{appendices}
 
