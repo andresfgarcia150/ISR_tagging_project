@@ -1,0 +1,43 @@
+
+Distinguish:
+0-1-2	-$PT$ - $|\eta|$ - $\Delta \Phi_{MET-Jet}$
+0-1-3	-$PT$ - $|\eta|$ - $PT_{ratio}$
+0-1-4	-$PT$ - $|\eta|$ - $\Delta \eta_{aver}$
+0-1-5	-$PT$ - $|\eta|$ - $\Delta \Phi_{MET-Jet-Others}$
+0-1-6	-$PT$ - $|\eta|$ - $\Delta PT_{leading}$
+0-2-4	-$PT$ - $\Delta \Phi_{MET-Jet}$ - $\Delta \eta_{aver}$
+0-3-4	-$PT$ - $PT_{ratio}$ - $\Delta \eta_{aver}$
+0-4-5	-$PT$ - $\Delta \eta_{aver}$ - $\Delta \Phi_{MET-Jet-Others}$
+0-4-6	-$PT$ - $\Delta \eta_{aver}$ - $\Delta PT_{leading}$
+1-2-3	-$|\eta|$ - $\Delta \Phi_{MET-Jet}$ - $PT_{ratio}$
+1-2-4	-$|\eta|$ - $\Delta \Phi_{MET-Jet}$ - $\Delta \eta_{aver}$
+1-2-5	-$|\eta|$ - $\Delta \Phi_{MET-Jet}$ - $\Delta \Phi_{MET-Jet-Others}$
+1-2-6	-$|\eta|$ - $\Delta \Phi_{MET-Jet}$ - $\Delta PT_{leading}$
+1-3-4	-$|\eta|$ - $PT_{ratio}$ - $\Delta \eta_{aver}$
+1-3-5	-$|\eta|$ - $PT_{ratio}$ - $\Delta \Phi_{MET-Jet-Others}$
+1-3-6	-$|\eta|$ - $PT_{ratio}$ - $\Delta PT_{leading}$
+1-4-5	-$|\eta|$ - $\Delta \eta_{aver}$ - $\Delta \Phi_{MET-Jet-Others}$
+1-4-6	-$|\eta|$ - $\Delta \eta_{aver}$ - $\Delta PT_{leading}$
+1-5-6	-$|\eta|$ - $\Delta \Phi_{MET-Jet-Others}$ - $\Delta PT_{leading}$
+2-3-4	-$\Delta \Phi_{MET-Jet}$ - $PT_{ratio}$ - $\Delta \eta_{aver}$
+2-4-5	-$\Delta \Phi_{MET-Jet}$ - $\Delta \eta_{aver}$ - $\Delta \Phi_{MET-Jet-Others}$
+2-4-6	-$\Delta \Phi_{MET-Jet}$ - $\Delta \eta_{aver}$ - $\Delta PT_{leading}$
+3-4-5	-$PT_{ratio}$ - $\Delta \eta_{aver}$ - $\Delta \Phi_{MET-Jet-Others}$
+3-4-6	-$PT_{ratio}$ - $\Delta \eta_{aver}$ - $\Delta PT_{leading}$
+4-5-6	-$\Delta \eta_{aver}$ - $\Delta \Phi_{MET-Jet-Others}$ - $\Delta PT_{leading}$
+
+
+Distinguish partially:
+2-3-6	-$\Delta \Phi_{MET-Jet}$ - $PT_{ratio}$ - $\Delta PT_{leading}$
+
+
+Do not distinguish:
+0-2-3	-$PT$ - $\Delta \Phi_{MET-Jet}$ - $PT_{ratio}$
+0-2-5	-$PT$ - $\Delta \Phi_{MET-Jet}$ - $\Delta \Phi_{MET-Jet-Others}$
+0-2-6	-$PT$ - $\Delta \Phi_{MET-Jet}$ - $\Delta PT_{leading}$
+0-3-5	-$PT$ - $PT_{ratio}$ - $\Delta \Phi_{MET-Jet-Others}$
+0-3-6	-$PT$ - $PT_{ratio}$ - $\Delta PT_{leading}$
+0-5-6	-$PT$ - $\Delta \Phi_{MET-Jet-Others}$ - $\Delta PT_{leading}$
+2-3-5	-$\Delta \Phi_{MET-Jet}$ - $PT_{ratio}$ - $\Delta \Phi_{MET-Jet-Others}$
+2-5-6	-$\Delta \Phi_{MET-Jet}$ - $\Delta \Phi_{MET-Jet-Others}$ - $\Delta PT_{leading}$
+3-5-6	-$PT_{ratio}$ - $\Delta \Phi_{MET-Jet-Others}$ - $\Delta PT_{leading}$
