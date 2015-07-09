@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.29)  7 JUL 2015 12:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.29)  9 JUL 2015 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -952,79 +952,105 @@ Overfull \hbox (16.04988pt too wide) in paragraph at lines 1083--1084
 tagging _ project /
  []
 
-[33]
-Overfull \hbox (46.9249pt too wide) in paragraph at lines 1138--1139
+[33] <Imags_Doc/root_cflags.png, id=565, 761.84625pt x 37.13875pt>
+File: Imags_Doc/root_cflags.png Graphic file (type png)
+
+<use Imags_Doc/root_cflags.png>
+Package pdftex.def Info: Imags_Doc/root_cflags.png used on input line 1143.
+(pdftex.def)             Requested size: 350.99762pt x 17.11009pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[34] <Imags_Doc/root_libs.png, id=576, 749.80125pt x 72.27pt>
+File: Imags_Doc/root_libs.png Graphic file (type png)
+
+<use Imags_Doc/root_libs.png>
+Package pdftex.def Info: Imags_Doc/root_libs.png used on input line 1158.
+(pdftex.def)             Requested size: 350.99762pt x 33.83125pt.
+
+Overfull \hbox (46.9249pt too wide) in paragraph at lines 1171--1172
 []\OT1/cmtt/m/n/12 wget []$http : / / eclipse . c3sl . ufpr . br / technology /
  epp / downloads / release /
  []
 
-[34] <./Imags_Doc/Eclipse_setting_project.png, id=576, 702.625pt x 652.4375pt>
+<./Imags_Doc/Eclipse_setting_project.png, id=580, 702.625pt x 652.4375pt>
 File: ./Imags_Doc/Eclipse_setting_project.png Graphic file (type png)
 
 <use ./Imags_Doc/Eclipse_setting_project.png>
 Package pdftex.def Info: ./Imags_Doc/Eclipse_setting_project.png used on input 
-line 1158.
+line 1191.
 (pdftex.def)             Requested size: 234.00238pt x 217.28615pt.
 
-<./Imags_Doc/Eclipse_setting_2.png, id=579, 702.625pt x 652.4375pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[35 <./Imags_Doc/root_cflags.png> <./Imags_Doc/root_libs.png>]
+<./Imags_Doc/Eclipse_setting_2.png, id=598, 702.625pt x 652.4375pt>
 File: ./Imags_Doc/Eclipse_setting_2.png Graphic file (type png)
 
 <use ./Imags_Doc/Eclipse_setting_2.png>
 Package pdftex.def Info: ./Imags_Doc/Eclipse_setting_2.png used on input line 1
-168.
+201.
 (pdftex.def)             Requested size: 234.00238pt x 217.28615pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<./Imags_Doc/Eclipse_setting_3.png, id=580, 702.625pt x 652.4375pt>
+<./Imags_Doc/Eclipse_setting_3.png, id=599, 702.625pt x 652.4375pt>
 File: ./Imags_Doc/Eclipse_setting_3.png Graphic file (type png)
 
 <use ./Imags_Doc/Eclipse_setting_3.png>
 Package pdftex.def Info: ./Imags_Doc/Eclipse_setting_3.png used on input line 1
-175.
+208.
 (pdftex.def)             Requested size: 234.00238pt x 217.28615pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[35 <./Imags_Doc/Eclipse_setting_project.png>] [36 <./Imags_Doc/Eclipse_setting
-_2.png> <./Imags_Doc/Eclipse_setting_3.png>]
-<Imags_Doc/Prop_project_eclipse.png, id=606, 854.19125pt x 493.845pt>
+[36 <./Imags_Doc/Eclipse_setting_project.png> <./Imags_Doc/Eclipse_setting_2.pn
+g>] <Imags_Doc/Prop_project_eclipse.png, id=610, 854.19125pt x 493.845pt>
 File: Imags_Doc/Prop_project_eclipse.png Graphic file (type png)
 
 <use Imags_Doc/Prop_project_eclipse.png>
 Package pdftex.def Info: Imags_Doc/Prop_project_eclipse.png used on input line 
-1193.
+1226.
 (pdftex.def)             Requested size: 272.99881pt x 157.83015pt.
 
-<Imags_Doc/Prop_project_eclipse_2.png, id=610, 849.1725pt x 651.43375pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (11.45209pt too wide) in paragraph at lines 1236--1238
+[]\OT1/cmr/m/n/12 ROOT: Use the the di-rec-tory re-ported in the com-mand \OT1/
+cmtt/m/n/12 root-config
+ []
+
+[37 <./Imags_Doc/Eclipse_setting_3.png>]
+<Imags_Doc/Prop_project_eclipse_2.png, id=625, 849.1725pt x 651.43375pt>
 File: Imags_Doc/Prop_project_eclipse_2.png Graphic file (type png)
 
 <use Imags_Doc/Prop_project_eclipse_2.png>
 Package pdftex.def Info: Imags_Doc/Prop_project_eclipse_2.png used on input lin
-e 1219.
+e 1251.
 (pdftex.def)             Requested size: 272.99881pt x 209.42723pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[37 <./Imags_Doc/Prop_project_eclipse.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1227--1244
+
+Underfull \hbox (badness 10000) in paragraph at lines 1259--1276
 
  []
 
-[38 <./Imags_Doc/Prop_project_eclipse_2.png>]
-Overfull \hbox (9.93657pt too wide) in paragraph at lines 1263--1267
+[38 <./Imags_Doc/Prop_project_eclipse.png>]
+Overfull \hbox (9.93657pt too wide) in paragraph at lines 1295--1299
 \OT1/cmr/m/n/12 from ter-mi-nal, go-ing to the folder \OT1/cmtt/m/n/12 Debug \O
 T1/cmr/m/n/12 and typ-ing \OT1/cmtt/m/n/12 ./Hello[]world[]text\OT1/cmr/m/n/12 
 . 
  []
 
-[39] [40
+[39 <./Imags_Doc/Prop_project_eclipse_2.png>] [40] [41
 
 
-] [41]
+] [42]
 Appendix A.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
@@ -1035,15 +1061,15 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 )
-(./Codes/hadronization02.cc [42
+(./Codes/hadronization02.cc [43
 
-] [43] [44] [45]) [46] [47]
-Overfull \hbox (0.18587pt too wide) in paragraph at lines 1282--1282
+] [44] [45] [46]) [47] [48]
+Overfull \hbox (0.18587pt too wide) in paragraph at lines 1314--1314
 []\OT1/cmr/bx/n/17.28 Integration scripts: Mad-Graph + Pythia
  []
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1283.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1315.
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
@@ -1051,19 +1077,19 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
-(./Codes/config_Integration.ini [48] [49]) (./Codes/script_Integration.sh
-[50] [51] [52]) [53]
+(./Codes/config_Integration.ini [49] [50]) (./Codes/script_Integration.sh
+[51] [52] [53]) [54]
 Appendix B.
-(./Codes/ISR_tagging.cpp [54
+(./Codes/ISR_tagging.cpp [55
 
-] [55] [56] [57] [58] [59] [60] [61] [62] [63]
-[64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76]) [77]
-(./Codes/ISR_matching.cpp [78] [79] [80] [81] [82] [83] [84] [85] [86] [87]
-[88]) (./Codes/ISR_jet_analysis.cpp [89] [90] [91] [92] [93] [94] [95] [96]
-[97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109]
-[110] [111] [112] [113] [114] [115] [116]) (./Codes/Creating_histo.cpp [117]
-[118] [119] [120] [121] [122] [123] [124] [125] [126] [127] [128] [129]
-[130]) (./Final_report.bbl [131]
+] [56] [57] [58] [59] [60] [61] [62] [63] [64]
+[65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77]) [78]
+(./Codes/ISR_matching.cpp [79] [80] [81] [82] [83] [84] [85] [86] [87] [88]
+[89]) (./Codes/ISR_jet_analysis.cpp [90] [91] [92] [93] [94] [95] [96] [97]
+[98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109] [110]
+[111] [112] [113] [114] [115] [116] [117]) (./Codes/Creating_histo.cpp [118]
+[119] [120] [121] [122] [123] [124] [125] [126] [127] [128] [129] [130]
+[131]) (./Final_report.bbl [132]
 Underfull \hbox (badness 1231) in paragraph at lines 11--15
 \OT1/cmr/m/n/12 Nishita De-sai, et al.  An In-tro-duc-tion to PYTHIA 8.2.  \OT1
 /cmr/m/it/12 Com-
@@ -1085,24 +1111,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--50
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1308.
- [132
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1340.
+ [133
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1308.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1340.
  (./Final_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1308.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1308.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1340.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1340.
 
 Package rerunfilecheck Info: File `Final_report.out' has not changed.
-(rerunfilecheck)             Checksum: EA07670FEF8C3D222E21F6AFF9A7383B;2457.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1308.
+(rerunfilecheck)             Checksum: DE14F496BFE73DD1AABFCF2F346DABF6;2457.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1340.
  ) 
 Here is how much of TeX's memory you used:
- 14335 strings out of 493304
- 210072 string characters out of 6139871
- 391428 words of memory out of 5000000
- 14534 multiletter control sequences out of 15000+600000
+ 14350 strings out of 493304
+ 210399 string characters out of 6139871
+ 391669 words of memory out of 5000000
+ 14544 multiletter control sequences out of 15000+600000
  17574 words of font info for 68 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,21n,61p,273b,2084s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1120,10 +1146,10 @@ m/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Final_report.pdf (136 pages, 1050160 bytes).
+Output written on Final_report.pdf (137 pages, 1073801 bytes).
 PDF statistics:
- 4455 PDF objects out of 5155 (max. 8388607)
- 4243 compressed objects within 43 object streams
- 3048 named destinations out of 3580 (max. 500000)
- 344 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 4466 PDF objects out of 5155 (max. 8388607)
+ 4251 compressed objects within 43 object streams
+ 3051 named destinations out of 3580 (max. 500000)
+ 354 words of extra memory for PDF output out of 10000 (max. 10000000)
 

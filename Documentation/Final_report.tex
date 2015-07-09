@@ -1130,6 +1130,39 @@ ROOT - C++ projects.
 Follow the next instructions:
 
 \begin{enumerate}
+
+\item Before using eclipse, type the following command on a terminal:
+
+\texttt{root-config --cflags}
+
+The result of this command in my pc is illustrated in Fig. \ref{fig:root_cflags}.
+It shows some miscellaneous flags and the ROOT include directory (after \texttt{-I}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{Imags_Doc/root_cflags}
+	\caption[Result of \texttt{root-config --cflags}]{Result of \texttt{root-config --cflags}}
+	\label{fig:root_cflags}
+\end{figure}
+
+Additionally, type the following command:
+
+\texttt{root-config --libs}
+
+In my case, I obtained the sequence of Fig. \ref{fig:root_libs}. This command lists
+the directory of ROOT libraries (after \texttt{-L}) and the name of such variables
+(each one goes after \texttt{-l}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{Imags_Doc/root_libs}
+	\caption[Result of \texttt{root-config --libs}]{Result of \texttt{root-config --libs}}
+	\label{fig:root_libs}
+\end{figure}
+
+Keep the results of the previous command at hand because they will be used in the
+subsequent instructions.
+	
 \item Download the Eclipse Luna IDE for C/C++ developers at \url{http://www.eclipse.org/downloads/packages/release/Luna/SR2}. 
 
 Choose your version according to your OS. If you are in a 64 bit Linux machine, 
@@ -1200,16 +1233,17 @@ the .h files are located. For example, if you want to use the libraries of
 the following programs:
 
 \begin{itemize}
+	\item ROOT: Use the the directory reported in the command \texttt{root-config
+		 --cflags} of Fig. \ref{fig:root_cflags}.
 	\item ExRootAnalysis: Search at the MadGraph directory and then
 	\texttt{MG5\_aMC\_v2\_2\_2/ExRootAnalysis/ExRootAnalysis}
-	\item ROOT: Look at \texttt{/usr/include/root} \footnote{It depends on 
-		your local installation directory. Another directory where it might
-		be is \texttt{/usr/local/include/root/}}
 	\item Delphes: Because Delphes has several .h files in different folders,
 	just include the path of the Delphes head folder. Then, at time of including
 	a specific file, write the relative location of the file. Take a look, for
 	instance, at the file \texttt{DelphesFunctions.h} of section \ref{sec:Root_makefile}. 
 \end{itemize}
+
+\item
 
 \item On the settings menu, go to \texttt{GCC C++ Linker > Libraries} 
 as illustrated in steps 1 and 2 of Fig. \ref{fig:Prop_project_eclipse_2}.
