@@ -1103,7 +1103,7 @@ that you may utilize. Inside the folder, there are three files you could use:
 \item \texttt{DelphesFunctions.h} with Delphes files.
 \end{itemize}
 
-\item In order to compile the \texttt{HelloWorld} program, type one of 
+\item To compile the \texttt{HelloWorld} program, type one of 
 the next commands:
 
 \begin{itemize}
@@ -1122,8 +1122,8 @@ By using the template of the previous section, the execution time of ROOT progra
 will reduce significantly. However, written codes is still a tedious task as
 it is generally done with plain text editors where syntax errors may easily appear.
 Those problems have been already solved with programming environments, which
-in addition, handle other issues that make programming an easy task. In this 
-section it will presented how to configure Eclipse, a standard open-source environment.
+in addition, handle other issues that make programming an easy task. This section 
+presents the configuration of Eclipse, a standard open-source environment.
 This introduction, however, will be focused only on the important points related to
 ROOT - C++ projects.
 
@@ -1135,8 +1135,10 @@ Follow the next instructions:
 
 \texttt{root-config --cflags}
 
-The result of this command in my pc is illustrated in Fig. \ref{fig:root_cflags}.
-It shows some miscellaneous flags and the ROOT include directory (after \texttt{-I}).
+It shows some miscellaneous flags and the ROOT include directory (that goes after \texttt{-I}).
+In the case of my PC, I obtain Fig. \ref{fig:root_cflags}, where four flags are
+shown (\texttt{-pthread -std=c++11 -Wno-deprecated-declarations -m64})  followed by the 
+directory of the ROOT include.
 
 \begin{figure}[h!]
 	\centering
@@ -1145,13 +1147,13 @@ It shows some miscellaneous flags and the ROOT include directory (after \texttt{
 	\label{fig:root_cflags}
 \end{figure}
 
-Additionally, type the following command:
+Then, type the following command:
 
 \texttt{root-config --libs}
 
-In my case, I obtained the sequence of Fig. \ref{fig:root_libs}. This command lists
-the directory of ROOT libraries (after \texttt{-L}) and the name of such variables
-(each one goes after \texttt{-l}).
+In my case, I obtain the sequence of Fig. \ref{fig:root_libs}. This command lists
+the directory of ROOT libraries (after \texttt{-L}) and their names
+(after \texttt{-l}).
 
 \begin{figure}[h!]
 	\centering
@@ -1160,7 +1162,7 @@ the directory of ROOT libraries (after \texttt{-L}) and the name of such variabl
 	\label{fig:root_libs}
 \end{figure}
 
-Keep the results of the previous command at hand because they will be used in the
+Keep at hand the results given by your pc of the previous commands because they will be used in the
 subsequent instructions.
 	
 \item Download the Eclipse Luna IDE for C/C++ developers at \url{http://www.eclipse.org/downloads/packages/release/Luna/SR2}. 
@@ -1186,9 +1188,9 @@ future codes.
 \item In the new window, change the project name, the project type, the Toolchains as
 illustrated in Fig.\ref{fig:Eclipse_setting_project}. Then click on \texttt{Next}.
 
-\begin{figure}[h!]
+\begin{figure}[t!]
 \centering
-\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_project}
+\includegraphics[width=0.54\linewidth]{./Imags_Doc/Eclipse_setting_project}
 \caption[Configuration of a Hello\_world program in Eclipse]{Configuration of a Hello\_world program in Eclipse}
 \label{fig:Eclipse_setting_project}
 \end{figure}
@@ -1196,22 +1198,22 @@ illustrated in Fig.\ref{fig:Eclipse_setting_project}. Then click on \texttt{Next
 \item In the New Window, modify the author and any other comment as Fig. \ref{fig:Eclipse_setting_2},
 for instance. Then click on \texttt{Next}.
 
-\begin{figure}[h!]
+\begin{figure}[b!]
 \centering
-\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_2}
+\includegraphics[width=0.54\linewidth]{./Imags_Doc/Eclipse_setting_2}
 \caption[Setting the author in a eclipse project]{Setting the author in a eclipse project}
 \label{fig:Eclipse_setting_2}
 \end{figure}
 
+\item In the last window (Fig. \ref{fig:Eclipse_setting_3}), select \texttt{Debug} 
+and \texttt{Release}. Then click on finish.
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.6\linewidth]{./Imags_Doc/Eclipse_setting_3}
+	\includegraphics[width=0.54\linewidth]{./Imags_Doc/Eclipse_setting_3}
 	\caption[Setting \textit{release} and \textit{debug} in eclipse]{Setting \textit{release} and \textit{debug} in eclipse}
 	\label{fig:Eclipse_setting_3}
 \end{figure}
-
-\item In the last window (Fig. \ref{fig:Eclipse_setting_3}), select \texttt{Debug} 
-and \texttt{Release}. Then click on finish.
 
 \item After these settings, a basic Hello world template is created. On
 the left menu, right-click on the project folder and choose the option 
@@ -1221,32 +1223,41 @@ the left menu, right-click on the project folder and choose the option
 \item On the pop-up window, click on \texttt{C/C++ Build > Settings} and then 
 on \texttt{GCC C++ Compiler > Includes} according to Fig. \ref{fig:Prop_project_eclipse}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=0.7\linewidth]{Imags_Doc/Prop_project_eclipse}
 \caption[Steps to include paths in an eclipse project]{Steps to include paths in an eclipse project}
 \label{fig:Prop_project_eclipse}
 \end{figure}
 
-\item Then, on the right panel include the full path of the directories where
-the .h files are located. For example, if you want to use the libraries of
-the following programs:
+\item On the right panel include the full path of the directories where
+the .h files are located. To include the libraries of the following programs\footnote{ROOT is necessary to use the other two}:
 
 \begin{itemize}
 	\item ROOT: Use the the directory reported in the command \texttt{root-config
 		 --cflags} of Fig. \ref{fig:root_cflags}.
-	\item ExRootAnalysis: Search at the MadGraph directory and then
+	\item ExRootAnalysis: Search at the MadGraph directory and use the folder
 	\texttt{MG5\_aMC\_v2\_2\_2/ExRootAnalysis/ExRootAnalysis}
 	\item Delphes: Because Delphes has several .h files in different folders,
 	just include the path of the Delphes head folder. Then, at time of including
-	a specific file, write the relative location of the file. Take a look, for
+	a specific file in the code, write its relative location. Take a look, for
 	instance, at the file \texttt{DelphesFunctions.h} of section \ref{sec:Root_makefile}. 
 \end{itemize}
 
-\item
+\item In the same menu of \texttt{GCC C++ Compiler}, go to \texttt{Miscellaneous} as illustrated
+in Fig \ref{fig:Flags_eclipse}. Include the flags reported by the command of Fig.
+\ref{fig:root_cflags} after the already existing flags in the label of the right. 
 
-\item On the settings menu, go to \texttt{GCC C++ Linker > Libraries} 
-as illustrated in steps 1 and 2 of Fig. \ref{fig:Prop_project_eclipse_2}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{./Imags_Doc/Flags_eclipse}
+\caption[Setting miscellaneous flags on eclipse]{Setting miscellaneous flags on eclipse}
+\label{fig:Flags_eclipse}
+\end{figure}
+
+
+\item Now, links to other libraries will be set. On the settings menu, go to \texttt{GCC C++ Linker >
+ Libraries} as illustrated in steps 1 and 2 of Fig. \ref{fig:Prop_project_eclipse_2}.
 
 \begin{figure}[h]
 \centering
@@ -1255,11 +1266,10 @@ as illustrated in steps 1 and 2 of Fig. \ref{fig:Prop_project_eclipse_2}.
 \label{fig:Prop_project_eclipse_2}
 \end{figure}
 
-\item Add the following libraries to the top right panel (Copy and paste them
-on the panel):
+\item Add the libraries reported by the command of Fig. \ref{fig:root_libs} to the top right panel.
+In my case, these are the libraries I have to include:
 
 Core \\
-Cint \\
 RIO \\
 Net \\
 Hist \\
@@ -1277,20 +1287,31 @@ ExRootAnalysis \\
 Delphes \\
 
 \textbf{Note:} The last two libraries are from ExRootAnalysis and Delphes. The others
-are from ROOT and possibly, they are not the libraries installed on your PC. Type
-\texttt{root-config --glibs} on terminal in order to display the available libraries.
+are from ROOT and possibly, they are not the libraries installed on your PC, so type
+\texttt{root-config --libs} on terminal in order to check your ROOT variables.
 
 \item Then, at the panel of the bottom right corner, write the directories
 where these libraries (.so files) are stored. In case you use one of the next
 programs:
 
 \begin{itemize}
-	\item ExRootAnalysis: Look at the MadGraph directory and then \\
-	\texttt{MG5\_aMC\_v2\_2\_2/ExRootAnalysis/}
-	\item ROOT: Search in \texttt{/usr/local/root/lib/root} or in \\
-	\texttt{/usr/lib/x86\_64-linux-gnu}
-	\item Delphes: Search in the Delphes head directory.
+	\item ROOT: Use the directory displayed by the second command (Fig. \ref{fig:root_libs}).
+	\item ExRootAnalysis: Look at the MadGraph directory and use the folder	\texttt{MG5\_aMC\_v2\_2\_2/ExRootAnalysis/}\footnote{It is extremely important to include
+	first the ROOT directory and then the others two.}.
+	\item Delphes: Use the Delphes head directory.
 \end{itemize}
+
+\item In the same menu of \texttt{GCC C++ Linker}, go to \texttt{Miscellaneous} and 
+include the remaining flags of the command of Fig. \ref{fig:root_libs} in the blank
+space next to \texttt{Linker flags}. (Fig. \ref{fig:Misce_linker_flags})
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./Imags_Doc/Misce_linker_flags}
+\caption[Setting miscellaneous linker flags in eclipse]{Setting miscellaneous linker flags in eclipse}
+\label{fig:Misce_linker_flags}
+\end{figure}
+
 
 \item Finally, click on \texttt{OK} at the bottom right corner.
 
@@ -1303,6 +1324,8 @@ programs:
 These instructions have been taken from ~\cite{eclipse}. They have
 been modified to handle specific aspects of this project. However, do not
 hesitate to check such document to get a broader idea of setting eclipse.
+Specially, check slide 18 to find an easier way of setting up ROOT. 
+(ExRootAnalysis and Delphes set up is not explained there).
 
 \begin{appendices}
 
