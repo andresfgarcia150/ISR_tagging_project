@@ -1,0 +1,5 @@
+# Hadronization. (To compile files that read .lhe files and produce stdhep files)
+# No further modifications are needed to compile the class UserHooks
+hadronization% : hadronization%.cc $(PREFIX_LIB)/libpythia8.a
+        $(CXX) $^ -o $@ $(CXX_COMMON) $(INCS) $(LOCAL) -L$(PREFIX_LIB) -Wl,-rpath $(PREFIX_LIB) -lpythia8
+

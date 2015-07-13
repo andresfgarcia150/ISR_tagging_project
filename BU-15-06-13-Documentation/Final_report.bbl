@@ -1,0 +1,51 @@
+\begin{thebibliography}{1}
+
+\bibitem{Alwall:2014hca}
+J.~Alwall, R.~Frederix, S.~Frixione, V.~Hirschi, F.~Maltoni, et~al.
+\newblock {The automated computation of tree-level and next-to-leading order
+  differential cross sections, and their matching to parton shower
+  simulations}.
+\newblock {\em JHEP}, 1407:079, 2014.
+
+\bibitem{Sjostrand:2014zea}
+Torbjörn Sjöstrand, Stefan Ask, Jesper~R. Christiansen, Richard Corke,
+  Nishita Desai, et~al.
+\newblock {An Introduction to PYTHIA 8.2}.
+\newblock {\em Comput.Phys.Commun.}, 191:159--177, 2015.
+
+\bibitem{Sjostrand:2006za}
+Torbjorn Sjostrand, Stephen Mrenna, and Peter Skands.
+\newblock Pythia 6.4 physics and manual.
+\newblock {\em JHEP}, 05:026, 2006.
+
+\bibitem{deFavereau:2013fsa}
+J.~de~Favereau et~al.
+\newblock {DELPHES 3, A modular framework for fast simulation of a generic
+  collider experiment}.
+\newblock {\em JHEP}, 1402:057, 2014.
+
+\bibitem{Garren-StdHep}
+Lynn Garren.
+\newblock {\em StdHep 5.06.01 Monte Carlo Standardization at FNAL Fortran and C
+  Implementation}.
+\newblock Fermilab, 11 2006.
+\newblock Available at http://cepa.fnal.gov/psm/stdhep/.
+
+\bibitem{Tange2011a}
+O.~Tange.
+\newblock Gnu parallel - the command-line power tool.
+\newblock {\em ;login: The USENIX Magazine}, 36(1):42--47, Feb 2011.
+
+\bibitem{matching}
+Simon~De Visscher and Johan Alwall.
+\newblock Introduction to jet-parton matching in mg/me, 03 2011.
+\newblock Available at
+  https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/IntroMatching.
+
+\bibitem{eclipse}
+Karl Kaess.
+\newblock Configuring eclipse for root.
+\newblock Available at
+  http://www.tc.umn.edu/~kaes0001/randomstuff/EclipseRoot.pdf.
+
+\end{thebibliography}
