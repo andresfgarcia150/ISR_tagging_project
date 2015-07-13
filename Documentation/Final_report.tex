@@ -586,35 +586,22 @@ c++ compiler and program installation folders. Change lines 23 to 49 of each
 
 Because the programs need a lot of parameters that the user may want to change
 from one simulation to another, the programs have been designed to include 
-those parameters by means of a configuration file. To 
+those parameters by means of a configuration file. Therefore, the user does not
+need to compile each program to execute different analysis. Inside each file,
+there is a list of definitions, which follow the structure:
 
-Some important parameters of each program are defined in the form of global variables 
-at the beginning of the corresponding code (lines 46 - 57). These parameters 
-are not supposed to be modified frequently but are easy to change if necessary. A brief
-description of them is now presented:
+\texttt{Variable\_name=Variable\_value}.
 
-\begin{itemize}
-\item Variable \texttt{channel} is used to select if the 
-channel under analysis corresponds to tops' or stops' production. 
-\item \texttt{ISR\_or\_NOT} defines if the simulation presents or not an ISR jet.
-\item \texttt{Matching} is a boolean variable that should be set true if a matching
-has been performed between MadGraph and Pythia ~\cite{matching}.
-\item Similar variables to those of the previous items exist for the histograms' files.
-(Those histograms will be explained soon). They specify the channel of the simulations 
-performed to fill the histograms and if the matching procedure has been done in those 
-simulations.
-\item Because sometimes I worked at the server and others at my pc, I used \texttt{atServer}
-to change easily between them. By toggling this variable, the user specifies the head folders
-where the histograms' files, the simulation for analysis and the matching results of such
-simulation are located. Furthermore, it also controls where will be the location
-of the tagging results. 
-\end{itemize}
+Every comment starts with the symbol \textquoteleft!', even blank lines. It is 
+important not to change the name of the variables and to follow the syntax rules
+in order to avoid problems at the execution of the codes. 
 
-All these variables are important as they allow handling with different simulations easily.
-However, this needs that the names of the folders as well as the name of the files
-follow a strict convention. In Table \ref{tab:Naming_convention}  the convention used to name 
-files and folders is presented. A few rules should be taken into account when checking the
-name structure presented in Table \ref{tab:Naming_convention}:
+Observe that the configuration file makes the program flexible as the user can 
+easily define the name of the folders and the files. In despite of this, I preferred
+to follow a strict convention to name the files, which is illustrated in Table
+\ref{tab:Naming_convention}. When checking the files, take into account this table
+and the following rules. Recall, however, that it is my convention and you can
+easily modify it.
 
 \begin{table}
 \renewcommand{\arraystretch}{1.2}
@@ -677,10 +664,8 @@ name structure presented in Table \ref{tab:Naming_convention}:
 	variables used for the analysis (Those variables will be explained later on).
 \end{enumerate}
 
-Take into account these rules for managing files produced and read by the programs.
-Feel free to change this convention but remember that it should be changed in all
-codes. Other details to execute each program will explained in the following sections,
-where additionally, the functionalities of each program are presented. 
+Other details to manage each program will be explained in the following sections.
+However, keep in mind this section when studying the next pages.
 
 \section{The ISR jet tagging method} \label{sec:Method}
 
@@ -841,32 +826,32 @@ of the project, at the folder \texttt{Codes/Codes\_analysis/ISR\_tagging\_FV}. T
 it, follow the instructions of section \ref{sec:Preparation_codes}. After compilation,
 the code can be executed by typing the instruction:
 
-\texttt{./ISR\_tagging [N1] [N2] [N3] [pt\_cut] [k\_cut]}
+\texttt{./ISR\_tagging config\_file.txt [N1 N2 [N3]}
 
-\noindent where all the parameters that follow \texttt{./ISR\_tagging} are optional. Because
-the method uses three kinematic variables to distinguish ISR jets from Non ISR jets,
-the last three parameters correspond to the number of the variables the user wants 
+\noindent where the first parameter is mandatory and corresponds to the configuration 
+file. Inside the folder of the program, there is an example of such file. Modify
+the values of the variables defined in such file. After the definition of the file
+names and folders, there are two important variables at the end of the configuration
+file (\texttt{k\_cut} and \texttt{pt\_cut}), which are used to perform an
+analysis of the tagging results. If those variables are uncommented, the tagging
+algorithm is executed with a probability cut \texttt{k\_cut} and then, a selection
+of the tagged ISR jets is done by choosing those jets whose PT is larger than
+\texttt{pt\_cut}. The performance of the algorithm is measured for this selection
+and plots of Missing Transverse Energy are generated.
+
+On the other hand, the last three parameters are optional. Because the method
+uses three kinematic variables to distinguish ISR jets from Non ISR jets, the 
+last three parameters correspond to the number of the variables the user wants 
 for the analysis. There are eight possible variables defined in the program, that can 
 be checked in the documentation at the beginning of the code. Although optional, the 
 user cannot specify just one or two of them; it is important to execute the code by 
 typing the three numbers or none of them. If no variables are written as inputs,
 the code takes by default the variables 0, 1 and 2.
 
-On the other hand, the last two variables are used to perform an analysis of the 
-tagging results. After executing the tagging algorithm with a probability cut 
-\texttt{k\_cut}, a selection of the tagged ISR jets is done by choosing those jets
-whose PT is larger than \texttt{pt\_cut}. The performance of the algorithm is 
-measured for this selection and plots of Missing Transverse Energy are generated.
-
-Other important parameters of this code are the global variables mentioned in
-section \ref{sec:Preparation_codes}. You can change them according to the
-rules presented before and compile the code again to use those modifications.
-Additionally, the tagging code allows the analysis of several runs, which
-is possible to control by means of the \textit{for} loop of line 254.
-
-Other technical details of the tagging program can be found in the comments of 
-the code.
-
+Finally, it is important to mention that the tagging algorithm is executed for
+several runs. The \textit{for} loop of line 308 defines the simulations (their seeds) 
+to which the tagging algorithm will be applied. Other technical details of the tagging
+program can be found in the comments of the code.
 
 \begin{center}
 	***
@@ -924,9 +909,10 @@ the code, which can be found in Appendix \ref{App:Matching_code} and in the
 repository of the project. Once the code has been compiled, it can be executed
 by typing the instruction:
 
-\texttt{./ISR\_matching [000]}
+\texttt{./ISR\_matching config\_file.txt [000]}
 
-where the last three digits are optional and correspond to the number of the
+where the first parameter is the mandatory configuration file. The last three 
+digits required as parameters are optional and correspond to the number of the
 simulation (its seed) to which the user wants to execute the matching. If no
 parameter is written, the simulation for analysis has seed 003.
 
@@ -1005,10 +991,11 @@ bins, and a plain text file with the parameters that define the histogram.
 The compilation of the code is achieved by following the instructions
 of section \ref{sec:Preparation_codes}. To execute the code, type:
 
-\noindent \texttt{./ Creating\_histo [N1] [N2] [N3]}
+\noindent \texttt{./ Creating\_histo config\_file.txt [N1 N2 N3]}
 
-where the parameters at the end are optional and correspond again to
-the variables with which the histograms will be filled.
+where the first parameter is again the configuration file and the others
+at the end are optional and correspond to the variables with which the
+histograms will be filled.
 
 The explanation of the most important codes written in this
 project finishes here. An example that involves the execution
