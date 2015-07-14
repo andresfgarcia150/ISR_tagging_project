@@ -18,7 +18,7 @@ Functions for plotting charts
  * Observe that you can leave FOLDER_GRAPS empty ("") and specify the full path name
  * of the picture in the Canvas' name
  */
-#define FOLDER_GRAPHS "./histos/";
+#define FOLDER_GRAPHS "";
 
 /*
  * Function to draw two histograms in the same canvas

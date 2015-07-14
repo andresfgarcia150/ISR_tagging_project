@@ -1,0 +1,12 @@
+! Line of comments
+! head_folder is the folder where all the simulations of the same kind are stored
+head_folder=/home/af.garcia1214/PhenoMCsamples/Simulations/MG_pythia8_delphes_parallel/_Tops_Events_WI_Matching/
+!
+! current_folder is the name of the folder located inside head_folder that corresponds to the same run. The last three digits are the seed of such simulation. They are modified according to the seed the user defines when executing the code
+current_folder=_Tops_MG_1K_AG_WI_003/
+!
+! head_folder_results is the name of the directory where the results will be located
+head_folder_results=/home/af.garcia1214/PhenoMCsamples/Results_Improved_Codes/matching_Results/_Tops_matchs_WI_Matching/
+!
+! matching_name is the name of the output file. Again, the last three digits are the seed of the simulation
+matching_name=ISR_jets_Tops_WI_003.bn

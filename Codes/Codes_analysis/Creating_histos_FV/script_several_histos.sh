@@ -5,6 +5,7 @@ echo "Hi, $mensaje"
 
 # loop over 100K event folders
 exe_file='Creating_histo'
+conf_file='config_file.txt'
 max_val=7
 for ((i=0; i<=${max_val}; i++))
 do
@@ -12,7 +13,7 @@ do
 	do
 		for ((k=($j+1); k<=${max_val}; k++))
 		do
-			./$exe_file $i $j $k
+			./$exe_file $conf_file $i $j $k
 		done
 	done
 done

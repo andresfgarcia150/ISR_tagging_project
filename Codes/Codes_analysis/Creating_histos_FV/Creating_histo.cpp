@@ -23,10 +23,14 @@ The user can choose 3 of 8 variables for filling
 8. Delta Eta_others
 
 In order to choose them, the code should be run as
-./Creating_histo N1 N2 N3, where N1 N2 and N3 are
-the index of the 3 variables. If no parameter is
-passed as parameter, N1 N2 and N3 will be 0,1 and 3
-by default.
+./Creating_histo config_file.txt [N1 N2 N3]
+
+where [config_file.txt] is a configuration file with
+all parameters needed for the simulation.
+
+N1 N2 and N3 are the index of the 3 variables.
+If no parameter is passed as parameter, N1 N2 and N3
+will be 0,1 and 2 by default.
 */
 
 
@@ -39,16 +43,91 @@ by default.
 // Global Variables
 const Double_t PI = TMath::Pi();
 
-// Other simulations parameters
-const Char_t channel_histo = '_'; // 's' for sTops and '_' for Tops
-const Char_t ISR_or_NOT_histo[] = "WI"; // "WI" with ISR, "SI" without (Here it does not make any sense), "bb" bjets production
-const Bool_t atServer = true; // True if it is run at the server, false at the university's pc
-const Bool_t Matching = true; // True if a matching has been done between MG and Pythia, false otherwise
-
 int main(int argc, char **argv){
 	std::cout.precision(4);
 	// Counting time
 	Double_t initialTime = clock();
+
+	// Folder variables
+	string head_folder = "/home/af.garcia1214/PhenoMCsamples/Simulations/MG_pythia8_delphes_parallel/_Tops_Events_WI_Matching/";
+	string current_folder = "_Tops_MG_1K_AG_WI_003/";
+
+	string head_folder_binary = "/home/af.garcia1214/PhenoMCsamples/Results_Improved_Codes/matching_Results/_Tops_matchs_WI_Matching/";
+	string matching_name = "ISR_jets_Tops_WI_003.bn";
+
+	string head_folder_results = "/home/af.garcia1214/PhenoMCsamples/Results_Improved_Codes/histo_folder/_Tops_histos_WI_Matching/";
+
+	// Checking input parameters
+	string config_file_name = "Debug/config_file.txt";
+	// Reading the file as first parameter
+	if (argc>1){
+		config_file_name = argv[1];
+	}
+	else{
+		cout << "It is necessary to type a configuration file as parameter. Execute as ./Creating_histo config_file.txt [N1 N2 N3]" << endl;
+		return 1;
+	}
+	cout << "Reading input parameters" << endl;
+	cout << "\tUsing as parameters' file: " << config_file_name << endl;
+
+	ifstream config_file (config_file_name);
+	if (config_file.is_open()){
+		cout << "\tReading file" << endl;
+		string line;
+		int number_line = 1;
+		while (getline(config_file,line)){
+			// Skipping commented lines
+			if (line[0] == '!')
+				continue;
+
+			// Finding the position of the equal sign
+			int pos_equal = -1;
+			pos_equal = line.find('=');
+
+			if (pos_equal == -1){
+				cout << "\tLine " << number_line << " is incorrect" << endl;
+				continue;
+			}
+
+			// Splitting the line according to the position of equal sign
+			string var_name = line.substr(0,pos_equal);
+			string var_value = line.substr(pos_equal+1);
+
+			// Reading head folder
+			if(var_name.compare("head_folder") == 0){
+				head_folder = var_value;
+				cout << "\tVariable head folder set as: " << head_folder << endl;
+			}
+			// Reading current folder
+			else if (var_name.compare("current_folder") == 0){
+				current_folder = var_value;
+				cout << "\tVariable current folder set as: " << current_folder <<endl;
+			}
+			// Reading head folder binary
+			else if (var_name.compare("head_folder_binary") == 0){
+				head_folder_binary = var_value;
+				cout << "\tVariable head folder binary set as: " << head_folder_binary << endl;
+			}
+			// Reading matching name
+			else if (var_name.compare("matching_name") == 0){
+				matching_name = var_value;
+				cout << "\tVariable matching_name set as: " << matching_name << endl;
+			}
+			// Reading head folder results
+			else if (var_name.compare("head_folder_results") == 0){
+				head_folder_results = var_value;
+				cout << "\tVariable head folder results set as: " << head_folder_results << endl;
+			}
+
+			number_line ++;
+		}
+	}
+	else
+	{
+		cout << "ERROR: File " << config_file_name << " does not exist. Terminating program" << endl;
+		return 0;
+	}
+
 
 	cout << "\n *** Creating histograms *** \n" << endl;
 
@@ -67,14 +146,14 @@ int main(int argc, char **argv){
 	Double_t var_min_values[8] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 	Double_t var_max_values[8] = {800,5.2,PI,8.0,7.0,PI,500,6.5};
 
-	if (argc == 4){
+	if (argc == 5){
 		cout << "Filling histograms with the variables:" << endl;
 		for (Int_t ind = 0; ind < 3; ind ++){
-			var_index[ind] = atoi(argv[ind+1]);
+			var_index[ind] = atoi(argv[ind+2]);
 		}
 		cout << endl;
 	}
-	else if (argc == 1) {
+	else if (argc == 1 || argc == 2) {
 		cout << "Filling histograms with the default variables:" << endl;
 	}
 	else {
@@ -103,50 +182,28 @@ int main(int argc, char **argv){
     // Input variables of each histogram
 	Double_t values[3] = {0.0,0.0,0.0};
 
-	for(int iRun = 100; iRun < 261; iRun ++){
+	// For loop over several simulations. iRun is the seed of the current simulation
+	for(int iRun = 11; iRun < 261; iRun ++){
 		// Create chains of root trees
 		TChain chain_Delphes("Delphes");
 
-		// Loading simulations from Delphes
-		Char_t *local_path;
-		local_path = (Char_t*) malloc(512*sizeof(Char_t));
-		if (atServer)
-			strcpy(local_path,"/home/af.garcia1214/PhenoMCsamples/Simulations/MG_pythia8_delphes_parallel/"); // At the server
-		else
-			strcpy(local_path,"/home/afgarcia1214/Documentos/Simulations/"); // At the University's pc
-
-		Char_t *head_folder;
-		head_folder = (Char_t*) malloc(512*sizeof(Char_t));
-		if (Matching)
-			strcpy(head_folder,"_Tops_Events_WI_Matching/");
-		else
-			strcpy(head_folder,"_Tops_Events_WI/");
-		head_folder[0] = channel_histo;
-		head_folder[13] = ISR_or_NOT_histo[0];
-		head_folder[14] = ISR_or_NOT_histo[1];
-
-		Char_t current_folder[] = "_Tops_MG_1K_AG_WI_003/";
-		current_folder[0] = channel_histo;
-		current_folder[15] = ISR_or_NOT_histo[0];
-		current_folder[16] = ISR_or_NOT_histo[1];
-
-        Char_t unidad = 0x30 + iRun%10;
+		Char_t unidad = 0x30 + iRun%10;
         Char_t decena = 0x30 + int(iRun/10)%10;
         Char_t centena = 0x30 + int(iRun/100)%10;
 
-		current_folder[18] = centena;
-		current_folder[19] = decena;
-		current_folder[20] = unidad;
+		current_folder[current_folder.size()-4] = centena;
+		current_folder[current_folder.size()-3] = decena;
+		current_folder[current_folder.size()-2] = unidad;
+		matching_name[matching_name.size()-6] = centena;
+		matching_name[matching_name.size()-5] = decena;
+		matching_name[matching_name.size()-4] = unidad;
 
-		Char_t *file_delphes;
-		file_delphes = (Char_t*) malloc(512*sizeof(Char_t));
-		strcpy(file_delphes,local_path);
-		strcat(file_delphes,head_folder);
-		strcat(file_delphes,current_folder);
-		strcat(file_delphes,"Events/run_01/output_delphes.root");
+		string file_delphes_str = head_folder + current_folder + "Events/run_01/output_delphes.root";
 
-        cout << "Writing run: "<<centena<<decena<<unidad<<endl;
-		cout << "\nReading the file: \nDelphes: " << file_delphes << endl;
+		Char_t *file_delphes = (Char_t *) file_delphes_str.c_str();
+
+        cout << "\nWriting run: "<<centena<<decena<<unidad<<endl;
+		cout << "\tReading the file: \n\tDelphes: " << file_delphes << endl;
 
 		chain_Delphes.Add(file_delphes);
 		// Objects of class ExRootTreeReader for reading the information
@@ -158,8 +215,7 @@ int main(int argc, char **argv){
 		TClonesArray *branchJet = treeReader_Delphes->UseBranch("Jet");
 		TClonesArray *branchMissingET = treeReader_Delphes->UseBranch("MissingET");
 
-		cout << endl;
-		cout << " Number of Entries Delphes = " << numberOfEntries << endl;
+		cout << "\tNumber of Entries Delphes = " << numberOfEntries << endl;
 		cout << endl;
 
 		// particles, jets and vectors
@@ -197,37 +253,9 @@ int main(int argc, char **argv){
 		Int_t ISR_jets[numberOfEntries];
 		Int_t NumJets = 0;
 
-	    Char_t *local_path_binary;
-	    local_path_binary = (Char_t*) malloc(512*sizeof(Char_t));
-	    if (atServer)
-	    	strcpy(local_path_binary,"/home/af.garcia1214/PhenoMCsamples/Results/matching_Results/"); // At the server
-	    else
-	    	strcpy(local_path_binary,"/home/afgarcia1214/Documentos/Results_and_data/matching_Results/"); // At the University's pc
+		string fileName_str = head_folder_binary + matching_name;
 
-		Char_t *head_folder_binary;
-		head_folder_binary = (Char_t*) malloc(512*sizeof(Char_t));
-		if (Matching)
-			strcpy(head_folder_binary,"_Tops_matchs_WI_Matching/");
-		else
-			strcpy(head_folder_binary,"_Tops_matchs_WI/");
-	    head_folder_binary[0] = channel_histo;
-	    head_folder_binary[13] = ISR_or_NOT_histo[0];
-	    head_folder_binary[14] = ISR_or_NOT_histo[1];
-
-	    Char_t matching_name[] = "ISR_jets_Tops_WI_003.bn";
-	    matching_name[8] = channel_histo;
-	    matching_name[14] = ISR_or_NOT_histo[0];
-	    matching_name[15] = ISR_or_NOT_histo[1];
-
-		matching_name[17] = centena;
-		matching_name[18] = decena;
-		matching_name[19] = unidad;
-
-	    Char_t * fileName;
-	    fileName = (Char_t*) malloc(512*sizeof(Char_t));
-	    strcpy(fileName,local_path_binary);
-	    strcat(fileName,head_folder_binary);
-	    strcat(fileName,matching_name);
+	    Char_t * fileName = (Char_t *) fileName_str.c_str();
 
 		ifstream ifs(fileName,ios::in | ios::binary);
 
@@ -243,7 +271,7 @@ int main(int argc, char **argv){
 		for (Int_t entry = 0; entry < numberOfEntries; ++entry){
 			// Progress
 			if(numberOfEntries>10 && (entry%((int)numberOfEntries/10))==0.0){
-				cout<<"progress = "<<(entry*100/numberOfEntries)<<"%\t";
+				cout<<"\tprogress = "<<(entry*100/numberOfEntries)<<"%\t";
 				cout<< "Time :"<< (clock()-initialTime)/double_t(CLOCKS_PER_SEC)<<"s"<<endl;
 			}
 
@@ -374,9 +402,9 @@ int main(int argc, char **argv){
 			}
 		}
 
-		cout<<"progress = 100%\t";
+		cout<<"\tprogress = 100%\t";
 		cout<<"Time :"<< (clock()-initialTime)/double_t(CLOCKS_PER_SEC)<<"s"<<endl;
-		cout<<"\nNumber of Written Events: "<<numMatches<<endl;
+		cout<<"\n\tNumber of Written Events: "<<numMatches<<endl;
 	} // End run's for cicle
 
 	/*
@@ -420,59 +448,22 @@ int main(int argc, char **argv){
 	cout<<"\nWriting..."<<endl;
 
 	// Defining the names of the files
-	Char_t combination[] = "______"; // Combination of variables
+	string combination = "______"; // Combination of variables
 	for (Int_t ind = 0; ind < dims; ind ++){
-		*(combination+(ind*2)+1) = (Char_t) (0x30 + var_index[ind]); // Int to char
+		combination[(ind*2)+1] = (Char_t) (0x30 + var_index[ind]); // Int to char
 	}
 
-    Char_t *local_path_results;
-    local_path_results = (Char_t*) malloc(512*sizeof(Char_t));
-    if (atServer)
-    	strcpy(local_path_results,"/home/af.garcia1214/PhenoMCsamples/Results/histo_folder/"); // At the server
-    else
-    	strcpy(local_path_results,"/home/afgarcia1214/Documentos/Results_and_data/histo_folder/"); // At the University's pc
+	string info_ISR_name_str = head_folder_results + "info_histo_ISR" + combination + ".txt";
+	Char_t *info_ISR_name = (Char_t *) info_ISR_name_str.c_str();
 
-    Char_t *head_folder_results;
-	head_folder_results = (Char_t*) malloc(512*sizeof(Char_t));
-	if (Matching)
-		strcpy(head_folder_results,"_Tops_histos_WI_Matching/");
-	else
-		strcpy(head_folder_results,"_Tops_histos_WI/");
-    head_folder_results[0] = channel_histo;
-    head_folder_results[13] = ISR_or_NOT_histo[0];
-    head_folder_results[14] = ISR_or_NOT_histo[1];
+	string array_ISR_name_str = head_folder_results + "array_histo_ISR" + combination + ".bn";
+	Char_t *array_ISR_name = (Char_t *) array_ISR_name_str.c_str();
 
-	Char_t *info_ISR_name;
-	info_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(info_ISR_name,local_path_results);
-	strcat(info_ISR_name,head_folder_results);
-	strcat(info_ISR_name,"info_histo_ISR");
-	strcat(info_ISR_name,combination);
-	strcat(info_ISR_name,".txt");
+	string info_Non_ISR_name_str = head_folder_results + "info_histo_Non_ISR" + combination + ".txt";
+	Char_t *info_Non_ISR_name = (Char_t *) info_Non_ISR_name_str.c_str();
 
-	Char_t *array_ISR_name;
-	array_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(array_ISR_name,local_path_results);
-	strcat(array_ISR_name,head_folder_results);
-	strcat(array_ISR_name,"array_histo_ISR");
-	strcat(array_ISR_name,combination);
-	strcat(array_ISR_name,".bn");
-
-	Char_t *info_Non_ISR_name;
-	info_Non_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(info_Non_ISR_name,local_path_results);
-	strcat(info_Non_ISR_name,head_folder_results);
-	strcat(info_Non_ISR_name,"info_histo_Non_ISR");
-	strcat(info_Non_ISR_name,combination);
-	strcat(info_Non_ISR_name,".txt");
-
-	Char_t *array_Non_ISR_name;
-	array_Non_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(array_Non_ISR_name,local_path_results);
-	strcat(array_Non_ISR_name,head_folder_results);
-	strcat(array_Non_ISR_name,"array_histo_Non_ISR");
-	strcat(array_Non_ISR_name,combination);
-	strcat(array_Non_ISR_name,".bn");
+	string array_Non_ISR_name_str = head_folder_results + "array_histo_Non_ISR" + combination + ".bn";
+	Char_t *array_Non_ISR_name = (Char_t *) array_Non_ISR_name_str.c_str();
 
 	cout << "Output files:\n\t" << info_ISR_name << "\n\t" << array_ISR_name << "\n\t" << info_Non_ISR_name << "\n\t" << array_Non_ISR_name << endl;
 

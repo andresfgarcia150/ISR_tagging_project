@@ -5,8 +5,9 @@ echo "Hi, $mensaje"
 
 # loop over 100K event folders
 exe_file='ISR_matching'
-for i in {001..010}
+conf_file='config_file.txt'
+for i in {261..270}
 do
-	./$exe_file $i
+	./$exe_file $conf_file $i
 done
 
