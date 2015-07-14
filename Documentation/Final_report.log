@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.25)  13 JUL 2015 18:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.29)  14 JUL 2015 12:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1107,13 +1107,32 @@ Appendix B.
 (./Codes/ISR_tagging.cpp [55
 
 ] [56] [57] [58] [59] [60] [61] [62] [63] [64]
-[65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77]) [78]
-(./Codes/ISR_matching.cpp [79] [80] [81] [82] [83] [84] [85] [86] [87] [88]
-[89]) (./Codes/ISR_jet_analysis.cpp [90] [91] [92] [93] [94] [95] [96] [97]
-[98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109] [110]
-[111] [112] [113] [114] [115] [116] [117]) (./Codes/Creating_histo.cpp [118]
-[119] [120] [121] [122] [123] [124] [125] [126] [127] [128] [129] [130]
-[131]) (./Final_report.bbl [132]
+[65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76]) [77]
+(./Codes/ISR_matching.cpp [78] [79] [80] [81] [82] [83] [84] [85] [86] [87]
+Overfull \hbox (23.21442pt too wide) in paragraph at lines 316--317
+[][] 
+ []
+
+
+Overfull \hbox (44.60541pt too wide) in paragraph at lines 319--320
+[][][][][][][] 
+ []
+
+
+Overfull \hbox (23.21442pt too wide) in paragraph at lines 321--322
+[][] 
+ []
+
+
+Overfull \hbox (23.21442pt too wide) in paragraph at lines 321--322
+[][] 
+ []
+
+[88] [89]) (./Codes/ISR_jet_analysis.cpp [90] [91] [92] [93] [94] [95] [96]
+[97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109]
+[110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120] [121])
+(./Codes/Creating_histo.cpp [122] [123] [124] [125] [126] [127] [128] [129]
+[130] [131] [132] [133] [134] [135]) (./Final_report.bbl [136]
 Underfull \hbox (badness 1231) in paragraph at lines 11--15
 \OT1/cmr/m/n/12 Nishita De-sai, et al.  An In-tro-duc-tion to PYTHIA 8.2.  \OT1
 /cmr/m/it/12 Com-
@@ -1136,7 +1155,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--50
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1356.
- [133
+ [137
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1356.
@@ -1149,10 +1168,10 @@ Package rerunfilecheck Info: File `Final_report.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1356.
  ) 
 Here is how much of TeX's memory you used:
- 14368 strings out of 493304
- 210843 string characters out of 6139871
+ 14496 strings out of 493304
+ 212833 string characters out of 6139871
  391930 words of memory out of 5000000
- 14554 multiletter control sequences out of 15000+600000
+ 14587 multiletter control sequences out of 15000+600000
  17574 words of font info for 68 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,21n,61p,273b,2084s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1170,10 +1189,10 @@ m/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Final_report.pdf (137 pages, 1193910 bytes).
+Output written on Final_report.pdf (141 pages, 1204689 bytes).
 PDF statistics:
- 4482 PDF objects out of 5155 (max. 8388607)
- 4263 compressed objects within 43 object streams
- 3057 named destinations out of 3580 (max. 500000)
+ 4610 PDF objects out of 5155 (max. 8388607)
+ 4386 compressed objects within 44 object streams
+ 3152 named destinations out of 3580 (max. 500000)
  364 words of extra memory for PDF output out of 10000 (max. 10000000)
 

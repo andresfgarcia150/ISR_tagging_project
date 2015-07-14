@@ -23,17 +23,17 @@ developing the algorithm
 7. Delta PT_others
 8. Delta Eta_others
 
-In order to choose them, the code should be run as
-./ISR_tagging N1 N2 N3, where N1 N2 and N3 are
-the index of the 3 variables. If no parameter is
-passed as parameter, N1 N2 and N3 will be 0,1 and 2
-by default.
+In order to choose them, the code should be run as:
 
-Additionally, the user can define a pt_cut and
-probability cut k_cut to study the behavior of the
-algorithm in a certain pt selection and to check
-the MET boosting. In such case, the code should be
-run as ./ISR_tagging N1 N2 N3 pt_cut k_cut
+./ISR tagging config_file.txt [N1 N2 N3]
+
+where [config_file.txt] is a configuration file with
+all parameters needed for the simulation.
+
+N1 N2 and N3 are the index of the 3 variables.
+If no parameter is passed as parameter, N1 N2 and N3
+will be 0,1 and 2 by default.
+
 */
 
 
@@ -46,22 +46,121 @@ run as ./ISR_tagging N1 N2 N3 pt_cut k_cut
 // Global Variables
 const Double_t PI = TMath::Pi();
 
-// Other simulations parameters
-const Char_t channel = '_'; // 's' for sTops and '_' for Tops
-const Char_t ISR_or_NOT[] = "WI"; // "WI" with ISR, "SI" without (Here it does not make any sense), "bb" bjets production
-const Bool_t Matching = true; // True if a matching has been done between MG and Pythia, false otherwise
-
-const Char_t channel_histo = '_'; // 's' for sTops and '_' for Tops (Which channel fills the histogram)
-const Char_t ISR_or_NOT_histo[] = "WI"; // "WI" with ISR, "SI" without (Here it does not make any sense), "bb" bjets production  (Which channel fills the histogram)
-const Bool_t Matching_histo = true; // True if a matching has been done between MG and Pythia, false otherwise
-const Bool_t atServer = true; // True if it is run at the server, false at the university's pc
-
 int main(int argc, char **argv){
 	std::cout.precision(4);
 	// Counting time
 	Double_t initialTime = clock();
-	Double_t pt_cut = 0.0;
-	Double_t Jet_cut = 2;
+
+	// Folder variables
+	string head_folder = "/home/af.garcia1214/PhenoMCsamples/Simulations/MG_pythia8_delphes_parallel/_Tops_Events_WI_Matching/";
+	string current_folder = "_Tops_MG_1K_AG_WI_003/";
+
+	string head_folder_binary = "/home/af.garcia1214/PhenoMCsamples/Results_Improved_Codes/matching_Results/_Tops_matchs_WI_Matching/";
+	string matching_name = "ISR_jets_Tops_WI_003.bn";
+
+	string head_folder_histos = "/home/af.garcia1214/PhenoMCsamples/Results_Improved_Codes/histo_folder/_Tops_histos_WI_Matching/";
+	string head_folder_results = "/home/af.garcia1214/PhenoMCsamples/Results_Improved_Codes/resultsTagging/_Tops_histos_WI_Matching/";
+
+	Bool_t ISR_OR_NOT = true;
+
+	// Variables for analysis
+	Double_t pt_cut = 0.0; // ISR jet pt cut
+	Double_t Jet_cut = 2;  // Ptobability cut 'K'
+	Bool_t do_pt_cut = false;
+	Bool_t do_jet_cut = false;
+
+	// Checking input parameters
+	string config_file_name = "Debug/config_file.txt";
+	// Reading the file as first parameter
+	if (argc>1){
+		config_file_name = argv[1];
+	}
+	else{
+		cout << "It is necessary to type a configuration file as parameter. Execute as ./ISR tagging config_file.txt [N1 N2 N3]" << endl;
+		return 1;
+	}
+	cout << "Reading input parameters" << endl;
+	cout << "\tUsing as parameters' file: " << config_file_name << endl;
+
+	ifstream config_file (config_file_name);
+	if (config_file.is_open()){
+		cout << "\tReading file" << endl;
+		string line;
+		int number_line = 1;
+		while (getline(config_file,line)){
+			// Skipping commented lines
+			if (line[0] == '!')
+				continue;
+
+			// Finding the position of the equal sign
+			int pos_equal = -1;
+			pos_equal = line.find('=');
+
+			if (pos_equal == -1){
+				cout << "\tLine " << number_line << " is incorrect" << endl;
+				continue;
+			}
+
+			// Splitting the line according to the position of equal sign
+			string var_name = line.substr(0,pos_equal);
+			string var_value = line.substr(pos_equal+1);
+
+			// Reading head folder
+			if(var_name.compare("head_folder") == 0){
+				head_folder = var_value;
+				cout << "\tVariable head folder set as: " << head_folder << endl;
+			}
+			// Reading current folder
+			else if (var_name.compare("current_folder") == 0){
+				current_folder = var_value;
+				cout << "\tVariable current folder set as: " << current_folder <<endl;
+			}
+			// Reading head folder binary
+			else if (var_name.compare("head_folder_binary") == 0){
+				head_folder_binary = var_value;
+				cout << "\tVariable head folder binary set as: " << head_folder_binary << endl;
+			}
+			// Reading matching name
+			else if (var_name.compare("matching_name") == 0){
+				matching_name = var_value;
+				cout << "\tVariable matching_name set as: " << matching_name << endl;
+			}
+			// Reading head folder histos
+			else if (var_name.compare("head_folder_histos") == 0){
+				head_folder_histos = var_value;
+				cout << "\tVariable head folder histos set as: " << head_folder_histos << endl;
+			}
+			// Reading head folder results
+			else if (var_name.compare("head_folder_results") == 0){
+				head_folder_results = var_value;
+				cout << "\tVariable head folder results set as: " << head_folder_results << endl;
+			}
+			// Reading pt_cut
+			else if (var_name.compare("pt_cut") == 0){
+				pt_cut = atof((Char_t *) var_value.c_str());
+				do_pt_cut = true;
+			}
+			// Reading jet_cut
+			else if (var_name.compare("Jet_cut") == 0){
+				Jet_cut = atof((Char_t *) var_value.c_str());
+				do_jet_cut = true;
+			}
+			// Reading ISR_OR_NOT
+			else if (var_name.compare("ISR_OR_NOT") == 0){
+				if (var_value.compare("1") == 0)
+					ISR_OR_NOT = true;
+				else
+					ISR_OR_NOT = false;
+			}
+
+			number_line ++;
+		}
+	}
+	else
+	{
+		cout << "ERROR: File " << config_file_name << " does not exist. Terminating program" << endl;
+		return 0;
+	}
 
 	cout << "\n *** Running the tagging Algorithm *** \n" << endl;
 
@@ -76,110 +175,65 @@ int main(int argc, char **argv){
 	Double_t var_values[8] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}; // Vector with the values of the 8 variables
 
 
-	if (argc == 1) {
-		cout << "Running the algorithm with the default variables:" << endl;
+	if (argc == 2) {
+		cout << "\tRunning the algorithm with the default variables:" << endl;
 	}
-
-	if (argc >= 4){
-		cout << "Running the algorithm with the variables:" << endl;
+	else if (argc >= 5){
+		cout << "\tRunning the algorithm with the variables:" << endl;
 		for (Int_t ind = 0; ind < 3; ind ++){
-			var_index[ind] = atoi(argv[ind+1]);
+			var_index[ind] = atoi(argv[ind+2]);
 		}
 	}
-	if (argc >= 5) {
-		pt_cut = atof(argv[4]);
-	}
-	if (argc >= 6) {
-		Jet_cut = atof(argv[5]);
-	}
-
-	if ((argc >= 7) || (argc < 4 && argc > 1)) {
-		cout << "Error at calling this algorithm. Use as:" << endl;
-		cout << "\t ./ISR_tagging N1 N2 N3 [Pt_cut] [K_cut] or just ./ISR_tagging" << endl;
-		cout << "Read the documentation at the beginning of the code for further information\n" << endl;
+	else {
+		cout << "\tError at calling this algorithm. Use as:" << endl;
+		cout << "\t ./ISR_tagging config_file.txt,  ./ISR_tagging config_file.txt N1 N2 N3 or just ./ISR_tagging" << endl;
+		cout << "\tRead the documentation at the beginning of the code for further information\n" << endl;
 		return 1;
 	}
 
-	cout << "Transverse momentum of the ISR: " << pt_cut << endl;
-
-	cout << "Var \t\t min_Value \t max_Value" << endl;
+	cout << "\tVar \t\t min_Value \t max_Value" << endl;
 	for (Int_t ind = 0; ind < 3; ind ++){
 
-		cout << var_index[ind] << ". " << variables[var_index[ind]] << endl;
+		cout << "\t" << var_index[ind] << ". " << variables[var_index[ind]] << endl;
 	}
 	cout << endl;
+
+	cout << "\tTransverse momentum of the ISR: " << pt_cut << endl;
 
 	/*
 	 * Initializing the 3-dimensional histogram
 	 */
 	// Defining the names of the files
-	Char_t combination[] = "______"; // Combination of variables
+	string combination = "______"; // Combination of variables
 	for (Int_t ind = 0; ind < dims; ind ++){
-		*(combination+(ind*2)+1) = (Char_t) (0x30 + var_index[ind]); // Int to char
+		combination[(ind*2)+1] = (Char_t) (0x30 + var_index[ind]); // Int to char
 	}
 
-	Char_t *local_path_histos;
-	local_path_histos = (Char_t*) malloc(512*sizeof(Char_t));
-	if (atServer)
-		strcpy(local_path_histos,"/home/af.garcia1214/PhenoMCsamples/Results/histo_folder/"); // At the server
-	else
-		strcpy(local_path_histos,"/home/afgarcia1214/Documentos/Results_and_data/histo_folder/"); // At the University's pc
+	string info_ISR_name_str = head_folder_histos + "info_histo_ISR" + combination + ".txt";
+	Char_t *info_ISR_name = (Char_t *) info_ISR_name_str.c_str();
 
-	Char_t *head_folder_histos;
-	head_folder_histos = (Char_t*) malloc(512*sizeof(Char_t));
-	if (Matching_histo)
-		strcpy(head_folder_histos,"_Tops_histos_WI_Matching/");
-	else
-		strcpy(head_folder_histos,"_Tops_histos_WI/");
-	head_folder_histos[0] = channel_histo;
-	head_folder_histos[13] = ISR_or_NOT_histo[0];
-	head_folder_histos[14] = ISR_or_NOT_histo[1];
+	string array_ISR_name_str = head_folder_histos + "array_histo_ISR" + combination + ".bn";
+	Char_t *array_ISR_name = (Char_t *) array_ISR_name_str.c_str();
 
-	Char_t *info_ISR_name;
-	info_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(info_ISR_name,local_path_histos);
-	strcat(info_ISR_name,head_folder_histos);
-	strcat(info_ISR_name,"info_histo_ISR");
-	strcat(info_ISR_name,combination);
-	strcat(info_ISR_name,".txt");
+	string info_Non_ISR_name_str = head_folder_histos + "info_histo_Non_ISR" + combination + ".txt";
+	Char_t *info_Non_ISR_name = (Char_t *) info_Non_ISR_name_str.c_str();
 
-	Char_t *array_ISR_name;
-	array_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(array_ISR_name,local_path_histos);
-	strcat(array_ISR_name,head_folder_histos);
-	strcat(array_ISR_name,"array_histo_ISR");
-	strcat(array_ISR_name,combination);
-	strcat(array_ISR_name,".bn");
-
-	Char_t *info_Non_ISR_name;
-	info_Non_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(info_Non_ISR_name,local_path_histos);
-	strcat(info_Non_ISR_name,head_folder_histos);
-	strcat(info_Non_ISR_name,"info_histo_Non_ISR");
-	strcat(info_Non_ISR_name,combination);
-	strcat(info_Non_ISR_name,".txt");
-
-	Char_t *array_Non_ISR_name;
-	array_Non_ISR_name = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(array_Non_ISR_name,local_path_histos);
-	strcat(array_Non_ISR_name,head_folder_histos);
-	strcat(array_Non_ISR_name,"array_histo_Non_ISR");
-	strcat(array_Non_ISR_name,combination);
-	strcat(array_Non_ISR_name,".bn");
+	string array_Non_ISR_name_str = head_folder_histos + "array_histo_Non_ISR" + combination + ".bn";
+	Char_t *array_Non_ISR_name = (Char_t *) array_Non_ISR_name_str.c_str();
 
 	histoN* histoISR = new histoN(info_ISR_name,array_ISR_name);
 	histoN* histoNonISR = new histoN(info_Non_ISR_name,array_Non_ISR_name);
 
-	cout << "Entradas ISR: " << histoISR->getEntries() << endl;
-	cout << "Entradas FSR: " << histoNonISR->getEntries() << endl;
+	cout << "\tEntradas ISR: " << histoISR->getEntries() << endl;
+	cout << "\tEntradas FSR: " << histoNonISR->getEntries() << endl;
 
 	// Input variables of each histogram
 	Double_t values[3] = {0.0,0.0,0.0};
 
 	/*
-	* MET histograms
-	*/
-	TH1 *h_MET = new TH1F("Missing ET","All events",300,0,2000);
+	 * MET histograms
+	 */
+	TH1 *h_MET = new TH1F("Missing ET","All events",300,0,1000);
 	Char_t *name_histo_MET;
 	name_histo_MET = (Char_t*) malloc(sizeof(char)*512);
 	strcpy(name_histo_MET,"ISR jet PT > ");
@@ -194,15 +248,15 @@ int main(int argc, char **argv){
 	k_str[1] = '.';
 	k_str[2] = 0x30 + int(Jet_cut*10)%10;
 	strcat(name_histo_MET,k_str);
-	TH1 *h_MET_hpt1 = new TH1F(name_histo_MET,"Missing ET high_ISR_pt-1",300,0.0,2000);
+	TH1 *h_MET_hpt1 = new TH1F(name_histo_MET,"Missing ET high_ISR_pt-1",300,0.0,1000);
 
-	if (argc == 6)
-		cout << "The algorithm will evaluate the MET for a sample with PT > " << pt_str << " at k = " << k_str << endl;
+	if (do_jet_cut && do_pt_cut)
+		cout << "\tThe algorithm will evaluate the MET for a sample with PT > " << pt_str << " at k = " << k_str << endl;
 	/*
 	 * Tagging variables
 	 */
 
-	cout << "Jet cut, k = " << Jet_cut << endl;
+	cout << "\tJet cut, k = " << Jet_cut << endl;
 
 	// Arrays with the number of tags, Misstags and events rejected
 	// Probability cut
@@ -228,7 +282,7 @@ int main(int argc, char **argv){
 
 	Double_t Num_Tags_array_hpt[k_bins];
 	Double_t Num_MissTags_array_hpt[k_bins];
-	Double_t Num_Rejected_array_hpt[k_bins];
+//	Double_t Num_Rejected_array_hpt[k_bins];
 	Double_t Num_Total_Jets_hpt[k_bins];
 
 
@@ -239,7 +293,7 @@ int main(int argc, char **argv){
 		Num_Total_Jets[ind] = 0;
 		Num_Tags_array_hpt[ind] = 0;
 		Num_MissTags_array_hpt[ind] = 0;
-		Num_Rejected_array_hpt[ind] = 0;
+//		Num_Rejected_array_hpt[ind] = 0;
 		Num_Total_Jets_hpt[ind] = 0;
 	}
 
@@ -251,51 +305,28 @@ int main(int argc, char **argv){
 	Double_t k_ISR_pos = 0; // Position of the ISR in the vector
 	Int_t ISR_tag_index = -1;
 
-	// Cycle over several runs. iRun correspons to the seed of the current run
-	for(int iRun = 1; iRun < 11; iRun ++){
+	// Cycle over several runs . iRun corresponds to the seed of the current run
+	for(int iRun = 261; iRun < 270; iRun ++){
 		// Create chains of root trees
 		TChain chain_Delphes("Delphes");
 
-		// Loading simulations from Delphes
-		Char_t *local_path;
-		local_path = (Char_t*) malloc(512*sizeof(Char_t));
-		if (atServer)
-			strcpy(local_path,"/home/af.garcia1214/PhenoMCsamples/Simulations/MG_pythia8_delphes_parallel/"); // At the server
-		else
-			strcpy(local_path,"/home/afgarcia1214/Documentos/Simulations/"); // At the University's pc
-
-		Char_t *head_folder;
-		head_folder = (Char_t*) malloc(512*sizeof(Char_t));
-		if (Matching)
-			strcpy(head_folder,"_Tops_Events_WI_Matching/");
-		else
-			strcpy(head_folder,"_Tops_Events_WI/");
-		head_folder[0] = channel;
-		head_folder[13] = ISR_or_NOT[0];
-		head_folder[14] = ISR_or_NOT[1];
-
-		Char_t current_folder[] = "_Tops_MG_1K_AG_WI_003/";
-		current_folder[0] = channel;
-		current_folder[15] = ISR_or_NOT[0];
-		current_folder[16] = ISR_or_NOT[1];
-
 		Char_t unidad = 0x30 + iRun%10;
-        	Char_t decena = 0x30 + int(iRun/10)%10;
-        	Char_t centena = 0x30 + int(iRun/100)%10;
+		Char_t decena = 0x30 + int(iRun/10)%10;
+		Char_t centena = 0x30 + int(iRun/100)%10;
 
-		current_folder[18] = centena;
-		current_folder[19] = decena;
-		current_folder[20] = unidad;
+		current_folder[current_folder.size()-4] = centena;
+		current_folder[current_folder.size()-3] = decena;
+		current_folder[current_folder.size()-2] = unidad;
+		matching_name[matching_name.size()-6] = centena;
+		matching_name[matching_name.size()-5] = decena;
+		matching_name[matching_name.size()-4] = unidad;
 
-		Char_t *file_delphes;
-		file_delphes = (Char_t*) malloc(512*sizeof(Char_t));
-		strcpy(file_delphes,local_path);
-		strcat(file_delphes,head_folder);
-		strcat(file_delphes,current_folder);
-		strcat(file_delphes,"Events/run_01/output_delphes.root");
+		string file_delphes_str = head_folder + current_folder + "Events/run_01/output_delphes.root";
 
-        	cout << "Studying run: "<<centena<<decena<<unidad<<endl;
-		cout << "\nReading the file: \nDelphes: " << file_delphes << endl;
+		Char_t *file_delphes = (Char_t *) file_delphes_str.c_str();
+
+		cout << "\n\tStudying run: "<<centena<<decena<<unidad<<endl;
+		cout << "\tReading the file: \n\tDelphes: " << file_delphes << endl;
 
 		chain_Delphes.Add(file_delphes);
 		// Objects of class ExRootTreeReader for reading the information
@@ -307,8 +338,7 @@ int main(int argc, char **argv){
 		TClonesArray *branchJet = treeReader_Delphes->UseBranch("Jet");
 		TClonesArray *branchMissingET = treeReader_Delphes->UseBranch("MissingET");
 
-		cout << endl;
-		cout << " Number of Entries Delphes = " << numberOfEntries << endl;
+		cout << "\tNumber of Entries Delphes = " << numberOfEntries << endl;
 		cout << endl;
 
 		// particles, jets and vectors
@@ -345,39 +375,11 @@ int main(int argc, char **argv){
 		Int_t ISR_jets[numberOfEntries];
 		Int_t NumJets = 0;
 
-		Char_t *local_path_binary;
-		local_path_binary = (Char_t*) malloc(512*sizeof(Char_t));
-		if (atServer)
-			strcpy(local_path_binary,"/home/af.garcia1214/PhenoMCsamples/Results/matching_Results/"); // At the server
-		else
-			strcpy(local_path_binary,"/home/afgarcia1214/Documentos/Results_and_data/matching_Results/"); // At the University's pc
+		string fileName_str = head_folder_binary + matching_name;
 
-		Char_t *head_folder_binary;
-		head_folder_binary = (Char_t*) malloc(512*sizeof(Char_t));
-		if (Matching)
-			strcpy(head_folder_binary,"_Tops_matchs_WI_Matching/");
-		else
-			strcpy(head_folder_binary,"_Tops_matchs_WI/");
-		head_folder_binary[0] = channel;
-		head_folder_binary[13] = ISR_or_NOT[0];
-		head_folder_binary[14] = ISR_or_NOT[1];
+		Char_t * fileName = (Char_t *) fileName_str.c_str();
 
-		Char_t matching_name[] = "ISR_jets_Tops_WI_003.bn";
-		matching_name[8] = channel;
-		matching_name[14] = ISR_or_NOT[0];
-		matching_name[15] = ISR_or_NOT[1];
-
-		matching_name[17] = centena;
-		matching_name[18] = decena;
-		matching_name[19] = unidad;
-
-		Char_t * fileName;
-		fileName = (Char_t*) malloc(512*sizeof(Char_t));
-		strcpy(fileName,local_path_binary);
-		strcat(fileName,head_folder_binary);
-		strcat(fileName,matching_name);
-
-		if (ISR_or_NOT[0] != 'S'){ // != S means bb or WI
+		if (ISR_OR_NOT == true){
 			ifstream ifs(fileName,ios::in | ios::binary);
 
 			for (Int_t j = 0; j<numberOfEntries; j++){
@@ -385,7 +387,7 @@ int main(int argc, char **argv){
 			}
 			ifs.close();
 		}
-		else if (ISR_or_NOT[0] == 'S'){
+		else{
 			for (Int_t j = 0; j<numberOfEntries; j++){
 				ISR_jets[j] = -2; // There is not ISR jet but also there is not matching
 			}
@@ -398,7 +400,7 @@ int main(int argc, char **argv){
 		for (Int_t entry = 0; entry < numberOfEntries; ++entry){
 			// Progress
 			if(numberOfEntries>10 && (entry%((int)numberOfEntries/10))==0.0){
-				cout<<"progress = "<<(entry*100/numberOfEntries)<<"%\t";
+				cout<<"\tprogress = "<<(entry*100/numberOfEntries)<<"%\t";
 				cout<< "Time :"<< (clock()-initialTime)/double_t(CLOCKS_PER_SEC)<<"s"<<endl;
 			}
 
@@ -554,7 +556,7 @@ int main(int argc, char **argv){
 
 			if(k_ISR == 0.0) k_ISR_pos = -1;
 
-			if (ISR_jets[entry] != -1 && ISR_or_NOT[0] != 'S'){ // != S means bb or WI
+			if (ISR_jets[entry] != -1 && ISR_OR_NOT == true){
 				// A comparison can be handled
 				for (Int_t ind = 0; ind < k_ISR_pos + 1; ind++){
 					if (ISR_tag_index == ISR_jets[entry])
@@ -566,7 +568,7 @@ int main(int argc, char **argv){
 					Num_Rejected_array[ind]++;
 				}
 			}
-			else if (ISR_jets[entry] == -2 && ISR_or_NOT[0] == 'S'){
+			else if (ISR_jets[entry] == -2 && ISR_OR_NOT == false){
 				for (Int_t ind = 0; ind < k_ISR_pos + 1; ind++){
 					Num_MissTags_array[ind]++;
 				}
@@ -575,7 +577,7 @@ int main(int argc, char **argv){
 				}
 			}
 
-			if (ISR_tag_index != -1 && vect_optimum->Pt()>pt_cut && ISR_or_NOT[0] != 'S'){  // != S means bb or WI
+			if (ISR_tag_index != -1 && vect_optimum->Pt()>pt_cut && ISR_OR_NOT == true){  // != S means bb or WI
 				for (Int_t ind = 0; ind < k_ISR_pos + 1; ind++){
 					if (ISR_tag_index == ISR_jets[entry])
 						Num_Tags_array_hpt[ind]++;
@@ -583,13 +585,13 @@ int main(int argc, char **argv){
 						Num_MissTags_array_hpt[ind]++;
 				}
 				for (Int_t ind = k_ISR_pos+1; ind < k_bins; ind++){
-					Num_Rejected_array_hpt[ind]++;
+//					Num_Rejected_array_hpt[ind]++;		// Under a certain k_cut, there are not rejected events
 				}
 			}
-
+		
 			Prob_cut = Jet_cut/NumJets;
 			if(prob_max >= Prob_cut){
-				if (ISR_tag_index == ISR_jets[entry] && ISR_or_NOT[0] != 'S')  // != S means bb or WI
+				if (ISR_tag_index == ISR_jets[entry] && ISR_OR_NOT == true)  // != S means bb or WI
 					Num_Tags++;
 				else
 					Num_MissTags++;
@@ -604,7 +606,7 @@ int main(int argc, char **argv){
 
 		}
 
-		cout<<"progress = 100%\t";
+		cout<<"\tprogress = 100%\t";
 		cout<<"Time :"<< (clock()-initialTime)/double_t(CLOCKS_PER_SEC)<<"s"<<endl;
 
 	} // End run's for cicle
@@ -614,11 +616,11 @@ int main(int argc, char **argv){
 	 */
 
 	Int_t Num_Studied = Num_Tags + Num_MissTags + Num_Rejected;
-
-	cout << "Number of compared events (between the matching and tagging algorithms) : " << Num_Studied << endl;
-	cout << "Per. Tags: \t" << ((Double_t)Num_Tags/Num_Studied)*100 << "%" << endl;
-	cout << "Per. MissTags: \t" << ((Double_t) Num_MissTags/Num_Studied)*100 << "%" << endl;
-	cout << "Per. Rejected: \t" << ((Double_t) Num_Rejected/Num_Studied)*100 << "%" << endl;
+	cout << "\nOverall tagging results" << endl;
+	cout << "\tNumber of compared events (between the matching and tagging algorithms) : " << Num_Studied << endl;
+	cout << "\tPer. Tags: \t" << ((Double_t)Num_Tags/Num_Studied)*100 << "%" << endl;
+	cout << "\tPer. MissTags: \t" << ((Double_t) Num_MissTags/Num_Studied)*100 << "%" << endl;
+	cout << "\tPer. Rejected: \t" << ((Double_t) Num_Rejected/Num_Studied)*100 << "%" << endl;
 
 	// Calculating percentages
 	for (Int_t ind=0; ind < k_bins; ind++){
@@ -626,10 +628,10 @@ int main(int argc, char **argv){
 		Num_Tags_array[ind] = Num_Tags_array[ind]/Num_Total_Jets[ind];
 		Num_MissTags_array[ind] = Num_MissTags_array[ind]/Num_Total_Jets[ind];
 		Num_Rejected_array[ind] = Num_Rejected_array[ind]/Num_Total_Jets[ind];
-		Num_Total_Jets_hpt[ind] = Num_Tags_array_hpt[ind] + Num_MissTags_array_hpt[ind] + Num_Rejected_array_hpt[ind];
+		Num_Total_Jets_hpt[ind] = Num_Tags_array_hpt[ind] + Num_MissTags_array_hpt[ind]; // + Num_Rejected_array_hpt[ind];
 		Num_Tags_array_hpt[ind] = Num_Tags_array_hpt[ind]/Num_Total_Jets_hpt[ind];
 		Num_MissTags_array_hpt[ind] = Num_MissTags_array_hpt[ind]/Num_Total_Jets_hpt[ind];
-		Num_Rejected_array_hpt[ind] = Num_Rejected_array_hpt[ind]/Num_Total_Jets_hpt[ind];
+//		Num_Rejected_array_hpt[ind] = Num_Rejected_array_hpt[ind]/Num_Total_Jets_hpt[ind];
 	}
 
 	/*
@@ -637,51 +639,16 @@ int main(int argc, char **argv){
 	 */
 	Bool_t archivoExiste = false;
 
-	Char_t *local_path_results;
-	local_path_results = (Char_t*) malloc(512*sizeof(Char_t));
-	if (atServer)
-		strcpy(local_path_results,"/home/af.garcia1214/PhenoMCsamples/Results/resultsTagging/"); // At the server
-	else
-		strcpy(local_path_results,"/home/afgarcia1214/Documentos/Results_and_data/resultsTagging/"); // At the University's pc
-
-	Char_t *head_folder_results;
-	head_folder_results = (Char_t*) malloc(512*sizeof(Char_t));
-	if (Matching)
-		strcpy(head_folder_results,"_Tops_result_WI_Matching/");
-	else
-		strcpy(head_folder_results,"_Tops_result_WI/");
-	head_folder_results[0] = channel;
-	head_folder_results[13] = ISR_or_NOT[0];
-	head_folder_results[14] = ISR_or_NOT[1];
-
-	Char_t outName[] = "_Tops_WI_Overall";
-	outName[0] = channel;
-	outName[6] = ISR_or_NOT[0];
-	outName[7] = ISR_or_NOT[1];
-
-	Char_t outNamept[] = "_Tops_WI_hpt-100";
-	outNamept[0] = channel;
-	outNamept[6] = ISR_or_NOT[0];
-	outNamept[7] = ISR_or_NOT[1];
+	Char_t outNamept[] = "Percenta_hpt-100";
 	outNamept[13] = 0x30 + int(pt_cut/100)%10;
 	outNamept[14] = 0x30 + int(pt_cut/10)%10;
 	outNamept[15] = 0x30 + int(pt_cut)%10;
 
-	Char_t *outFileTotal;
-	outFileTotal = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(outFileTotal,local_path_results);
-	strcat(outFileTotal,head_folder_results);
-	strcat(outFileTotal,outName);
-	strcat(outFileTotal,combination);
-	strcat(outFileTotal,".txt");
+	string outFileTotal_str = head_folder_results + "Overall_percs" + combination + ".txt";
+	Char_t *outFileTotal = (Char_t *) outFileTotal_str.c_str();
 
-	Char_t *outFileTotalpt;
-	outFileTotalpt = (Char_t*) malloc(sizeof(char)*512);
-	strcpy(outFileTotalpt,local_path_results);
-	strcat(outFileTotalpt,head_folder_results);
-	strcat(outFileTotalpt,outNamept);
-	strcat(outFileTotalpt,combination);
-	strcat(outFileTotalpt,".txt");
+	string outFileTotalpt_str = head_folder_results + outNamept + combination + ".txt";
+	Char_t *outFileTotalpt = (Char_t *) outFileTotalpt_str.c_str();
 
 	ifstream my_file(outFileTotal);
 	if(my_file.good()){
@@ -691,7 +658,7 @@ int main(int argc, char **argv){
 
 	ofstream ofs_over(outFileTotal,ios::out);
 	if(!archivoExiste){
-    		// If file already exists
+		// If file already exists
 	}
 
 	ofs_over << "# Number of Tags, Misstags and Rejected as a function of k" << endl;
@@ -705,24 +672,21 @@ int main(int argc, char **argv){
 				<< "\t" << setprecision(0) << Num_Total_Jets[ind] << endl;
 	}
 
-	if (argc >= 5){
-		ofstream ofs_pt(outFileTotalpt,ios::out);
+	if (do_pt_cut){
+	    ofstream ofs_pt(outFileTotalpt,ios::out);
 		ofs_pt << "# Number of Tags, Misstags and Rejected as a function of k. The ISR has pt > " << pt_cut << endl;
 		ofs_pt << "# Number of Events " << Num_Total_Jets_hpt[0] << endl;
-		ofs_pt << "# k_cut \t Tags \t MissTags \t Rejected \t Total_Events " << endl;
+		ofs_pt << "# k_cut \t Tags \t MissTags \t Total_Events " << endl;
 		for (Int_t ind = 0; ind < k_bins; ind ++){
 	    	ofs_pt << setiosflags(ios::fixed) << setprecision(6) << setw(6) << k_values[ind]
-					<< "\t" << Num_Tags_array_hpt[ind] << "\t" << Num_MissTags_array_hpt[ind] << "\t" << Num_Rejected_array_hpt[ind]
+					<< "\t" << Num_Tags_array_hpt[ind] << "\t" << Num_MissTags_array_hpt[ind] // << "\t" << Num_Rejected_array_hpt[ind]
 					<< "\t" << setprecision(0) << Num_Total_Jets_hpt[ind] << endl;
-		}
-		ofs_pt.close();
+	    }
+	    ofs_pt.close();
 	}
 
-	if (argc == 6){
-		Char_t outNameMET[] = "_Tops_WI_MET_pt_000_k_2.0";
-		outNameMET[0] = channel;
-		outNameMET[6] = ISR_or_NOT[0];
-		outNameMET[7] = ISR_or_NOT[1];
+	if (do_jet_cut){
+		Char_t outNameMET[] = "AbsValue_MET_pt_000_k_2.0";
 		outNameMET[16] = pt_str[0];
 		outNameMET[17] = pt_str[1];
 		outNameMET[18] = pt_str[2];
@@ -730,12 +694,8 @@ int main(int argc, char **argv){
 		outNameMET[23] = k_str[1];
 		outNameMET[24] = k_str[2];
 
-		Char_t *outFileMET;
-		outFileMET = (Char_t*) malloc(sizeof(char)*512);
-		strcpy(outFileMET,local_path_results);
-		strcat(outFileMET,head_folder_results);
-		strcat(outFileMET,outNameMET);
-		strcat(outFileMET,combination);
+		string outFileMET_str = head_folder_results + outNameMET + combination;
+		Char_t *outFileMET = (Char_t *) outFileMET_str.c_str();
 
 		Char_t *outFilehist;
 		outFilehist = (Char_t*) malloc(sizeof(char)*512);
@@ -753,7 +713,7 @@ int main(int argc, char **argv){
 
 	ofs_over.close();
 
-	cout<<"Fin :)"<<endl;
+	cout<<"\nEND :)"<<endl;
 
 	return 0;
 }
